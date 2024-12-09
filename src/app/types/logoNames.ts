@@ -1,0 +1,22 @@
+export enum LogoName {
+    GITHUB = 'github',
+    LINKEDIN = 'linkedin',
+    SVELTE = 'svelte',
+    FIGMA = 'figma',
+    NODEJS = 'nodejs',
+    TS = 'ts',
+    DOCKER = 'docker',
+    MIDJOURNEY = 'midjourney',
+    HISTOIRE = 'histoire',
+    POSTGRESQL = 'postgresql',
+    POSTMAN = 'postman',
+    GIT = 'git',
+    CONTENTFUL = 'contentful',
+    REACT = 'react',
+    GATSBY = 'gatsby',
+    SASS = 'sass',
+    SOURCETREE = 'sourcetree',
+    BITBUCKET = 'bitbucket',
+    STORYBOOK = 'storybook',
+  }
+  

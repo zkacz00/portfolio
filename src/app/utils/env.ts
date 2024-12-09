@@ -1,0 +1,12 @@
+export const PROJECT_PATH = process.env.PROJECT_PATH;
+export const NODE_ENV = process.env.NODE_ENV;
+export const APP = process.env.APP;
+export const APP_ROUTE_URL = process.env.APP_ROUTE_URL;
+export const APP_ACCOUNTS_ROUTE_URL = process.env.APP_ACCOUNTS_ROUTE_URL;
+export const APP_ADMIN_ROUTE_URL = process.env.APP_ADMIN_ROUTE_URL;
+export const ACCOUNTS_ROUTE_URL = process.env.ACCOUNTS_ROUTE_URL;
+export const HISTOIRE_ROUTE_URL = process.env.HISTOIRE_ROUTE_URL;
+export const ANALYTICS_ROUTE_URL = process.env.ANALYTICS_ROUTE_URL;
+export const APP_LOG_PORT = process.env.APP_LOG_PORT;
+export const APP_ACCOUNTS_LOG_PORT = process.env.APP_ACCOUNTS_LOG_PORT;
+export const APP_ADMIN_LOG_PORT = process.env.APP_ADMIN_LOG_PORT;
