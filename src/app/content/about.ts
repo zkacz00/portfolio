@@ -15,5 +15,5 @@ export const aboutImage: Image = {
   alt: "That's a me, Mario!",
   assetId: "20udfAPU7UTeQdV27L00Qk",
   uniqueId: "10dcf3249306f31269325dbdea8e395a",
-  file: "src/app/assets/images/zofia-picture.png",
+  file: "zofia-picture.png",
 };

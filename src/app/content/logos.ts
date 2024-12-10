@@ -29,17 +29,17 @@ const logos: Logos = {
     default: {
       assetId: "6uIrVux3qpc31Ov4ftPCmO",
       uniqueId: "0bae660b8e6231f5788f272df50f2902",
-      file: "src/app/assets/images/github-logo--black.png",
+      file: "github-logo--black.png",
     },
     white: {
       assetId: "3dt2PbY6LxBh7OBqbolzvP",
       uniqueId: "0470c3a54973d34ad37bf03de751c30f",
-      file: "src/app/assets/images/github-logo--white.png",
+      file: "github-logo--white.png",
     },
     black: {
       assetId: "6uIrVux3qpc31Ov4ftPCmO",
       uniqueId: "0bae660b8e6231f5788f272df50f2902",
-      file: "src/app/assets/images/github-logo--black.png",
+      file: "github-logo--black.png",
     },
   },
   linkedin: {
@@ -50,17 +50,17 @@ const logos: Logos = {
     default: {
       assetId: "7AG9jGM2LtZwUi5Sdixcsm",
       uniqueId: "436e47afd0b8149ed2f0bc4a454a65e0",
-      file: "src/app/assets/images/linkedin-logo--default.png",
+      file: "linkedin-logo--default.png",
     },
     white: {
       assetId: "3qQaS81y5hLRvli0CjqogG",
       uniqueId: "e425f83c285c7954cf727bb913a3b49f",
-      file: "src/app/assets/images/linkedin-logo--white.png",
+      file: "linkedin-logo--white.png",
     },
     black: {
       assetId: "7vZJiiF5cmI93sA5tNYcXA",
       uniqueId: "29ffe3d3283988d1d9e5564a36502812",
-      file: "src/app/assets/images/linkedin-logo--black.png",
+      file: "linkedin-logo--black.png",
     },
   },
     svelte: {
@@ -71,7 +71,7 @@ const logos: Logos = {
       default: {
         assetId: "kMgfKM8otnR0TFxWErWbd",
         uniqueId: "d0dfdeabab4baca3f8a4571c0673e179",
-        file: "src/app/assets/images/svelte-logo--default.png",
+        file: "svelte-logo--default.png",
       },
     },
     figma: {
@@ -82,20 +82,20 @@ const logos: Logos = {
       default: {
         assetId: "6IiXItlLgWHBwc5IZ3r3rA",
         uniqueId: "5a1cf31b25ba4a347ba5796ab929f439",
-        file: "src/app/assets/images/figma-logo--default.png",
+        file: "figma-logo--default.png",
       },
     },
-    js: {
-      key: LogoName.JS,
-      name: "JavaScript",
-      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      alt: "JavaScript",
-      default: {
-        assetId: "4wdUUArmKkR78q5Kamv7sQ",
-        uniqueId: "d3e4a7c93383d1dadd94bd3cdca1f447",
-        file: "src/app/assets/images/javascript-logo--default.png",
-      },
-    },
+    // js: {
+    //   key: LogoName.JS,
+    //   name: "JavaScript",
+    //   url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    //   alt: "JavaScript",
+    //   default: {
+    //     assetId: "4wdUUArmKkR78q5Kamv7sQ",
+    //     uniqueId: "d3e4a7c93383d1dadd94bd3cdca1f447",
+    //     file: "javascript-logo--default.png",
+    //   },
+    // },
     ts: {
       key: LogoName.TS,
       name: "TypeScript",
@@ -104,7 +104,7 @@ const logos: Logos = {
       default: {
         assetId: "64bOscOJgGD9A9AJWTjiSL",
         uniqueId: "5112d383f9fbcd5befe80cd841cd3efd",
-        file: "src/app/assets/images/ts-logo--default.png",
+        file: "ts-logo--default.png",
       },
     },
     docker: {
@@ -115,7 +115,7 @@ const logos: Logos = {
       default: {
         assetId: "5wSpkNEA2uv8ooZPQX8uJ7",
         uniqueId: "a5aaacc87f9bb86986072cd32e84b030",
-        file: "src/app/assets/images/docker-logo--default.png",
+        file: "docker-logo--default.png",
       },
     },
     midjourney: {
@@ -126,7 +126,7 @@ const logos: Logos = {
       default: {
         assetId: "6xWoau5A4gUJDgTFd0MWlQ",
         uniqueId: "b5495e787ca773541fecb26b38e4cc73",
-        file: "src/app/assets/images/midjourney-logo--default.png",
+        file: "midjourney-logo--default.png",
       },
     },
     histoire: {
@@ -137,7 +137,7 @@ const logos: Logos = {
       default: {
         assetId: "5SvpP5WA3i3slStEk0j8P8",
         uniqueId: "e5a430638589f23d3a48e133666daada",
-        file: "src/app/assets/images/histoire-logo--default.png",
+        file: "histoire-logo--default.png",
       },
     },
     postgresql: {
@@ -148,7 +148,7 @@ const logos: Logos = {
       default: {
         assetId: "4W8wztHWcjIyoPMqrnOCRO",
         uniqueId: "c3567a2e2f804fd4deecdf98765bb949",
-        file: "src/app/assets/images/postgresql-logo--default.png",
+        file: "postgresql-logo--default.png",
       },
     },
     postman: {
@@ -159,7 +159,7 @@ const logos: Logos = {
       default: {
         assetId: "KuI6HrB9Q3kFLJ4h5i4Sh",
         uniqueId: "d1467738d56d7baae792e2fb7aa2c48f",
-        file: "src/app/assets/images/postman-logo--default.png",
+        file: "postman-logo--default.png",
       },
     },
     git: {
@@ -170,7 +170,7 @@ const logos: Logos = {
       default: {
         assetId: "6hCN69Bwrbt43QtXrB7jxl",
         uniqueId: "b8a1e508751563bb65edd9d557d60de8",
-        file: "src/app/assets/images/git-logo--default.png",
+        file: "git-logo--default.png",
       },
     },
     contentful: {
@@ -181,7 +181,7 @@ const logos: Logos = {
       default: {
         assetId: "6Z9L6U1khXBc1zpEUUudg",
         uniqueId: "803365b48d85086e331c078bda812523",
-        file: "src/app/assets/images/contentful-logo--default.png",
+        file: "contentful-logo--default.png",
       },
     },
     react: {
@@ -192,7 +192,7 @@ const logos: Logos = {
       default: {
         assetId: "5S7NaxVlZ5pRFvwp89ppEg",
         uniqueId: "b0755376cbaed2d7f68d7902cac8a228",
-        file: "src/app/assets/images/react-logo--default.png",
+        file: "react-logo--default.png",
       },
     },
     gatsby: {
@@ -203,7 +203,7 @@ const logos: Logos = {
       default: {
         assetId: "77ETnUygfoXzZE9AH4QYyR",
         uniqueId: "0920021d071b6d77630b7753d0dcd8b6",
-        file: "src/app/assets/images/gatsby-logo--default.png",
+        file: "gatsby-logo--default.png",
       },
     },
     sass: {
@@ -214,7 +214,7 @@ const logos: Logos = {
       default: {
         assetId: "3uZRNzjnalz4w0xyxoWfNw",
         uniqueId: "e8c9970ea82faf75025f4610ae89ae6e",
-        file: "src/app/assets/images/sass-logo--default.png",
+        file: "sass-logo--default.png",
       },
     },
     sourcetree: {
@@ -225,7 +225,7 @@ const logos: Logos = {
       default: {
         assetId: "5RNVX9yH7FuIqEMtuFlzkR",
         uniqueId: "e964a97a931e58917d16dd66ce00e4bf",
-        file: "src/app/assets/images/sourcetree-logo--default.png",
+        file: "sourcetree-logo--default.png",
       },
     },
     bitbucket: {
@@ -236,7 +236,7 @@ const logos: Logos = {
       default: {
         assetId: "6xbMViKKdZ4obHgBRwssWC",
         uniqueId: "f4cc20785ca654e23670880b25363eb6",
-        file: "src/app/assets/images/bitbucket-logo--default.png",
+        file: "bitbucket-logo--default.png",
       },
     },
     storybook: {
@@ -247,7 +247,7 @@ const logos: Logos = {
       default: {
         assetId: "3ejw4q0EkWfT4HO5CVE5tq",
         uniqueId: "ef50ebe5082df77f5c952ce12fb95cb7",
-        file: "src/app/assets/images/storybook-logo--default.png",
+        file: "storybook-logo--default.png",
       },
     },
   };

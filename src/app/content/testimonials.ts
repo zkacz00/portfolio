@@ -20,7 +20,7 @@ export type Testimonials = Array<Testimonial>;
 export const testimonialsUtils: { [key: string]: string } = {
   title: "Testimonials",
   subtitle: "People I’ve worked with have said some nice things...",
-  quotesImage: "src/app/assets/images/quotes-picture.png"
+  quotesImage: "quotes-picture.png"
 };
 
 export const testimonials: Testimonials = [
@@ -36,7 +36,7 @@ export const testimonials: Testimonials = [
       alt: "Gregory Guidero",
       assetId: "3EhzGAUkhZkBVUtrfJnqyT",
       uniqueId: "a8cccbd87e3701df286a61756d7438d1",
-      file: "src/app/assets/images/greg-picture.png",
+      file: "greg-picture.png",
     },
   },
   {
@@ -51,7 +51,7 @@ export const testimonials: Testimonials = [
       alt: "Reward Edoyugbo",
       assetId: "5k3gQoeHtOUtkHMvEunWVQ",
       uniqueId: "32e27bf88b22419f3ce71eb4f8fbbc20",
-      file: "src/app/assets/images/reward-picture.png",
+      file: "reward-picture.png",
     },
   },
 ];

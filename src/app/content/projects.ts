@@ -59,7 +59,7 @@ const projects: Project = {
     image: {
       assetId: "O0esqmV1EzHDZFFokFuwh",
       uniqueId: "fc9ac43107b17d01b8c2fb730bf73747",
-      file: "src/app/assets/images/portfolio--robiki.png",
+      file: "portfolio--robiki.png",
       alt: "Robiki.ai",
     },
   },
@@ -99,7 +99,7 @@ const projects: Project = {
     image: {
       assetId: "5uH0Vx0FbqMMSMagnd4Oqs",
       uniqueId: "582e72c8d38ae723327133afafd301cb",
-      file: "src/app/assets/images/portfolio--catchy-beatz.png",
+      file: "portfolio--catchy-beatz.png",
       alt: "Catchy Beatz.",
     },
   },
@@ -138,7 +138,7 @@ const projects: Project = {
     image: {
       assetId: "2uPxxjehcioJnJllAztWsL",
       uniqueId: "9e3cc924ede2400a08b55ec95edd3a35",
-      file: "src/app/assets/images/portfolio--ultimate-quiz.png",
+      file: "portfolio--ultimate-quiz.png",
       alt: "Ultimate Quiz",
     },
   },

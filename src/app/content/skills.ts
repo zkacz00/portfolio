@@ -23,7 +23,7 @@ export const skillsImage: Image = {
   alt: 'My skills',
   assetId: '4isGsNrl7qcseKnWccbKnk',
   uniqueId: 'b1b4657c82837bb085b17ccb5ca5b960',
-  file: 'src/app/assets/images/skills-image.png'
+  file: 'skills-image.png'
 }
 
 export const skills: Skills = {

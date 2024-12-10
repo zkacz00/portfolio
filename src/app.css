@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek:wght@100..800&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/dripicons@2.0.0/css/dripicons.min.css');
-@import url('./app/assets/icons/dripicons-v2.css');
+@import url('/icons/dripicons-v2.css');
 
 @font-face {
     font-family: 'dripicons';
-    src: url('./app/assets/icons/dripicons-v2.woff') format('woff');
+    src: url('/icons/dripicons-v2.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-variant: normal;

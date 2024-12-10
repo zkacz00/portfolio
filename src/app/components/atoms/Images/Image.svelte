@@ -34,6 +34,16 @@
 
   /** The style of image */
   export let style: string = '';
+
+  /* VARIABLES */
+  // let imagePathPrefix: string = "images/";
+  let imagePathPrefix: string = "/zkacz00-portfolio/images/";
+
+  /* HOOKS */
+  // Add a computed property to handle the image path
+  $: imagePath = file?.startsWith(imagePathPrefix) 
+    ? file 
+    : `${imagePathPrefix}${file.replace(/^.*[\\\/]/, '')}`;
 </script>
 
 <div
@@ -53,7 +63,7 @@
         class="Image__Content"
         class:Image__Content--link={url}
         class:Image__Content--transition={transition}
-        src={file}
+        src={imagePath}
         {alt}
         {title}
         style:object-fit={behavior}
@@ -65,7 +75,7 @@
   {:else}
     <img
       class="Image__Content"
-      src={file}
+      src={imagePath}
       {alt}
       {title}
       style:object-fit={behavior}
