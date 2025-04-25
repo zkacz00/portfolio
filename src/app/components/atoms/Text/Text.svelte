@@ -26,7 +26,7 @@
 
 <p
   class="Text Text--{size} Text--{fontWeight} Text--{align} Text--{color}"
-  style:text-wrap={wrap ? 'wrap' : 'nowrap'}
+  style:text-wrap-mode={wrap ? 'wrap' : 'nowrap'}
   style:font-size={fontSize ? `${fontSize}rem` : 'auto'}
   style:font-weight={fontWeight}
 >
@@ -98,5 +98,9 @@
 
   .Text--linkedin {
     color: var(--color-text-linkedin);
+  }
+
+  :global(.Mobile) .Text {
+    line-height: 1.45;
   }
 </style>

@@ -17,6 +17,12 @@
   import Grid from "../atoms/Grid/Grid.svelte";
   import Col from "../atoms/Grid/Col.svelte";
   import LanguageSwitch from "./../molecules/LanguageSwitch.svelte";
+
+  import { footerText } from "../../content/footer";
+  import { language } from "../../stores/language"; 
+
+  /* HOOKS */
+  $: footerContent = footerText[$language];
 </script>
 
 <div class="Footer">
@@ -24,11 +30,11 @@
     <Col desktop={5}>
       <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={3}>
         <Text
-          size={Size.XLARGE}
+          fontSize={4}
           align={Align.LEFT}
           color={TextColorVariant.PRIMARY}
         >
-          ZK
+          ZB
         </Text>
       </Flex>
     </Col>
@@ -53,7 +59,7 @@
         align={Align.LEFT}
         color={TextColorVariant.WHITE_SECONDARY}
       >
-        Handcrafted by yours truly, Zofia Kaczmarczyk.
+        {footerContent.signature}
       </Text>
       <Flex
       order={$isMobile ? -1 : 2}
@@ -66,17 +72,17 @@
           width={MaxSize.DEFAULT}
           height={MaxSize.DEFAULT}
           align={AlignItems.START}
-          gap={2}
+          gap={$isMobile ? 4 : 3}
         >
           <Logo
             logo={LogoName.GITHUB}
             color={LogoColorVariant.WHITE}
-            size={Size.XSMALL}
+            size={$isMobile ? Size.SMALL : Size.XSMALL}
           />
           <Logo
             logo={LogoName.LINKEDIN}
             color={LogoColorVariant.WHITE}
-            size={Size.XSMALL}
+            size={$isMobile ? Size.SMALL : Size.XSMALL}
           />
         </Flex>
         <LanguageSwitch />
@@ -97,7 +103,6 @@
   }
 
   .Footer__BottomPanel {
-    border-top: 1px solid grey;
     width: 100%;
     padding: 5rem 0;
   }

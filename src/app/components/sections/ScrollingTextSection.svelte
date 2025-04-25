@@ -1,64 +1,77 @@
 <script lang="ts">
   /* IMPORTS */
   import Section from "../atoms/Spacing/Section.svelte";
-  import Flex from "../atoms/Spacing/Flex.svelte";
-  import Background from "../atoms/Spacing/Background.svelte";
-  import Grid from "../atoms/Grid/Grid.svelte";
-  import Col from "../atoms/Grid/Col.svelte";
   import Text from "../atoms/Text/Text.svelte";
 
-  import { Align, FlexDirection, FontWeight, Size } from "../../types/styles";
+  import { Align, FontWeight, Size } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
+  import { scrollingText } from "../../content/scrollingText";
+  import { language } from "../../stores/language"; 
+  
+  /* HOOKS */
+  $: scrollingTextContent = scrollingText[$language];
 </script>
 
 <div class="ScrollingTextSection">
-  <Section anchor="ScrollingTextSection" size={Size.SMALL}>
-    <div class="GoodbyeContent">
-    <Flex direction={FlexDirection.ROW} gap={1}>
-      {#each Array(4) as _}
-        <Text
-          color={TextColorVariant.WHITE}
-          size={Size.XLARGE}
-          align={Align.LEFT}
-          fontWeight={FontWeight.MEDIUM}
-          wrap={false}
-          >Psst, I'm currently looking for a job! 👀 If you would be interested,
-          let me know 😁</Text
-        >
-        <Text
-          color={TextColorVariant.WHITE}
-          size={Size.XLARGE}
-          align={Align.LEFT}
-          fontWeight={FontWeight.MEDIUM}
-          wrap={false}>Psst, I'm currently looking for a job! 👀 If you would be interested,
-          let me know 😁</Text
-        >
-      {/each}
-    </Flex>
-  </div>
+  <Section anchor="scrolling-text">
+    <div class="ScrollingContent">
+      <div class="ScrollingText">
+        {#each Array(10) as _}
+          <Text
+            color={TextColorVariant.WHITE}
+            size={Size.XLARGE}
+            align={Align.LEFT}
+            fontWeight={FontWeight.MEDIUM}
+            wrap={false}
+          >{scrollingTextContent}</Text>
+        {/each}
+      </div>
+      <div class="ScrollingText">
+        {#each Array(10) as _}
+          <Text
+            color={TextColorVariant.WHITE}
+            size={Size.XLARGE}
+            align={Align.LEFT}
+            fontWeight={FontWeight.MEDIUM}
+            wrap={false}
+          >{scrollingTextContent}</Text>
+        {/each}
+      </div>
+    </div>
   </Section>
 </div>
 
 <style>
   .ScrollingTextSection {
-    overflow: hidden; /* Hide overflow to prevent scrollbars */
-    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  .GoodbyeContent {
-    display: inline-flex; /* Use inline-flex for horizontal scrolling */
-    animation: scroll 10s linear infinite; /* Animation for scrolling */
+  .ScrollingContent {
+    display: flex;
+    width: fit-content;
+  }
+
+  .ScrollingText {
+    display: flex;
+    animation: scroll 100s linear infinite;
+    white-space: nowrap;
+    padding: 0 4rem;
+    gap: 8rem
   }
 
   @keyframes scroll {
     0% {
-      transform: translateX(100%); /* Start from the right */
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%); /* Move to the left */
+      transform: translateX(-100%);
     }
+  }
+
+  .ScrollingContent:hover .ScrollingText {
+    animation-play-state: paused;
   }
 </style>

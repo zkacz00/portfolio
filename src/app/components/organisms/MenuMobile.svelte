@@ -9,21 +9,20 @@
   import {
     Size,
     AlignItems,
-    JustifyContent,
     FlexDirection,
     MaxSize,
   } from "../../types/styles";
   import {
     ButtonVariant,
     LogoColorVariant,
-    TextColorVariant,
   } from "../../types/variants";
   import { offset } from "../../stores/router";
-  import { isMobile } from "../../stores/device";
+  import { isDesktop, isMobile } from "../../stores/device";
   import NavList from "../molecules/NavList.svelte";
-  import LanguageSwitch from "../molecules/LanguageSwitch.svelte";
   import Logo from "../atoms/Images/Logo.svelte";
   import { LogoName } from "../../types/logoNames";
+  import { navText } from "../../content/nav";
+  import { language } from "../../stores/language";
 
   /* ATTRIBUTES */
   /** Function to open and close menu */
@@ -35,7 +34,7 @@
   /* METHODS */
   const handleFeaturesClick = () => {
     toggleMenu();
-    scrollTo("VisionSection", -$offset, "auto");
+    scrollTo("VisionSection", "auto", -$offset);
     if (window.location.pathname !== "/") {
       window.location.href = "/#VisionSection";
     }
@@ -50,41 +49,39 @@
   };
 
   /* HOOKS */
-  $: document.body.style.overflowY =
-    $isMobile && isMenuOpen ? "hidden" : "auto";
+  $: 
+    if (typeof window !== 'undefined') {
+      const { document } = window;
+      document.body.style.overflowY = !$isDesktop && isMenuOpen ? "hidden" : "auto";
+    }
+  $: navContent = navText[$language];
 </script>
 
 <div class="MenuMobile MenuMobile--{isMenuOpen ? 'open' : 'closed'}">
-  <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={6}>
-    <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={4}>
-      <NavList />
-      <Flex
-        width={MaxSize.DEFAULT}
-        height={MaxSize.DEFAULT}
-        align={AlignItems.START}
-        gap={2}
-      >
-        <Logo
-          logo={LogoName.GITHUB}
-          color={LogoColorVariant.WHITE}
-          size={Size.XSMALL}
-        />
-        <Logo
-          logo={LogoName.LINKEDIN}
-          color={LogoColorVariant.WHITE}
-          size={Size.XSMALL}
-        />
-      </Flex>
-    </Flex>
+  <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={4}>
+    <NavList {toggleMenu} />
     <Flex
-      direction={FlexDirection.COLUMN}
+      width={MaxSize.DEFAULT}
       height={MaxSize.DEFAULT}
+      align={AlignItems.START}
       gap={2}
-      justify={JustifyContent.START}
     >
-      <Button width={MaxSize.FILL} variant={ButtonVariant.CONTEXTUAL}>Work with me</Button>
-      <LanguageSwitch width={MaxSize.FILL} />
+      <Logo
+        logo={LogoName.GITHUB}
+        color={LogoColorVariant.WHITE}
+        size={Size.SMALL}
+      />
+      <Logo
+        logo={LogoName.LINKEDIN}
+        color={LogoColorVariant.WHITE}
+        size={Size.SMALL}
+      />
     </Flex>
+    {#if $isMobile}
+      <Button width={MaxSize.FILL} variant={ButtonVariant.PRIMARY}>
+        {navContent.workButton}
+      </Button>
+    {/if}
   </Flex>
 </div>
 
@@ -93,13 +90,13 @@
     visibility: hidden;
     position: fixed;
     width: 100vw;
-    top: 6.5rem;
+    top: 8rem;
     right: 0;
-    height: calc(100vh - 6.5rem);
-    z-index: 100;
-    background: var(--color-primary-black);
-    padding: 2rem;
-    padding-top: 6rem;
+    height: calc(100vh - 8rem);
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(0.4rem);
+    padding: 4rem 4rem;
     overflow-y: auto;
     border-radius: 0;
     transition:
@@ -113,6 +110,15 @@
 
   .MenuMobile--open {
     right: -150vw;
+  }
+
+  :global(.Tablet) .MenuMobile--open {
+    visibility: visible;
+    right: 0;
+  }
+
+  :global(.Mobile) .MenuMobile {
+    padding: 4rem 2rem;
   }
 
   :global(.Mobile) .MenuMobile--open {

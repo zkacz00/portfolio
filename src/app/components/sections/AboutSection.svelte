@@ -6,7 +6,7 @@
   import Hero from "../organisms/Hero.svelte";
   import Grid from "../atoms/Grid/Grid.svelte";
   import Col from "../atoms/Grid/Col.svelte";
-  import IconContainer from "../atoms/Buttons/IconContainer.svelte";
+	import AboutIcons from './../molecules/AboutIcons.svelte';
 
   import { TextColorVariant } from "../../types/variants";
   import {
@@ -15,7 +15,6 @@
     FlexDirection,
     FontWeight,
     ImageBehavior,
-    JustifyContent,
     MaxSize,
     Size,
     TitleType,
@@ -27,161 +26,80 @@
   import Text from "../atoms/Text/Text.svelte";
   import Span from "../atoms/Text/Span.svelte";
   import Image from "../atoms/Images/Image.svelte";
-  import { isMobile, isTablet } from "../../stores/device";
+  import { isMobile, isTablet, isDesktop } from "../../stores/device";
+  import { aboutText } from "../../content/about";
+  import { language } from "../../stores/language";
 
-  const infoElements = [
-    { icon: "user-id", text: "24 yrs" },
-    { icon: "location", text: "Poland, Lublin" },
-  ];
+  /* HOOKS */
+  $: aboutContent = aboutText[$language];
 </script>
 
 <Meta {...metaTags.home} />
 
-<Section anchor="AboutSection" color="white">
+<Section anchor="about" color="white">
     <Flex gap={2} direction={FlexDirection.COLUMN}>
-      <Grid gap={$isMobile ? 3 : $isTablet ? 6 :10}>
-        <Col desktop={5} tablet={2}>
-          {#if $isMobile}
-          <Hero
-            title="About me"
-            titleType={TitleType.H2}
-            align={AlignItems.START}
-          ></Hero>
-          {/if}
+      <Grid gap={$isMobile ? 3 : $isTablet ? 4 :10}>
+        <Col desktop={4} tablet={4}>
           <Flex direction={FlexDirection.COLUMN} gap={4}>
             <div class="About__Image">
               <Image
                 behavior={ImageBehavior.CONTAIN}
                 file={aboutImage.file}
                 alt={aboutImage.alt}
+                contentStyle={$isMobile ? "max-height: 40rem;" : ""}
               />
             </div>
-            <div class="About__Icons">
-              <Flex
-                direction={FlexDirection.ROW}
-                justify={JustifyContent.CENTER}
-                gap={4}
-              >
-                {#each infoElements as item}
-                  <Flex
-                    direction={FlexDirection.ROW}
-                    justify={JustifyContent.START}
-                    width={MaxSize.ADJUST}
-                    gap={1.5}
-                  >
-                    <IconContainer icon={item.icon} isButton={false} />
-                    <Text align={Align.LEFT} size={Size.MEDIUM}
-                      >{item.text}</Text
-                    >
-                  </Flex>
-                {/each}
-              </Flex>
-            </div>
+            {#if $isDesktop}
+              <AboutIcons />
+            {/if}
           </Flex>
         </Col>
-        <Col desktop={7} tablet={4}>
+        {#if $isTablet}
+          <Col desktop={0} tablet={2} mobile={0}>
+            <AboutIcons />
+          </Col>
+        {/if}
+        <Col desktop={8} tablet={6} >
           <div class="About__Content">
-            <Flex direction={FlexDirection.COLUMN} gap={5}>
-              {#if !$isMobile}
-              <Hero
-                title="About me"
-                titleType={TitleType.H2}
-                align={AlignItems.START}
-              ></Hero>
-              {/if}
+            <Flex direction={FlexDirection.COLUMN} gap={$isDesktop ? 5 : 3} height={MaxSize.FILL}>
+              <Hero title={aboutContent.title} titleType={TitleType.H2} align={AlignItems.START} />
               <Flex direction={FlexDirection.COLUMN} gap={3}>
                 <Flex direction={FlexDirection.ROW}>
                   <Text align={Align.LEFT} size={Size.XLARGE}>
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>Hello, World</Span
-                    > 👋 I'm a front-end focused <Span
-                      fontWeight={FontWeight.MEDIUM}
-                      >web developer & designer</Span
-                    > from <Span fontWeight={FontWeight.MEDIUM}>Poland</Span>,
-                    and I'm very <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>passionate</Span
-                    > and <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>dedicated</Span
-                    >
-                    to my work.
-                  </Text>
-                </Flex>
-                <Flex direction={FlexDirection.ROW}>
-                  <Text align={Align.LEFT} size={Size.MEDIUM}>
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >My name is
+                    {#each aboutContent.paragraph1 as part}
                       <Span
-                        color={TextColorVariant.PRIMARY}
-                        fontWeight={FontWeight.MEDIUM}>Zofia Kaczmarczyk</Span
-                      >.
-                    </Span>
-                    With
-                    <Span fontWeight={FontWeight.MEDIUM}>
-                      <Span
-                        color={TextColorVariant.PRIMARY}
-                        fontWeight={FontWeight.MEDIUM}
+                        color={part.highlight ? TextColorVariant.PRIMARY : undefined}
+                        fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
+                        >{part.text}</Span
                       >
-                        ~2 years
-                      </Span>
-                      experience
-                    </Span>
-                    as a professional a graphic designer, I have acquired the skills
-                    and knowledge necessary to make your project a success. I
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>thrive</Span
-                    > on both
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >creative and logical challenges</Span
-                    >, and I am
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>dedicated</Span
-                    > to bringing projects to life with
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >pixel-perfect precision.</Span
-                    >
-                    Crafting
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >versatile and functional components</Span
-                    > while using the latest technologies to create
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >elegant web applications</Span
-                    > is what I <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>love</Span
-                    > to do.</Text
-                  >
+                    {/each}
+                  </Text>
                 </Flex>
                 <Flex direction={FlexDirection.ROW}>
                   <Text align={Align.LEFT} size={Size.MEDIUM}>
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>My career goal</Span
-                    >
-                    is to work on
-                    <Span fontWeight={FontWeight.MEDIUM}>dynamic projects</Span>
-                    that will allow me to
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>collaborate</Span
-                    >
-                    with
-                    <Span fontWeight={FontWeight.MEDIUM}>talented teams</Span>
-                    and further
-                    <Span
-                      color={TextColorVariant.PRIMARY}
-                      fontWeight={FontWeight.MEDIUM}>advance</Span
-                    >
-                    my
-                    <Span fontWeight={FontWeight.MEDIUM}
-                      >professional development.</Span
-                    >
+                    {#each aboutContent.paragraph2 as part}
+                      <Span
+                        color={part.highlight ? TextColorVariant.PRIMARY : undefined}
+                        fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
+                        >{part.text}</Span
+                      >
+                    {/each}
+                  </Text>
+                  </Flex>
+                <Flex direction={FlexDirection.ROW}>
+                  <Text align={Align.LEFT} size={Size.MEDIUM}>
+                    {#each aboutContent.paragraph3 as part}
+                      <Span
+                        color={part.highlight ? TextColorVariant.PRIMARY : undefined}
+                        fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
+                        >{part.text}</Span
+                      >
+                    {/each}
                   </Text>
                 </Flex>
+                {#if $isMobile}
+                  <AboutIcons />
+                {/if}
               </Flex>
             </Flex>
           </div>
@@ -191,17 +109,12 @@
 </Section>
 
 <style>
-  .About__Content,
-  .About__Icons {
+  .About__Content {
     width: 100%;
+    height: 100%;
   }
 
   .About__Image {
-    /* height: 367px; */
     width: 100%;
-  }
-
-  :global(.Mobile) .About__Image {
-    width: 90%;
   }
 </style>

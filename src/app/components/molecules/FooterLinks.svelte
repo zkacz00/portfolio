@@ -7,32 +7,27 @@
   import {
     AlignItems,
     Size,
-    FontWeight,
     FlexDirection,
     MaxSize,
   } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
   import { isMobile } from './../../stores/device';
+  import { scrollTo } from "../../utils/scroll";
+  import { myCvUrl } from "../../content/urls";
+  import { footerText } from "../../content/footer";
+  import { language } from "../../stores/language"; 
 
-  // import { scrollTo, scrollToTop } from '../../utils/scroll';
-  // import { offset } from '../../stores/router';
-  // import { goto } from '../../utils/location';
+  /* METHODS */
+  const handleHeroClick = () => scrollTo("hero");
+  const handleAboutClick = () => scrollTo("about");
+  const handleExperienceClick = () => scrollTo("experience");
+  const handleSkillsClick = () => scrollTo("skills");
+  const handlePortfolioClick = () => scrollTo("projects");
+  const handleContactClick = () => scrollTo("contact");
+  const handleCVClick = () => {window.open(myCvUrl, "_blank")};
 
-  /* HANDLERS */
-  // const handleGoto = (url: string) => {
-  // if (window.location.pathname === url) return scrollToTop(0, 'auto');
-  // else {
-  //   scrollToTop(0, 'auto');
-  //   return goto(url);
-  // }
-  // };
-
-  // const handleCompanyClick = () => handleGoto('/company/');
-  // const handleLogInClick = () => handleGoto('/login/');
-  // const handlePricingClick = () => handleGoto('/pricing/');
-  // const handleContactClick = () => handleGoto('/contact/');
-  // const handleQAClick = () => handleGoto('/qa/');
-  // const handleBlogClick = () => handleGoto('/blog/');
+  /* HOOKS */
+  $: footerContent = footerText[$language];
 </script>
 
 <div class="FooterLinks">
@@ -41,7 +36,7 @@
     width={MaxSize.DEFAULT}
     height={MaxSize.DEFAULT}
     align={AlignItems.START}
-    gap={10}
+    gap={$isMobile ? 5 : 12}
   >
     <Flex
       direction={FlexDirection.COLUMN}
@@ -50,11 +45,11 @@
       align={AlignItems.START}
       gap={2}
     >
-      <Text size={Size.SMALL} color={TextColorVariant.WHITE}>Core</Text>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Home</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>About</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Experience</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Skills</Link>
+      <Text size={Size.SMALL} color={TextColorVariant.WHITE}>{footerContent.coreLabel}</Text>
+      <Link url="#hero" onClick={handleHeroClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.homeLabel}</Link>
+      <Link url="#about" onClick={handleAboutClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.aboutLabel}</Link>
+      <Link url="#skills" onClick={handleSkillsClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.skillsLabel}</Link>
+      <Link url="#experience" onClick={handleExperienceClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.experienceLabel}</Link>
     </Flex>
     <Flex
       direction={FlexDirection.COLUMN}
@@ -63,11 +58,10 @@
       align={AlignItems.START}
       gap={2}
     >
-      <Text size={Size.SMALL} color={TextColorVariant.WHITE}>Explore</Text>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Portfolio</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>CV</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Testimonials</Link>
-      <Link size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>Contact</Link>
+      <Text size={Size.SMALL} color={TextColorVariant.WHITE}>{footerContent.exploreLabel}</Text>
+      <Link url="#projects" onClick={handlePortfolioClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.portfolioLabel}</Link>
+      <Link url="#hero" onClick={handleCVClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.cvLabel}</Link>
+      <Link url="#contact" onClick={handleContactClick} size={Size.SMALL} color={TextColorVariant.WHITE_SECONDARY}>{footerContent.contactLabel}</Link>
     </Flex>
   </Flex>
 </div>

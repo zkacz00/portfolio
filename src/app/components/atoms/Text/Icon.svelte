@@ -8,7 +8,7 @@
   export let icon: string = "";
 
   /** The size of the icon */
-  export let size: Size.SMALL | Size.LARGE | undefined = Size.SMALL;
+  export let size: Size.SMALL | Size.MEDIUM | Size.LARGE | undefined = Size.SMALL;
 
   /* The color of the icon */
   export let color: TextColorVariant | undefined = undefined;
@@ -27,7 +27,7 @@
   class="Icon Icon--{color} {size
     ? `Icon--${size}`
     : ''} Icon--{hoverStyle} dripicons dripicons-{icon}"
-  class:IconContainer--disabled={disabled}
+  class:IconWrapper--disabled={disabled}
   class:Icon--inheritColor={typeof color === undefined}
   class:Icon--inheritColorHover={typeof hoverColor === undefined}
 />

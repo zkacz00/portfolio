@@ -7,7 +7,7 @@
 </script>
 
 <Background color="black">
-  <Section anchor="Footer" size={Size.SMALL} clearBottomPadding={true} color='transparent'>
+  <Section anchor="footer" clearBottomPadding={true} color='transparent'>
     <Footer />
   </Section>
 </Background>

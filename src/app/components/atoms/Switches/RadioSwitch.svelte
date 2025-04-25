@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
   /* IMPORTS */
   import { handleArrowKeys, handleEnterKey } from '../../../utils/keyboard';
   import { removeDuplicatesFromArray } from '../../../utils/array';
@@ -27,6 +30,7 @@
   const handleClick = (option: string) => {
     if (disabled) return;
     selected = option;
+    dispatch('change', option);
   };
 
   const handleChangeOption = (option: "next" | "previous") => {
@@ -94,7 +98,6 @@
   .RadioSwitch {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     color: var(--color-primary-white);
     font-size: 2rem;
     padding: 0;
@@ -112,7 +115,7 @@
     font-size: 2rem;
     color: inherit;
     border-radius: 2rem;
-    height: 5.5rem;
+    height: 100%;
   }
 
   .RadioSwitch__Option--selected {
@@ -121,6 +124,10 @@
 
   .RadioSwitch--fill, .RadioSwitch--fill .RadioSwitch__Option {
     width: 100%;
+  }
+
+  :global(.Mobile) .RadioSwitch {
+    height: 5rem;
   }
 </style>
 

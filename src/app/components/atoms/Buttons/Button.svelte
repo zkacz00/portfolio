@@ -51,7 +51,10 @@
 
   const handleOnClick = (e: MouseEvent) => {
     if (disabled) return;
-    if (onClick) return onClick({ name });
+    if (onClick) {
+      e.preventDefault();
+      return onClick({ name });
+    }
     // if (url) goto(url, append);
   };
 
@@ -71,7 +74,7 @@
   tabindex={0}
   aria-label={label}
   {role}
-  on:click|stopPropagation|preventDefault={handleOnClick}
+  on:click|stopPropagation={handleOnClick}
   on:keydown={handleKeyDown}
   {...tagProps}
   style:box-shadow={shadowColor=== "black" ? 'var(--box-shadow-small)' : 'var(--box-shadow-small-white)'}
@@ -144,9 +147,11 @@
   .Button--primary-white {
     color: var(--color-orange);
     background: var(--color-primary-white);
+    border: 2px solid rgba(255, 255, 255);
   }
   .Button--primary-white:hover {
-    opacity: 0.6;
+    color: var(--color-primary-white);
+    background: rgba(255, 255, 255, 0.2);
   }
 
   /* VARIANT = SECONDARY */
@@ -172,7 +177,7 @@
   }
   .Button--secondary-white:hover {
     background: rgba(255, 255, 255, 0.2);
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255);
   }
 
   /* VARIANT = SECONDARY_BLACK */
@@ -193,8 +198,23 @@
   /* VARIANT = CONTEXTUAL */
 
   .Button--contextual {
-    background: rgba(255, 255, 255, 0.15);
     color: var(--color-primary-white);
-    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
+  }
+
+  /* DISABLED */
+
+  .Button--disabled,
+  .Button--disabled:hover,
+  .Button--disabled:active,
+  .Button--disabled:focus-visible, 
+  .Button--contextual.Button--disabled {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
   }
 </style>

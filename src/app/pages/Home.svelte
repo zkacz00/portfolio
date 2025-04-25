@@ -14,14 +14,24 @@
   import FooterSection from "../components/sections/FooterSection.svelte";
   import ScrollingTextSection from "../components/sections/ScrollingTextSection.svelte";
   import SkillsHighlightSection from "../components/sections/SkillsHighlightSection.svelte";
+  import MenuMobile from "../components/organisms/MenuMobile.svelte";
+
+  import { isDesktop } from "../stores/device";
 
   import { metaTags } from "../content/metaTags";
+
+  /* VARIABLES */
+  let isMenuOpen: boolean = false;
+
+   /* METHODS */
+  const toggleMenu = () => (isMenuOpen = !isMenuOpen);
 </script>
 
 <Meta {...metaTags.home} />
 
 <div class="Home">
-  <Nav />
+  <Nav {toggleMenu} />
+  <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} />
   <HeroSection />
   <ScrollingTextSection />
   <AboutSection />
@@ -39,18 +49,20 @@
 <style>
   .Home {
     width: 100%;
+    min-width: 40rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 9rem;
+    overflow-x: hidden;
   }
 
   :global(.Tablet) .Home {
-    padding-top: 7.5rem;
+    padding-top: 8rem;
   }
 
   :global(.Mobile) .Home {
-    padding-top: 6.5rem;
+    padding-top: 8rem;
   }
 </style>

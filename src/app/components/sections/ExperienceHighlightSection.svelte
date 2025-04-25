@@ -2,16 +2,20 @@
   /* IMPORTS */
   import Section from "../atoms/Spacing/Section.svelte";
   import Background from "../atoms/Spacing/Background.svelte";
-
   import Highlight from "../organisms/Highlight.svelte";
-  import { Size } from "../../types/styles";
+  
+  import { experienceText } from "../../content/experienceHighlight";
+  import { language } from "../../stores/language"; 
+
+  /* HOOKS */
+  $: experienceContent = experienceText[$language];
 </script>
 
 <Background color="black">
-  <Section anchor="ExperienceHighlightSection" size={Size.SMALL}>
+  <Section anchor="experience-highlight" >
     <Highlight
-      title="~2&nbsp;Years Experience"
-      subtitle="As a Full-Stack Developer in a Remote and Fully English Work Enviroment... 💻"
+      title={experienceContent.title}
+      subtitle={experienceContent.subtitle}
     />
   </Section>
 </Background>

@@ -1,14 +1,12 @@
 <script lang="ts">
   /* IMPORTS */
-  import Image from "../atoms/Images/Image.svelte";
   import Grid from "../atoms/Grid/Grid.svelte";
   import Col from "../atoms/Grid/Col.svelte";
   import Title from "../atoms/Text/Title.svelte";
-  import Subtitle from "../atoms/Text/Subtitle.svelte";
   import Text from "../atoms/Text/Text.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
   import Tag from "../atoms/Buttons/Tag.svelte";
-  import Separator from "../atoms/Separator/Separator.svelte";
+  import Container from "../atoms/Spacing/Container.svelte";
 
   import {
     ImageBehavior,
@@ -23,9 +21,8 @@
     FontWeight,
   } from "../../types/styles";
   import { ButtonVariant, TextColorVariant } from "../../types/variants";
-  import { experienceUtils, type ExperienceEl } from "../../content/experience";
-
-  import Container from "../atoms/Spacing/Container.svelte";
+  import { experienceText, type ExperienceEl } from "../../content/experience";
+  import { language } from "../../stores/language"; 
 
   /* ATTRIBUTES */
 
@@ -36,21 +33,20 @@
   let isHovered: boolean = false;
 
   /* HOOKS */
-  // $: if (isHovered === true) {TextColorVariant.BLACK = TextColorVariant.WHITE; tagVariant = ButtonVariant.PRIMARY_WHITE};
-  // $: if (isHovered === false) {TextColorVariant.BLACK = TextColorVariant.BLACK; tagVariant = ButtonVariant.PRIMARY};
+  $: experienceContent = experienceText[$language];
 </script>
 
 <div class="ExperienceBox" role="group" on:mouseenter={() => isHovered = true} on:mouseleave={() => isHovered = false}>
   <Container>
   <Grid>
-    <Col desktop={4} tablet={4}>
+    <Col desktop={4} tablet={6}>
       <Flex
         align={AlignItems.START}
         direction={FlexDirection.COLUMN}
         gap={0}
         height={MaxSize.FILL}
       >
-        <Text align={Align.LEFT} size={Size.XSMALL} color={TextColorVariant.BLACK}>{experienceUtils.what}</Text
+        <Text align={Align.LEFT} size={Size.XSMALL} color={TextColorVariant.BLACK}>{experienceContent.what}</Text
         >
         <Title
           color={TextColorVariant.BLACK}
@@ -61,11 +57,11 @@
         >
       </Flex>
     </Col>
-    <Col desktop={3} tablet={2}>
+    <Col desktop={3} tablet={6}>
       <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={2} height={MaxSize.FILL}>
         <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={0}>
           <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
-            >{experienceUtils.where}</Text
+            >{experienceContent.where}</Text
           >
           <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}
             >{experienceEl.location}</Text
@@ -73,13 +69,13 @@
         </Flex>
         <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={0}>
           <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
-            >{experienceUtils.when}</Text
+            >{experienceContent.when}</Text
           >
           <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}>{experienceEl.date}</Text>
         </Flex>
       </Flex>
     </Col>
-    <Col desktop={5}>
+    <Col desktop={5} tablet={6}>
       <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={2} height={MaxSize.FILL}>
         <Text
           align={Align.LEFT}
@@ -108,6 +104,16 @@
     background-color: var(--color-primary-white);
     border-radius:  var(--border-radius-section);
     box-shadow: var(--box-shadow-small);
+  }
+
+  .ExperienceBox:nth-child(even) {
+    transform: rotate(-1deg);
+    z-index: 1;
+  }
+
+  .ExperienceBox:nth-child(odd) {
+    transform: rotate(1deg);
+    z-index: 0;
   }
 
   /* .ExperienceBox:hover {

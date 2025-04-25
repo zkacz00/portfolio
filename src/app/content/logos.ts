@@ -1,4 +1,5 @@
 import { LogoName } from "../types/logoNames";
+import { myGithubUrl, myLinkedinUrl } from "./urls";
 
 interface Image {
   assetId: string;
@@ -24,7 +25,7 @@ const logos: Logos = {
   github: {
     key: LogoName.GITHUB,
     name: "GitHub",
-    url: "https://github.com/zkacz00",
+    url: myGithubUrl,
     alt: "GitHub",
     default: {
       assetId: "6uIrVux3qpc31Ov4ftPCmO",
@@ -45,7 +46,7 @@ const logos: Logos = {
   linkedin: {
     key: LogoName.LINKEDIN,
     name: "Linkedin",
-    url: "https://www.linkedin.com/in/zofia-kaczmarczyk/",
+    url: myLinkedinUrl,
     alt: "Linkedin",
     default: {
       assetId: "7AG9jGM2LtZwUi5Sdixcsm",

@@ -65,4 +65,8 @@
   .Span--black {
     color: var(--color-text-primary-black);
   }
+
+  :global(.Mobile) .Span {
+    line-height: 1.45;
+  }
 </style>

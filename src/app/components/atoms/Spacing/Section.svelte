@@ -16,8 +16,8 @@
   /** Whether to remove padding bottom */
   export let clearBottomPadding: boolean = false;
 
-  /** The size of padding */
-  export let size: Size.SMALL | Size.LARGE = Size.LARGE;
+  /** Whether to remove padding on sides */
+  export let clearSidePadding: boolean = false;
 
   /** The color of the background */
   export let color: 'main' | 'white' | 'black' | 'transparent' = 'black';
@@ -28,9 +28,10 @@
 
 <section
   id={anchor}
-  class={`Section Section--${size} Section--${color}`}
+  class={`Section Section--${color}`}
   class:Section--clear-padding-top={clearTopPadding}
   class:Section--clear-padding-bottom={clearBottomPadding}
+  class:Section--clear-padding-sides={clearSidePadding}
   class:Section--fill={height === MaxSize.FILL}
 >
   <slot />
@@ -45,10 +46,10 @@
     align-items: center;
     justify-content: center;
     gap: var(--section-content-margin-vertical);
+    padding: var(--section-margin-vertical) var(--section-margin-horizontal);
   }
 
   /* BACKGROUND */
-
 
   .Section--main {
     background-image: var(--color-primary);
@@ -68,18 +69,6 @@
     background-color: transparent;
   }
 
-  /* SIZE */
-
-
-.Section--large {
-  padding: var(--section-margin-vertical) var(--section-margin-horizontal);
-}
-
-.Section--small {
-  padding: var(--section-margin-vertical) var(--section-margin-horizontal);
-  /* padding: 8rem var(--section-margin-horizontal); */
-}
-
   /* PADDING */
 
   .Section--clear-padding-top {
@@ -90,4 +79,21 @@
     padding-bottom: 0;
   }
 
+  .Section--clear-padding-sides {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  :global(.Mobile) .Section--black {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  :global(.Mobile) .Section--clear-padding-top {
+    padding-top: 0;
+  }
+
+  :global(.Mobile) .Section--clear-padding-bottom {
+    padding-bottom: 0;
+  }
 </style>

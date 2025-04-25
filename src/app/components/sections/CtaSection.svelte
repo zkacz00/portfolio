@@ -5,14 +5,19 @@
 
   import Highlight from "../organisms/Highlight.svelte";
   import Span from "../atoms/Text/Span.svelte";
-  import { isMobile } from "../../stores/device";
+
+  import { ctaText } from "../../content/cta";
+  import { language } from "../../stores/language";
+
+  /* HOOKS */
+  $: ctaContent = ctaText[$language];
 </script>
 
 <Background color="black">
-  <Section anchor="CTASection">
+  <Section anchor="cta">
     <Highlight
-      title="I Am Currently Looking For a Job!"
-      subtitle="Feel free to contact me 😃"
+      title={ctaContent.title}
+      subtitle={ctaContent.subtitle}
     ><Span>👀</Span></Highlight>
   </Section>
 </Background>

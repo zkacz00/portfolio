@@ -2,15 +2,20 @@
   /* IMPORTS */
   import Section from "../atoms/Spacing/Section.svelte";
   import Background from "../atoms/Spacing/Background.svelte";
-
   import Highlight from "../organisms/Highlight.svelte";
+
+	import { skillsText } from '../../content/skillsHighlight';
+  import { language } from "../../stores/language"; 
+
+  /* HOOKS */
+  $: skillsContent = skillsText[$language];
 </script>
 
 <Background color="black">
-  <Section anchor="SkillsHighlightSection">
+  <Section anchor="skills-highlight">
     <Highlight
-      title="The greatest lesson I’ve mastered:"
-      subtitle="I can conquer any skill—it’s just a matter of time 😉"
+      title={skillsContent.title}
+      subtitle={skillsContent.subtitle}
     />
   </Section>
 </Background>

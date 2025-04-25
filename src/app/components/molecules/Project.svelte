@@ -13,10 +13,12 @@
   import { type ProjectImage } from '../../content/projects';
 
   import { isDesktop, isTablet, isMobile } from '../../stores/device';
-  import Icon from '../atoms/Text/Icon.svelte';
   import Logo from '../atoms/Images/Logo.svelte';
   import type { LogoName } from '../../types/logoNames';
-  import IconContainer from '../atoms/Buttons/IconContainer.svelte';
+  import IconWrapper from '../atoms/Buttons/IconWrapper.svelte';
+
+  import { projectsText } from "../../content/projects";
+  import { language } from "../../stores/language"; 
 
   /* ATTRIBUTES */
   /** Whether the hero layout should be reversed or not (false - image on the right, true - image on the left) */
@@ -50,22 +52,27 @@
   export let isImageLink: boolean = true;
 
   /* Live url */
-  export let liveUrl: string = '';
+  export let liveUrl: {name: string, active: boolean} | undefined;
 
   /* GitHub url */
-  export let githubUrl: string = '';
+  export let githubUrl: {name: string, active: boolean} | undefined;
+
+  /* Design url */
+  export let designUrl: {name: string, active: boolean} | undefined;
 
   /* VARIABLES */
-  const imagePosition: number = $isDesktop ? -8 : $isTablet ? -4 : $isMobile ? -2 : -2;
-  const imageStyle: string = `position: absolute; right: ${imagePosition}rem; top: 0; width: max-content;`
-  const reversedImageStyle: string = `position: absolute; left: ${imagePosition}rem; top: 0; width: max-content;`
-
+  const imagePositionRight: number = $isDesktop ? -20 : $isTablet ? 0 : $isMobile ? 0 : 0;
+  const imagePosition: string = $isDesktop ? "absolute" : "unset";
+  const imageStyle: string = `position: ${imagePosition}; right: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 120%` : `width: 80%`}`;
+  const reversedImageStyle: string = `position: ${imagePosition}; left: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 120%` : `width: 80%`}`;
   
+  /* HOOKS */
+  $: projectsContent = projectsText[$language];
 </script>
 
 <div class="Project">
   <Grid align={AlignItems.CENTER}>
-    <Col desktop={6} tablet={3} order={$isMobile ? 1 : reverse ? 1 : 3}>
+    <Col desktop={6} tablet={6} order={!$isDesktop ? 1 : reverse ? 1 : 3}>
       <div class="Project__ImageWrapper">
         <Image
           url={isImageLink && url ? url : undefined}
@@ -78,18 +85,18 @@
       </div>
     </Col>
     {#if $isDesktop}<Col desktop={1} order={2}></Col>{/if}
-    <Col desktop={5} tablet={3} order={$isMobile ? 3 : reverse ? 3 : 1}>
+    <Col desktop={5} tablet={6} order={!$isDesktop ? 3 : reverse ? 3 : 1}>
       <div class="Project__Text">
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={2}>
           <Title type={titleType} align={Align.LEFT} url={url} underline={titleUnderline}>{title}</Title>
-          <Text size={Size.LARGE} color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{subtitle}</Text>
+          <Text size={Size.XLARGE} color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{subtitle}</Text>
         </Flex>
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={3}>
           {#each description as item}
           <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={1}>
             <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={1}>
-              <IconContainer icon={item.icon} isButton={false} />
-              <Text align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}>{item.title}</Text>
+              <IconWrapper icon={item.icon} isButton={false} />
+              <Text align={Align.LEFT} size={Size.LARGE} fontWeight={FontWeight.MEDIUM}>{item.title}</Text>
             </Flex>
             <Text align={Align.LEFT} size={Size.SMALL}>{item.content}</Text>
           </Flex>
@@ -103,9 +110,10 @@
           </div>
           {/each}
         </Flex>
-        <Flex direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW} justify={JustifyContent.START} gap={$isMobile ? 2 : 3}>
-          <Button width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT} variant={ButtonVariant.PRIMARY} url={liveUrl}>See Live</Button>
-          <Button width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT} variant={ButtonVariant.SECONDARY} url={githubUrl}>See on GitHub</Button>
+        <Flex direction={!$isDesktop  ? FlexDirection.COLUMN : FlexDirection.ROW} justify={JustifyContent.START} gap={!$isDesktop ? 2 : 3}>
+          {#if liveUrl}<Button width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT} variant={ButtonVariant.PRIMARY} url={liveUrl.name} disabled={!liveUrl.active && true}>{projectsContent.liveButton}</Button>{/if}
+          {#if githubUrl}<Button width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT} variant={ButtonVariant.SECONDARY} url={githubUrl.name} disabled={!githubUrl.active && true}>{projectsContent.githubButton}</Button>{/if}
+          {#if designUrl}<Button width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT} variant={ButtonVariant.SECONDARY} url={designUrl.name} disabled={!designUrl.active && true}>{projectsContent.designButton}</Button>{/if}
         </Flex>
       </div>
     </Col>
@@ -139,16 +147,13 @@
     gap: 0.75rem;
   }
 
-  :global(.Tablet) .Project__ImageWrapper {
-    height: 50rem;
+  :global(.Tablet) .Project__ImageWrapper, :global(.Mobile) .Project__ImageWrapper {
+    display: flex;
+    justify-content: center;
+    height: min-content;
+    min-height: 40rem;
   }
-
-  :global(.Tablet) .Project__Text,
   :global(.Mobile) .Project__Text {
     gap: 2rem;
-  }
-
-  :global(.Mobile) .Project__ImageWrapper {
-    height: 40rem;
   }
 </style>

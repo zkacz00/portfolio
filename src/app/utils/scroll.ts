@@ -1,4 +1,4 @@
-export const scrollTo = (id: string, offset: number = 0, behavior: 'smooth' | 'auto' = 'smooth') => {
+export const scrollTo = (id: string, behavior: 'smooth' | 'auto' = 'smooth', offset: number = -80, ) => {
   let el = document.getElementById(id);
   if (!el) return;
   let y = el.getBoundingClientRect().top + window.scrollY + offset;

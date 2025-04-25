@@ -1,11 +1,11 @@
 <script lang="ts">
   /* IMPORTS */
   import Button from "../atoms/Buttons/Button.svelte";
-  import IconContainer from "../atoms/Buttons/IconContainer.svelte";
   import Logo from "../atoms/Images/Logo.svelte";
   import Flex from "../../components/atoms/Spacing/Flex.svelte";
   import NavList from "../molecules/NavList.svelte";
   import MenuMobile from "./MenuMobile.svelte";
+  import IconWrapper from "../atoms/Buttons/IconWrapper.svelte";
 
   import {
     Size,
@@ -22,41 +22,27 @@
   import { LogoName } from "../../types/logoNames";
   import LanguageSwitch from "../molecules/LanguageSwitch.svelte";
   import Text from "../atoms/Text/Text.svelte";
-  import { isDesktop, isTablet } from "./../../stores/device";
+  import { isDesktop, isTablet, isMobile } from "./../../stores/device";
   import { focusNextTabbableElement } from "../../utils/keyboard";
+  import { scrollTo } from "../../utils/scroll";
+  import { navText } from "../../content/nav";
+  import { language } from "../../stores/language";
 
-  /* VARIABLES */
-  let isMenuOpen: boolean = false;
+  /* ATTRIBUTES */
+  export let toggleMenu: () => void;
 
   /* METHODS */
-  // const toggleMenu = () => (isMenuOpen = !isMenuOpen);
-
-  // const handleClickOutside = (event: MouseEvent) => {
-  //   const menuElement = document.getElementById('MenuTablet');
-  //   if ($isTablet && isMenuOpen && menuElement && !menuElement.contains(event.target as Node)) {
-  //     toggleMenu();
-  //   }
-  // };
-
-  // const handleToggleMenuClick = () => {
-  //   toggleMenu();
-  //   if ($isTablet && isMenuOpen) setTimeout(focusNextTabbableElement, 0);
-  // };
+  const handleContactClick = () => scrollTo("contact");
+  const handleToggleMenuClick = () => toggleMenu();
 
   /* HOOKS */
-  // $: if (isMenuOpen) window.addEventListener('click', handleClickOutside);
-  // $: if (!isMenuOpen) window.removeEventListener('click', handleClickOutside);
-  // offset.set(64);
+  $: navContent = navText[$language];
 </script>
 
 <nav class="Nav" id="Nav">
   <div class="Nav__ContentWrapper">
-    <Text
-      size={Size.XLARGE}
-      align={Align.LEFT}
-      color={TextColorVariant.PRIMARY}
-    >
-      ZK
+    <Text fontSize={4} align={Align.LEFT} color={TextColorVariant.PRIMARY}>
+      ZB
     </Text>
     {#if $isDesktop}
       <div class="Nav__Content">
@@ -81,7 +67,7 @@
               width={MaxSize.DEFAULT}
               height={MaxSize.DEFAULT}
               align={AlignItems.START}
-              gap={2}
+              gap={3}
             >
               <Logo
                 logo={LogoName.GITHUB}
@@ -100,12 +86,16 @@
               align={AlignItems.START}
               gap={2}
             >
-              <Button variant={ButtonVariant.CONTEXTUAL}>Work with me</Button>
+              <Button
+                variant={ButtonVariant.CONTEXTUAL}
+                url="#contact"
+                onClick={handleContactClick}>{navContent.workButton}</Button
+              >
               <LanguageSwitch />
             </Flex>
           {:else}
             <div class="Nav__MenuButton">
-              <IconContainer
+              <IconWrapper
                 name="menu"
                 icon="menu"
                 label="Menu"
@@ -117,15 +107,28 @@
         </Flex>
       </div>
     {:else}
-      <!-- <div
-      class="Nav__MenuTablet"
-      class:Nav__MenuTablet--open={isMenuOpen}
-      class:Nav__MenuTablet--closed={$isMobile || !isMenuOpen}
-      id="MenuTablet"
-    >
-      <MenuTablet isMenuOpen={$isMobile ? false : isMenuOpen} {toggleMenu} />
-    </div> -->
-      <MenuMobile isMenuOpen={true} />
+      <Flex
+        width={MaxSize.DEFAULT}
+        height={MaxSize.DEFAULT}
+        align={AlignItems.CENTER}
+        gap={$isMobile ? 1 : 2}
+        direction={FlexDirection.ROW}
+      >
+        {#if $isTablet}
+          <Button
+            variant={ButtonVariant.CONTEXTUAL}
+            url="#contact"
+            onClick={handleContactClick}>{navContent.workButton}</Button
+          >
+        {/if}
+        <LanguageSwitch />
+        <IconWrapper
+          icon="menu"
+          transparentBcg={true}
+          onClick={handleToggleMenuClick}
+        />
+      </Flex>
+      <!-- <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} /> -->
     {/if}
   </div>
 </nav>
@@ -152,24 +155,12 @@
     justify-content: space-between;
     align-items: center;
   }
-  /* .Nav__MenuButton,
-  .Nav__Content {
-    display: flex;
-  }
-
-  .Nav__MenuTablet--open {
-    display: flex;
-  }
-
-  .Nav__MenuTablet--closed {
-    display: none;
-  } */
 
   :global(.Tablet) .Nav {
-    height: 7.5rem;
+    height: 8rem;
   }
 
   :global(.Mobile) .Nav {
-    height: 6.5rem;
+    height: 8rem;
   }
 </style>

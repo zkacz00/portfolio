@@ -15,7 +15,7 @@
   import Flex from "../atoms/Spacing/Flex.svelte";
 </script>
 
-<Section anchor="TestimonialsSection" color="white">
+<Section anchor="testimonials" color="white">
   <Flex direction={FlexDirection.COLUMN} gap={1}>
     <Background>
       <Container>

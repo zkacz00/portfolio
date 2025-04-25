@@ -1,13 +1,11 @@
 <script lang="ts">
   /* IMPORTS */
   import Icon from '../Text/Icon.svelte';
-
-  // import { goto } from '../../../utils/location';
-
   import type { BaseEvent } from '../../../types/events.d.ts';
   import { Target } from '../../../types/targets';
   import { TextColorVariant } from '../../../types/variants';
   import { Size } from '../../../types/styles';
+  import { scrollTo } from '../../../utils/scroll';
 
   /* ATTRIBUTES */
   /** The outside destination of the link */
@@ -17,7 +15,10 @@
   export let color: TextColorVariant | undefined = undefined;
 
   /** The size of the link */
-  export let size: Size.SMALL | Size.LARGE | undefined = undefined;
+  export let size: Size.SMALL | Size.MEDIUM | Size.LARGE | undefined = undefined;
+
+  /* Font size of Text (non-standard) */
+  export let fontSize: number | undefined = undefined;
 
   /** Is link disabled or not */
   export let disabled: boolean = false;
@@ -52,15 +53,16 @@
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       if (!disabled && onClick) onClick({ name });
-      // if (url) goto(url, append);
     }
   };
 
   const handleOnClick = (e: MouseEvent) => {
-    if (disabled) return;
-    if (onClick) onClick({ name });
-    // else if (url) goto(url, append);
-  };
+  if (disabled) return;
+  if (onClick) {
+    e.preventDefault();
+    onClick({ name });
+  }
+};
 
   /* HOOKS */
   $: element = url ? 'a' : 'button';
@@ -78,12 +80,12 @@
   class:Link--visited={visited}
   class:Link--underline={underline}
   class:Link--inheritColor={typeof color === undefined}
-  style:font-size={typeof size === undefined ? 'inherit' : 'auto'}
+  style:font-size={fontSize ? `${fontSize}rem` : typeof size === undefined ? 'inherit' : 'auto'}
   tabindex={0}
   aria-disabled={disabled}
   href={disabled ? undefined : url}
   {role}
-  on:click|stopPropagation|preventDefault={handleOnClick}
+  on:click|stopPropagation={handleOnClick}
   on:keydown={handleKeyDown}
   {...tagProps}
 >
@@ -182,6 +184,10 @@
 
   .Link--linkedin {
     color: var(--color-text-linkedin);
+  }
+
+  .Link--linkedin:hover {
+    color: #589FE5;
   }
 
   .Link--inheritColor {

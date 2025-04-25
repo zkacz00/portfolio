@@ -35,12 +35,13 @@
   /** The style of image */
   export let style: string = '';
 
+  /** The style of image content*/
+  export let contentStyle: string = '';
+
   /* VARIABLES */
-  // let imagePathPrefix: string = "images/";
-  let imagePathPrefix: string = "/zkacz00-portfolio/images/";
+  let imagePathPrefix: string = "images/";
 
   /* HOOKS */
-  // Add a computed property to handle the image path
   $: imagePath = file?.startsWith(imagePathPrefix) 
     ? file 
     : `${imagePathPrefix}${file.replace(/^.*[\\\/]/, '')}`;
@@ -70,6 +71,7 @@
         style:border-radius={borderRadius ? '1rem' : 'none'}
         decoding="async"
         loading="lazy"
+        style={contentStyle}
       />
     </a>
   {:else}
@@ -82,6 +84,7 @@
       decoding="async"
       loading="lazy"
       style:border-radius={borderRadius ? '1rem' : 'none'}
+      style={contentStyle}
     />
   {/if}
 </div>

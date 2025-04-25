@@ -1,3 +1,5 @@
+import type { Language } from "../stores/language";
+
 export interface Skill {
   title: string;
   icon: string;
@@ -7,7 +9,7 @@ export interface Skill {
 }
 
 export interface Skills {
-  [key: string]: Skill;
+  [key: string]: { [key in Language]: Skill };
 }
 
 export interface Image {
@@ -19,68 +21,141 @@ export interface Image {
 }
 
 export const skillsImage: Image = {
-  name: 'MySkills',
-  alt: 'My skills',
-  assetId: '4isGsNrl7qcseKnWccbKnk',
-  uniqueId: 'b1b4657c82837bb085b17ccb5ca5b960',
-  file: 'skills-image.png'
-}
+  name: "MySkills",
+  alt: "My skills",
+  assetId: "4isGsNrl7qcseKnWccbKnk",
+  uniqueId: "b1b4657c82837bb085b17ccb5ca5b960",
+  file: "skills-image.png",
+};
+
+export const skillsText: Record<Language, any> = {
+  English: {
+    title: "Skills",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  Polish: {
+    title: "Umiejętności",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+};
 
 export const skills: Skills = {
   frontEnd: {
-    title: "Front-End",
-    icon: "preview",
-    skills: [
-      "Sevlte",
-      "React",
-      "TypeScript",
-      "Sass",
-      "CSS",
-      "HTML5",
-      "Contentful",
-    ],
+    English: {
+      title: "Front-End",
+      icon: "preview",
+      skills: [
+        "Svelte",
+        "React",
+        "TypeScript",
+        "Sass",
+        "CSS",
+        "HTML5",
+        "Contentful",
+      ],
+    },
+    Polish: {
+      title: "Front-End",
+      icon: "preview",
+      skills: [
+        "Svelte",
+        "React",
+        "TypeScript",
+        "Sass",
+        "CSS",
+        "HTML5",
+        "Contentful",
+      ],
+    },
   },
   backEnd: {
-    title: "Back-End",
-    icon: "link",
-    skills: ["JavaScript", "Docker", "Node.js", "PostgreSQL", "MySQL"],
+    English: {
+      title: "Back-End",
+      icon: "link",
+      skills: ["JavaScript", "Docker", "Node.js", "PostgreSQL", "MySQL"],
+    },
+    Polish: {
+      title: "Back-End",
+      icon: "link",
+      skills: ["JavaScript", "Docker", "Node.js", "PostgreSQL", "MySQL"],
+    },
   },
   design: {
-    title: "Design",
-    icon: "brush",
-    skills: ["Figma", "Responsive Design", "UI/UX", "Procreate"],
+    English: {
+      title: "Design",
+      icon: "brush",
+      skills: ["Figma", "Responsive Design", "UI/UX", "Procreate"],
+    },
+    Polish: {
+      title: "Design",
+      icon: "brush",
+      skills: ["Figma", "Projektowanie Responsywne", "UI/UX", "Procreate"],
+    },
   },
   interpersonal: {
-    title: "Interpersonal",
-    icon: "user-group",
-    skills: [
-      "Sevlte",
-      "React",
-      "TypeScript",
-      "Sass",
-      "CSS",
-      "HTML5",
-      "Contentful",
-    ],
+    English: {
+      title: "Interpersonal",
+      icon: "user-group",
+      skills: [
+        "team work",
+        "commitment",
+        "integrity",
+        "time management",
+        "attention to details",
+        "self reliance",
+      ],
+    },
+    Polish: {
+      title: "Komunikacja Międzyludzka",
+      icon: "user-group",
+      skills: [
+        "praca zespołowa",
+        "zaangażowanie",
+        "integralność",
+        "zarządzanie czasem",
+        "dokładność",
+        "samodzielność",
+      ],
+    },
   },
   languages: {
-    title: "Languages",
-    icon: "rocket",
-    skills: {
-      polish: { title: "Polish", level: "Native", procent: 100 },
-      english: { title: "English", level: "B2 / C1", procent: 75 },
+    English: {
+      title: "Languages",
+      icon: "rocket",
+      skills: {
+        polish: { title: "Polish", level: "Native", procent: 100 },
+        english: { title: "English", level: "B2 / C1", procent: 75 },
+      },
+    },
+    Polish: {
+      title: "Języki",
+      icon: "rocket",
+      skills: {
+        polish: { title: "Polski", level: "Ojczysty", procent: 100 },
+        english: { title: "Angielski", level: "B2 / C1", procent: 75 },
+      },
     },
   },
   lacking: {
-    title: "Lacking... (shhhh, don't tell anyone! 🤫)",
-    icon: "loading",
-    skills: [
-      "whisting",
-      "surviving without coffee",
-      "keeping plants alive",
-      "resisting to pet cats",
-      "not do 8px system",
-      "fly a plane",
-    ],
+    English: {
+      title: "Lacking... (shhhh, don't tell anyone! 🤫)",
+      icon: "loading",
+      skills: [
+        "whistling",
+        "surviving without coffee",
+        "keeping plants alive",
+        "resisting the urge to pet cats",
+      ],
+    },
+    Polish: {
+      title: "Brakuje... (cicho, nie mów nikomu! 🤫)",
+      icon: "loading",
+      skills: [
+        "gwizdanie",
+        "przetrwanie bez kawy",
+        "utrzymywanie roślin przy życiu",
+        "opieranie się pokusie głaskania kotów",
+      ],
+    },
   },
 };

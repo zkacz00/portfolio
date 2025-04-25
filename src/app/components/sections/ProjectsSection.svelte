@@ -5,13 +5,18 @@
   import Projects from "../organisms/Projects.svelte";
 
   import { AlignItems } from "../../types/styles";
-  import Background from "../atoms/Spacing/Background.svelte";
+
+  import { projectsText } from "../../content/projects";
+  import { language } from "../../stores/language"; 
+
+  /* HOOKS */
+  $: projectsContent = projectsText[$language];
 </script>
 
-  <Section anchor="ProjectsSection" color="white">
+  <Section anchor="projects" color="white">
     <Hero
-      title="My Projects"
-      subtitle="Here you will find some of the personal and clients projects that I created with each project containing its own case study"
+      title={projectsContent.title}
+      subtitle={projectsContent.subtitle}
       align={AlignItems.START}
     />
     <Projects />

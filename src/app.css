@@ -54,9 +54,9 @@
 	--border-radius-medium: 0.5rem;
 	--border-radius-large: 1rem;
 	--border-radius-section: var(--border-radius-section-desktop);
-	--border-radius-section-desktop: 10rem;
-	--border-radius-section-tablet: 7.75rem;
-	--border-radius-section-mobile: 5.75rem;
+	--border-radius-section-desktop: 9rem;
+	--border-radius-section-tablet: 6rem;
+	--border-radius-section-mobile: 4.5rem;
   
 	/* COLORS */
 	--color-primary: linear-gradient(90deg, rgba(252,161,69,1) 0%, rgba(253,120,52,1) 34%, rgba(254,80,34,1) 67%, rgba(254,80,34,1) 100%);;
@@ -83,6 +83,7 @@
 	--color-text-secondary-white: var(--color-secondary-white);
 	--color-text-primary-black: var(--color-primary-black);
 	--color-text-secondary-black: var(--color-secondary-black);
+	--color-text-linkedin: var(--color-linkedin);
   
 	/* TRANSITION STYLE */
 	--transition-duration: 0.4s;
@@ -100,15 +101,15 @@
 	--box-shadow-large-white: -4 8 8 -4 rgba(255, 255, 255, 0.25);
 
 	/* FONT - SIZE */
-	--font-size-h1-large: 11rem;
-	--font-size-h1: 10rem;
-	--font-size-h2: 7.5rem;
-	--font-size-h3: 5rem;
-	--font-size-h4: 4.5rem;
+	--font-size-h1-large: 10rem;
+	--font-size-h1: 8rem;
+	--font-size-h2: 6rem;
+	--font-size-h3: 4.75rem;
+	--font-size-h4: 4.25rem;
 	--font-size-h5: 4rem;
-	--font-size-p-xlarge: 3.5rem;
-	--font-size-p-large: 3rem;
-	--font-size-p-mid: 2.5rem;
+	--font-size-p-xlarge: 2.75rem;
+	--font-size-p-large: 2.5rem;
+	--font-size-p-mid: 2.25rem;
 	--font-size-p-small: 2rem;
 	--font-size-p-xsmall: 1.5rem;
   
@@ -248,17 +249,19 @@
 	--color-gradient-black: var(--color-gradient-black-tablet);
   
 	/* FONT - SIZE */
-	/* --font-size-h1: 7rem;
+	/* --font-size-h1-large: 10rem;
+	--font-size-h1: 8rem;
 	--font-size-h2: 6rem;
-	--font-size-h3: 4.5rem;
-	--font-size-h4: 4rem;
-	--font-size-h5: 3rem;
-	--font-size-p-xlarge: 2.5rem;
+	--font-size-h3: 4.75rem;
+	--font-size-h4: 4.25rem;
+	--font-size-h5: 4rem;
+	--font-size-p-xlarge: 2.75rem;
 	--font-size-p-large: 2.5rem;
-	--font-size-p-mid: 2rem; */
-	/* --font-size-h1-large: 11rem; */
-	--font-size-h1: 6.5rem;
-	--font-size-h2: 5.5rem;
+	--font-size-p-mid: 2.25rem;
+	--font-size-p-small: 2rem;
+	--font-size-p-xsmall: 1.5rem; */
+	--font-size-h1: 6rem;
+	--font-size-h2: 5rem;
 	--font-size-h3: 4rem;
 	--font-size-h4: 3.5rem;
 	--font-size-h5: 2.5rem;
@@ -290,12 +293,25 @@
 	--color-gradient-black: var(--color-gradient-black-mobile);
 
 	/* FONT - SIZE */
+	/* 
 	--font-size-h1: 5.5rem;
-	--font-size-h2: 4.5rem;
-	--font-size-h3: 3.5rem;
+	--font-size-h2: 5rem;
+	--font-size-h3: 4rem;
 	--font-size-h4: 3.5rem;
-	--font-size-h5: 3rem;
+	--font-size-h5: 2.5rem;
 	--font-size-p-xlarge: 2.5rem;
-	--font-size-p-large: 2.5rem;
+	--font-size-p-large: 2.25rem;
+	--font-size-p-mid: 2.25rem;
+	--font-size-p-small: 2rem;
+	--font-size-p-xsmall: 1.5rem; */
+	--font-size-h1: 7rem;
+	--font-size-h2: 4rem;
+	--font-size-h3: 3.5rem;
+	--font-size-h4: 3.25rem;
+	--font-size-h5: 2.25rem;
+	--font-size-p-xlarge: 2.25rem;
+	--font-size-p-large: 2.25rem;
 	--font-size-p-mid: 2rem;
+	--font-size-p-small: 2rem;
+	--font-size-p-xsmall: 1.5rem;
   }

@@ -3,24 +3,31 @@
   import Section from "../atoms/Spacing/Section.svelte";
   import Hero from "../organisms/Hero.svelte";
   import ExperienceBox from "../molecules/ExperienceBox.svelte";
+  import Flex from "../atoms/Spacing/Flex.svelte";
 
   import { AlignItems, FlexDirection } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
 
-  import { experienceEls } from "../../content/experience";
-  import Flex from "../atoms/Spacing/Flex.svelte";
+	import { isMobile } from '../../stores/device';
+
+  import { experienceText, experienceEls } from "../../content/experience";
+  import { language } from "../../stores/language"; 
+
+  /* HOOKS */
+  $: experienceContent = experienceText[$language];
+  $: experienceData = experienceEls[$language];
 </script>
 
-<Section anchor="ExperienceSection" clearBottomPadding={true}>
+<Section anchor="experience" clearBottomPadding={true}>
   <Hero
-    title="Experience"
-    subtitle="Here you will find some of the personal and clients projects that I created with each project containing its own case study"
+    title={experienceContent.title}
+    subtitle={experienceContent.subtitle}
     align={AlignItems.START}
     color={TextColorVariant.PRIMARY}
     subtitleColor={TextColorVariant.WHITE}
   />
-  <Flex direction={FlexDirection.COLUMN} gap={1}>
-    {#each experienceEls as experienceEl}
+  <Flex direction={FlexDirection.COLUMN} gap={$isMobile ? 0 : 1}>
+    {#each experienceData as experienceEl}
       <ExperienceBox {experienceEl} />
     {/each}
   </Flex>

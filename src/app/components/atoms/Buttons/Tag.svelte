@@ -25,7 +25,7 @@
   export let disabled = false;
 
   /** The url for tag */
-  export let url = "";
+  export let url: string | undefined = undefined;
 
   /** The size of the button */
   export let size: Size.SMALL | Size.LARGE = Size.LARGE;
@@ -37,20 +37,17 @@
   export let iconRight: string = "";
 
   /** The callback to be called when the button is clicked */
-  export let onClick: BaseEvent = ({ name }) => {};
+  export let onClick: BaseEvent | undefined = undefined;
 
   /** If button is in loading state */
   export let isLoading: boolean = false;
-
-  /** Whether to append to existing query parameters or replace them */
-  // export let append: boolean = false;
 
   /* METHODS */
   const handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation();
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (!disabled) {
+      if (!disabled && onClick) {
         onClick({ name });
       }
       // if (url) goto(url, append);
@@ -62,6 +59,9 @@
     if (onClick) return onClick({ name });
     // if (url) goto(url, append);
   };
+
+  /* HOOKS */
+  $: isInteractive = !disabled && (typeof onClick === "function" || url);
 </script>
 
 <a
@@ -69,12 +69,13 @@
   class:Tag--disabled={disabled}
   class:Tag--fill={width === MaxSize.FILL}
   class:Tag--loading={isLoading}
-  tabindex={0}
+  class:Tag--interactive={isInteractive}
+  { ...(isInteractive ? { tabindex: 0 } : {}) }
   aria-label={label}
   aria-disabled={disabled ? "true" : "false"}
-  on:click|stopPropagation|preventDefault={handleOnClick}
-  on:keydown={handleKeyDown}
-  href={disabled ? undefined : url}
+  on:click|stopPropagation|preventDefault={isInteractive ? handleOnClick : null}
+  on:keydown={isInteractive ? handleKeyDown : null}
+  href={isInteractive && url ? url : undefined}
 >
   {#if iconLeft}
     <Icon size={Size.SMALL} icon={iconLeft} />
@@ -93,23 +94,28 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    cursor: pointer;
     width: fit-content;
     position: relative;
-    
+    cursor: auto;
 
     transition-property: all;
     transition-duration: var(--transition-duration);
     transition-timing-function: var(--transition-timing);
   }
 
-  .Tag:hover {
+  /* INTERACTIVE */
+
+  .Tag--interactive {
+    cursor: pointer;
+  }
+
+  .Tag--interactive:hover {
     opacity: 0.6;
   }
-  .Tag:active {
+  .Tag--interactive:active {
     opacity: 0.8;
   }
-  .Tag:focus-visible {
+  .Tag--interactive:focus-visible {
     outline: var(--outline-style-focus);
   }
 

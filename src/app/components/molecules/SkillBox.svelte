@@ -1,6 +1,6 @@
 <script lang="ts">
   import ProgressBar from './../atoms/ProgressBars/ProgressBar.svelte';
-  import IconContainer from "../atoms/Buttons/IconContainer.svelte";
+  import IconWrapper from "../atoms/Buttons/IconWrapper.svelte";
   import Text from "../atoms/Text/Text.svelte";
   import Tag from "../atoms/Buttons/Tag.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
@@ -8,18 +8,23 @@
   import { type Skill } from '../../content/skills';
   import { JustifyContent, AlignItems, FlexDirection, FlexWrap, FontWeight, Size, Align } from '../../types/styles';
   import Span from '../atoms/Text/Span.svelte';
+  import { language, type Language } from "../../stores/language"; 
 
-  export let skill: Skill;
+  /* ATTRIBUTES */
+  export let skill: {[key in Language]: Skill} ;
+
+  /* HOOKS */
+  $: skillContent = skill[$language];
 </script>
 
 <div class={`SkillBox SkillBox--${skill}`}>
   <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={2}>
-      <IconContainer icon={skill.icon} isButton={false} />
-    <Text color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{skill.title}</Text>
+      <IconWrapper icon={skillContent.icon} isButton={false} />
+    <Text color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{skillContent.title}</Text>
   </Flex>
-  {#if skill.title === 'Languages'}
+  {#if skillContent.title === 'Languages' || skillContent.title === 'Języki'}
     <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={0.5}>
-      {#each Object.values(skill.skills) as specificSkill}
+      {#each Object.values(skillContent.skills) as specificSkill}
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={0.5}>
             <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={1}>
                 <Span size={Size.SMALL} fontWeight={FontWeight.MEDIUM}>{specificSkill.title}</Span>
@@ -30,9 +35,9 @@
         </Flex>
       {/each}
     </Flex>
-  {:else if Array.isArray(skill.skills)}
+  {:else if Array.isArray(skillContent.skills)}
     <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={0.5} wrap={FlexWrap.WRAP}>
-      {#each skill.skills as specificSkill}
+      {#each skillContent.skills as specificSkill}
         <Tag>{specificSkill}</Tag>
       {/each}
     </Flex>
