@@ -1,0 +1,166 @@
+<script lang="ts">
+  /* IMPORTS */
+  import Button from "../atoms/Buttons/Button.svelte";
+  import Logo from "../atoms/Images/Logo.svelte";
+  import Flex from "../../components/atoms/Spacing/Flex.svelte";
+  import NavList from "../molecules/NavList.svelte";
+  import MenuMobile from "./MenuMobile.svelte";
+  import IconWrapper from "../atoms/Buttons/IconWrapper.svelte";
+
+  import {
+    Size,
+    MaxSize,
+    AlignItems,
+    Align,
+    FlexDirection,
+  } from "../../types/styles";
+  import {
+    ButtonVariant,
+    LogoColorVariant,
+    TextColorVariant,
+  } from "../../types/variants";
+  import { LogoName } from "../../types/logoNames";
+  import LanguageSwitch from "../molecules/LanguageSwitch.svelte";
+  import Text from "../atoms/Text/Text.svelte";
+  import { isDesktop, isTablet, isMobile } from "./../../stores/device";
+  import { focusNextTabbableElement } from "../../utils/keyboard";
+  import { scrollTo } from "../../utils/scroll";
+  import { navText } from "../../content/nav";
+  import { language } from "../../stores/language";
+
+  /* ATTRIBUTES */
+  export let toggleMenu: () => void;
+
+  /* METHODS */
+  const handleContactClick = () => scrollTo("contact");
+  const handleToggleMenuClick = () => toggleMenu();
+
+  /* HOOKS */
+  $: navContent = navText[$language];
+</script>
+
+<nav class="Nav" id="Nav">
+  <div class="Nav__ContentWrapper">
+    <Text fontSize={4} align={Align.LEFT} color={TextColorVariant.PRIMARY}>
+      ZB
+    </Text>
+    {#if $isDesktop}
+      <div class="Nav__Content">
+        <Flex
+          width={MaxSize.DEFAULT}
+          height={MaxSize.DEFAULT}
+          align={AlignItems.CENTER}
+          gap={4}
+          direction={FlexDirection.ROW}
+        >
+          {#if $isDesktop}
+            <Flex
+              direction={FlexDirection.ROW}
+              width={MaxSize.DEFAULT}
+              height={MaxSize.DEFAULT}
+              align={AlignItems.CENTER}
+              gap={4}
+            >
+              <NavList />
+            </Flex>
+            <Flex
+              width={MaxSize.DEFAULT}
+              height={MaxSize.DEFAULT}
+              align={AlignItems.START}
+              gap={3}
+            >
+              <Logo
+                logo={LogoName.GITHUB}
+                color={LogoColorVariant.WHITE}
+                size={Size.XSMALL}
+              />
+              <Logo
+                logo={LogoName.LINKEDIN}
+                color={LogoColorVariant.WHITE}
+                size={Size.XSMALL}
+              />
+            </Flex>
+            <Flex
+              width={MaxSize.DEFAULT}
+              height={MaxSize.DEFAULT}
+              align={AlignItems.START}
+              gap={2}
+            >
+              <Button
+                variant={ButtonVariant.CONTEXTUAL}
+                url="#contact"
+                onClick={handleContactClick}>{navContent.workButton}</Button
+              >
+              <LanguageSwitch />
+            </Flex>
+          {:else}
+            <div class="Nav__MenuButton">
+              <IconWrapper
+                name="menu"
+                icon="menu"
+                label="Menu"
+                toggle={true}
+                transparentBcg={true}
+              />
+            </div>
+          {/if}
+        </Flex>
+      </div>
+    {:else}
+      <Flex
+        width={MaxSize.DEFAULT}
+        height={MaxSize.DEFAULT}
+        align={AlignItems.CENTER}
+        gap={$isMobile ? 1 : 2}
+        direction={FlexDirection.ROW}
+      >
+        {#if $isTablet}
+          <Button
+            variant={ButtonVariant.CONTEXTUAL}
+            url="#contact"
+            onClick={handleContactClick}>{navContent.workButton}</Button
+          >
+        {/if}
+        <LanguageSwitch />
+        <IconWrapper
+          icon="menu"
+          transparentBcg={true}
+          onClick={handleToggleMenuClick}
+        />
+      </Flex>
+      <!-- <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} /> -->
+    {/if}
+  </div>
+</nav>
+
+<style>
+  .Nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    height: 9rem;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(0.4rem);
+    z-index: 100;
+  }
+
+  .Nav__ContentWrapper {
+    width: 100%;
+    max-width: var(--content-max-width);
+    padding: 0 var(--section-margin-horizontal);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  :global(.Tablet) .Nav {
+    height: 8rem;
+  }
+
+  :global(.Mobile) .Nav {
+    height: 8rem;
+  }
+</style>
