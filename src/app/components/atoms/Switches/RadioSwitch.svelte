@@ -116,6 +116,7 @@
     color: inherit;
     border-radius: 2rem;
     height: 100%;
+    min-width: 8rem;
   }
 
   .RadioSwitch__Option--selected {

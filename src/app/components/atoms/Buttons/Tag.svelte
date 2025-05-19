@@ -93,7 +93,7 @@
     color: var(--color-orange);
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
     width: fit-content;
     position: relative;
     cursor: auto;
@@ -156,14 +156,14 @@
   .Tag--small {
     min-height: 3rem;
     gap: 0.5rem;
-    padding: 0 0.5rem;
+    padding: 0.5rem 0.5rem;
     font-size: var(--font-size-p-xsmall);
   }
 
   .Tag--large {
     min-height: 3.5rem;
     gap: 1rem;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     font-size: var(--font-size-p-small);
   }
 

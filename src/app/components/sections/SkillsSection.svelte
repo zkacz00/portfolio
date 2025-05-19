@@ -39,8 +39,8 @@
             <Grid gap={1}>
               <Col desktop={6} tablet={5} mobile={2} order={1}><SkillBox skill={skills.frontEnd} /></Col>
               <Col desktop={6} tablet={3} mobile={2} order={2}><SkillBox skill={skills.backEnd} /></Col>
-              <Col desktop={4} tablet={3} mobile={2} order={3}><SkillBox skill={skills.design} /></Col>
-              <Col desktop={4} tablet={4} mobile={2} order={4}><SkillBox skill={skills.interpersonal} /></Col>
+              <Col desktop={3} tablet={3} mobile={2} order={3}><SkillBox skill={skills.design} /></Col>
+              <Col desktop={5} tablet={4} mobile={2} order={4}><SkillBox skill={skills.interpersonal} /></Col>
               <Col desktop={4} tablet={3} order={5}><SkillBox skill={skills.languages} /></Col>
               <Col desktop={12} tablet={6} order={6}><SkillBox skill={skills.lacking} /></Col>
             </Grid>

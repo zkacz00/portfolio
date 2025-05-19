@@ -26,13 +26,13 @@
 
 <div class={`LanguageSwitch LanguageSwitch--${width}`}>
   <RadioSwitch 
-    options={$isMobile ? mobileOptions : options}
-    selected={$isMobile ? ($language === 'Polish' ? 'PL' : 'ENG') : ($language === 'Polish' ? 'Polski' : 'English')}
+    options={mobileOptions}
+    selected={$language === 'Polish' ? 'PL' : 'ENG'}
     width={width}
     on:change={(e) => {
       const selected = e.detail;
       handleLanguageChange(
-        (selected === 'Polski' || selected === 'PL') ? 'Polish' : (selected === 'Angielski' || selected === 'ENG' ) ? 'English' : selected
+        (selected === 'PL') ? 'Polish' : (selected === 'ENG' ) ? 'English' : selected
       );
     }} 
   />
