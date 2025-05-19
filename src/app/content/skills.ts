@@ -148,13 +148,13 @@ export const skills: Skills = {
       ],
     },
     Polish: {
-      title: "Brakuje... (cicho, nie mów nikomu! 🤫)",
+      title: "Nie umiem... (ciiicho, nie mów nikomu! 🤫)",
       icon: "loading",
       skills: [
-        "gwizdanie",
-        "przetrwanie bez kawy",
-        "utrzymywanie roślin przy życiu",
-        "opieranie się pokusie głaskania kotów",
+        "gwizdać",
+        "przetrwać bez kawy",
+        "utrzymać roślinek przy życiu",
+        "opirzeć się pokusie głaskania kotów",
       ],
     },
   },

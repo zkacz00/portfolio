@@ -27,9 +27,13 @@
   import { scrollTo } from "../../utils/scroll";
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
+  import Image from "../atoms/Images/Image.svelte";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void;
+
+  /* VARIABLES */
+  const logoImageStyle: string = "height: 4rem; width: auto;";
 
   /* METHODS */
   const handleContactClick = () => scrollTo("contact");
@@ -41,9 +45,7 @@
 
 <nav class="Nav" id="Nav">
   <div class="Nav__ContentWrapper">
-    <Text fontSize={4} align={Align.LEFT} color={TextColorVariant.PRIMARY}>
-      ZB
-    </Text>
+    <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
     {#if $isDesktop}
       <div class="Nav__Content">
         <Flex
@@ -139,7 +141,7 @@
     top: 0;
     width: 100%;
     display: flex;
-    height: 9rem;
+    height: 10rem;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(0.4rem);

@@ -41,11 +41,11 @@
   import { aboutImage } from "../../content/about";
 
   /* VARIABLES */
-  let splashesImageStyle: string = `top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
+  let splashesImageStyle: string = `top: 0; right: 0; position: absolute; height: 80%; border-radius:  var(--border-radius-section); overflow: hidden;`;
   let splashesImageContentStyle: string = `height: 100%;`;
 
-  let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
-  let faceImageContentStyle: string = `height: 120%;`;
+  // let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
+  // let faceImageContentStyle: string = `height: 120%;`;
 
   /* METHODS */
   const handleDownloadCV = () => {
@@ -70,7 +70,7 @@
       <Col desktop={8}>
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isDesktop ? 4 : 5}>
           <Text
-            fontSize={$isDesktop ? 4.5 : $isTablet ? 4 : 3}
+            fontSize={$isDesktop ? 4 : $isTablet ? 4 : 3}
             color={TextColorVariant.BLACK}
             align={Align.LEFT}>{heroContent.greeting}</Text
           >
@@ -111,7 +111,7 @@
           <div class="HeroContainer__Image">
             <Image
               alt="splashes"
-              file="splashes.png"
+              file="splashes-color.png"
               style={splashesImageStyle}
               contentStyle={splashesImageContentStyle}
             />

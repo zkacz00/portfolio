@@ -97,7 +97,6 @@ export const projects: Project = {
         },
       ],
     },
-    designUrl: { name: "do_uzupelnienia", active: false },
     image: {
       assetId: "O0esqmV1EzHDZFFokFuwh",
       uniqueId: "fc9ac43107b17d01b8c2fb730bf73747",
@@ -162,7 +161,7 @@ export const projects: Project = {
         },
       ],
     },
-    designUrl: { name: "coming_soon", active: false },
+    liveUrl: { name: "https://robiki.ai/", active: true },
     image: {
       assetId: "4mN1O7ZeqABNaB2z8wUdLg",
       uniqueId: "0f6fe68ac2554a57b74ef52728e6d6bb",

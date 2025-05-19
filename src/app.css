@@ -28,15 +28,18 @@
 	--nav-header-height: 10rem;
   
 	/* SECTION MARGIN - LEFT, RIGHT */
-	--section-margin-horizontal-desktop: 8rem;
-	--section-margin-horizontal-tablet: 4rem;
-	--section-margin-horizontal-mobile: 2rem;
+	--section-margin-horizontal-desktop: 9rem;
+	--section-margin-horizontal-tablet: 5rem;
+	--section-margin-horizontal-mobile: 2.5rem;
 	--section-margin-horizontal: var(--section-margin-horizontal-desktop);
   
 	/* SECTION MARGIN - TOP, BOTTOM */
-	--section-margin-vertical-desktop: 10rem;
+	/* --section-margin-vertical-desktop: 10rem;
 	--section-margin-vertical-tablet: 4rem;
-	--section-margin-vertical-mobile: 3rem;
+	--section-margin-vertical-mobile: 3rem; */
+	--section-margin-vertical-desktop: 12rem;
+	--section-margin-vertical-tablet: 6rem;
+	--section-margin-vertical-mobile: 5rem;
 	--section-margin-vertical: var(--section-margin-vertical-desktop);
   
 	/* SECTION CONTENT MARGIN - TOP, BOTTOM */
@@ -103,7 +106,7 @@
 
 	/* FONT - SIZE */
 	--font-size-h1-large: 10rem;
-	--font-size-h1: 8rem;
+	--font-size-h1: 7rem;
 	--font-size-h2: 6rem;
 	--font-size-h3: 4.75rem;
 	--font-size-h4: 4.25rem;

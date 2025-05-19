@@ -54,7 +54,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 9rem;
+    padding-top: 10rem;
     overflow-x: hidden;
   }
 

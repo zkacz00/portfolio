@@ -25,8 +25,8 @@
 
   /* HOOKS */
   $: footerContent = footerText[$language];
-  $: labelFontSize = 2.75;
-  $: linkFontSize = 2.5;
+  $: labelFontSize = 2.5;
+  $: linkFontSize = 2.25;
 </script>
 
 <div class="FooterLinks">
