@@ -53,12 +53,12 @@
 
   .Section--main {
     background-image: var(--color-primary);
-    border-radius:  var(--border-radius-section);
+    border-radius:  1rem;
   }
 
   .Section--white {
-    background-color: var(--color-primary-white);
-    border-radius:  var(--border-radius-section);
+    background: var(--color-gradient-white);
+    border-radius:  1rem;
   }
 
   .Section--black {

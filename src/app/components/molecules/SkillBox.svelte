@@ -52,7 +52,7 @@
     gap: 2rem;
     flex-direction: column;
     height: 100%;
-    border-radius: 3rem;
+    border-radius: 2rem;
     box-shadow: var(--box-shadow-small-white);
   }
 

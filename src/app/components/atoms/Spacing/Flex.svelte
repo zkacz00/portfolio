@@ -39,6 +39,9 @@
   /** The order of the Flex */
   export let order: number | undefined = undefined;
 
+  /** The position of the Flex */
+  export let position: string | undefined = undefined;
+
   /* ATTRIBUTES */
   let widthStyle = width === MaxSize.FILL ? '100%' : MaxSize.ADJUST ? 'max-content' : 'auto';
   let heightStyle = height === MaxSize.FILL ? '100%' : 'auto';
@@ -57,6 +60,7 @@
   style:column-gap={`${columnGap}rem`}
   style:row-gap={`${rowGap}rem`}
   style:order={order}
+  style:position={position}
 >
   <slot />
 </div>

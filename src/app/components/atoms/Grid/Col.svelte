@@ -32,6 +32,6 @@
   };
 </script>
 
-<div class="Col" style:order style:grid-column={`span ${getSpan($size)}`} style:maxheight={`${maxheight}rem`}>
+<div class="Col" style:order style:grid-column={`span ${getSpan($size)}`} style:maxheight={`${maxheight}rem`} style:height='100%'>
   <slot />
 </div>

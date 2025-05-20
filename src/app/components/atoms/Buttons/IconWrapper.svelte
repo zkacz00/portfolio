@@ -124,7 +124,7 @@
     color: var(--color-primary-white);
   }
   .IconWrapper--primary:hover {
-    background: rgba( 255, 255, 255, 0.1 );
+    background: rgba(255, 255, 255, 0.2);
     color: var(--color-orange);
   }
 

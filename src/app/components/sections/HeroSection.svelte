@@ -41,8 +41,10 @@
   import { aboutImage } from "../../content/about";
 
   /* VARIABLES */
-  let splashesImageStyle: string = `top: 0; right: 0; position: absolute; height: 80%; border-radius:  var(--border-radius-section); overflow: hidden;`;
+  let splashesImageStyle: string = `top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
   let splashesImageContentStyle: string = `height: 100%;`;
+
+  let flowerImageStyle: string = `top: 0; right: 240px; position: absolute; height: 100%; overflow: hidden;`;
 
   // let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
   // let faceImageContentStyle: string = `height: 120%;`;
@@ -115,12 +117,11 @@
               style={splashesImageStyle}
               contentStyle={splashesImageContentStyle}
             />
-            <!-- <Image
-              alt="Zofia"
-              file="zofia-face.png"
-              style={faceImageStyle}
-              contentStyle={faceImageContentStyle}
-            /> -->
+            <Image
+              alt="flower"
+              file="flower.png"
+              style={flowerImageStyle}
+            />
           </div>
         </Col>
       {/if}
@@ -135,8 +136,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: calc(10rem + var(--section-margin-vertical))
-      var(--section-margin-horizontal) var(--section-margin-vertical);
+    padding: calc(20rem + var(--section-margin-vertical))
+      var(--section-margin-horizontal) 12rem;
     overflow: hidden;
   }
 

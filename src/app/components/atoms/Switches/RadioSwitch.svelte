@@ -102,7 +102,7 @@
     font-size: 2rem;
     padding: 0;
     border-radius: 2rem;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     height: 5.5rem;
     box-shadow: var(--box-shadow-small);
   }

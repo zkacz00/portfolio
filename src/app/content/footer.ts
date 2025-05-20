@@ -15,7 +15,7 @@ type FooterContent = {
 
 export const footerText: Record<Language, FooterContent> = {
   English: {
-    signature: "Handcrafted by yours truly, Zofia Bronisz",
+    signature: "©2025 zkacz. All rights reserved.",
     coreLabel: "Core",
     homeLabel: "Home",
     aboutLabel: "About",
@@ -27,7 +27,7 @@ export const footerText: Record<Language, FooterContent> = {
     contactLabel: "Contact",
   },
   Polish: {
-    signature: "Stworzone przez Zofię Bronisz",
+    signature: "©2025 zkacz. Wszelkie prawa zastrzeżone.",
     coreLabel: "Główne",
     homeLabel: "Start",
     aboutLabel: "O mnie",

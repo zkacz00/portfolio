@@ -20,18 +20,24 @@
 
   import { footerText } from "../../content/footer";
   import { language } from "../../stores/language";
+  import Image from "../atoms/Images/Image.svelte";
+
+  /* VARIABLES */
+  let logoImageStyle: string = "height: 4rem; width: auto;";
+  let flowerImageStyle: string = `top: 12rem; right: -20rem; position: absolute; height: 70%; overflow: hidden;`;
 
   /* HOOKS */
   $: footerContent = footerText[$language];
 </script>
 
 <div class="Footer">
-  <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={3}>
-    <Text fontSize={4} align={Align.LEFT} color={TextColorVariant.PRIMARY}>
-      ZB
-    </Text>
+  <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={12} position="relative">
+    <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+    <FooterLinks />
+    <div class="Footer__Image">
+      <Image alt="flower" file="flower-footer.png" style={flowerImageStyle} />
+    </div>
   </Flex>
-  <FooterLinks />
   <div class="Footer__BottomPanel">
     <Flex
       direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
@@ -39,7 +45,7 @@
       align={$isMobile ? AlignItems.START : AlignItems.CENTER}
     >
       <Text
-        size={Size.SMALL}
+        size={Size.XSMALL}
         align={Align.LEFT}
         color={TextColorVariant.WHITE_SECONDARY}
       >
@@ -61,12 +67,12 @@
           <Logo
             logo={LogoName.GITHUB}
             color={LogoColorVariant.WHITE}
-            size={$isMobile ? Size.SMALL : Size.XSMALL}
+            size={Size.SMALL}
           />
           <Logo
             logo={LogoName.LINKEDIN}
             color={LogoColorVariant.WHITE}
-            size={$isMobile ? Size.SMALL : Size.XSMALL}
+            size={Size.SMALL}
           />
         </Flex>
         <LanguageSwitch />
@@ -79,11 +85,17 @@
   .Footer {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 8rem;
+    /* position: relative; */
+  }
+
+  .Footer__Image {
+    height: 100%;
+    width: 100%;
   }
 
   .Footer__BottomPanel {

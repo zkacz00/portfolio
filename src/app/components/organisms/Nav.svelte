@@ -28,9 +28,11 @@
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
   import Image from "../atoms/Images/Image.svelte";
+  import MenuButton from "../atoms/Buttons/MenuButton.svelte";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void;
+  export let isMenuOpen: boolean = false;
 
   /* VARIABLES */
   const logoImageStyle: string = "height: 4rem; width: auto;";
@@ -55,57 +57,44 @@
           gap={4}
           direction={FlexDirection.ROW}
         >
-          {#if $isDesktop}
-            <Flex
-              direction={FlexDirection.ROW}
-              width={MaxSize.DEFAULT}
-              height={MaxSize.DEFAULT}
-              align={AlignItems.CENTER}
-              gap={4}
+          <Flex
+            width={MaxSize.DEFAULT}
+            height={MaxSize.DEFAULT}
+            align={AlignItems.START}
+            gap={3}
+          >
+            <Logo
+              logo={LogoName.GITHUB}
+              color={LogoColorVariant.WHITE}
+              size={Size.SMALL}
+            />
+            <Logo
+              logo={LogoName.LINKEDIN}
+              color={LogoColorVariant.WHITE}
+              size={Size.SMALL}
+            />
+          </Flex>
+          <Flex
+            width={MaxSize.DEFAULT}
+            height={MaxSize.DEFAULT}
+            align={AlignItems.START}
+            gap={2}
+          >
+            <Button
+              variant={ButtonVariant.CONTEXTUAL}
+              url="#contact"
+              onClick={handleContactClick}>{navContent.workButton}</Button
             >
-              <NavList />
-            </Flex>
-            <Flex
-              width={MaxSize.DEFAULT}
-              height={MaxSize.DEFAULT}
-              align={AlignItems.START}
-              gap={3}
-            >
-              <Logo
-                logo={LogoName.GITHUB}
-                color={LogoColorVariant.WHITE}
-                size={Size.XSMALL}
-              />
-              <Logo
-                logo={LogoName.LINKEDIN}
-                color={LogoColorVariant.WHITE}
-                size={Size.XSMALL}
-              />
-            </Flex>
-            <Flex
-              width={MaxSize.DEFAULT}
-              height={MaxSize.DEFAULT}
-              align={AlignItems.START}
-              gap={2}
-            >
-              <Button
-                variant={ButtonVariant.CONTEXTUAL}
-                url="#contact"
-                onClick={handleContactClick}>{navContent.workButton}</Button
-              >
-              <LanguageSwitch />
-            </Flex>
-          {:else}
-            <div class="Nav__MenuButton">
-              <IconWrapper
-                name="menu"
-                icon="menu"
-                label="Menu"
-                toggle={true}
-                transparentBcg={true}
-              />
-            </div>
-          {/if}
+            <LanguageSwitch />
+          </Flex>
+          <!-- <IconWrapper
+            name="menu"
+            icon="menu"
+            label="Menu"
+            transparentBcg={false}
+            onClick={handleToggleMenuClick}
+          /> -->
+          <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
         </Flex>
       </div>
     {:else}
@@ -125,8 +114,10 @@
         {/if}
         <LanguageSwitch />
         <IconWrapper
+          name="menu"
           icon="menu"
-          transparentBcg={true}
+          label="Menu"
+          transparentBcg={false}
           onClick={handleToggleMenuClick}
         />
       </Flex>
@@ -145,7 +136,7 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(0.4rem);
-    z-index: 100;
+    z-index: 999;
   }
 
   .Nav__ContentWrapper {

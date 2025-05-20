@@ -178,7 +178,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
-    border-radius: 4rem;
+    border-radius: 3rem;
     box-shadow: var(--box-shadow-small-white);
     word-break: break-all;
   }

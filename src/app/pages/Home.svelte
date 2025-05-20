@@ -30,8 +30,8 @@
 <Meta {...metaTags.home} />
 
 <div class="Home">
-  <Nav {toggleMenu} />
-  <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} />
+  <Nav isMenuOpen={isMenuOpen} {toggleMenu} />
+  <MenuMobile isMenuOpen={isMenuOpen} {toggleMenu} />
   <HeroSection />
   <ScrollingTextSection />
   <AboutSection />

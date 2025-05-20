@@ -63,8 +63,8 @@
   /* VARIABLES */
   const imagePositionRight: number = $isDesktop ? -20 : $isTablet ? 0 : $isMobile ? 0 : 0;
   const imagePosition: string = $isDesktop ? "absolute" : "unset";
-  const imageStyle: string = `position: ${imagePosition}; right: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 120%` : `width: 80%`}`;
-  const reversedImageStyle: string = `position: ${imagePosition}; left: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 120%` : `width: 80%`}`;
+  const imageStyle: string = `position: ${imagePosition}; right: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 100%` : `width: 80%`}`;
+  const reversedImageStyle: string = `position: ${imagePosition}; left: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 100%` : `width: 80%`}`;
   
   /* HOOKS */
   $: projectsContent = projectsText[$language];
@@ -138,7 +138,7 @@
   .Project__ImageWrapper {
     position: relative;
     width: 100%;
-    height: 70rem;
+    height: 100%;
   }
 
   .Project__IconBox {

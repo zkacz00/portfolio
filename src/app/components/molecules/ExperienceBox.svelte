@@ -101,7 +101,7 @@
 <style>
   .ExperienceBox {
     width: 100%;
-    background-color: var(--color-primary-white);
+    background: var(--color-gradient-white);
     border-radius:  var(--border-radius-section);
     box-shadow: var(--box-shadow-small);
   }

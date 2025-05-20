@@ -100,7 +100,7 @@ export const projects: Project = {
     image: {
       assetId: "O0esqmV1EzHDZFFokFuwh",
       uniqueId: "fc9ac43107b17d01b8c2fb730bf73747",
-      file: "portfolio--robiki.png",
+      file: "portfolio--portfolio.png",
       alt: "Robiki.ai",
     },
   },

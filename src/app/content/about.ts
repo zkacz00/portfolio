@@ -81,7 +81,7 @@ export const aboutText: Record<Language, AboutContent> = {
     city: "Lublin",
     country: "Polska",
     paragraph1: [
-      { text: "Cześć, Świecie 👋 Jestem skoncentrowaną na front-endzie " },
+      { text: "Witaj, świecie 👋 Jestem skoncentrowaną na front-endzie " },
       { text: "web developerką i projektantką", bold: true },
       { text: " z " },
       { text: "Polski", bold: true },

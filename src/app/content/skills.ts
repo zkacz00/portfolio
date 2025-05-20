@@ -154,7 +154,7 @@ export const skills: Skills = {
         "gwizdać",
         "przetrwać bez kawy",
         "utrzymać roślinek przy życiu",
-        "opirzeć się pokusie głaskania kotów",
+        "oprzeć się pokusie głaskania kotów",
       ],
     },
   },
