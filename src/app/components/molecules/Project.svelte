@@ -64,6 +64,7 @@
   $: projectsContent = projectsText[$language];
 
   $: imageStyle = `position: absolute; right: -20rem; bottom: 0; height: 100%`;
+  $: imageStyleReversed = `position: absolute; left: -20rem; bottom: 0; height: 100%`;
   $: imageStyleMobile = `position: absolute; left: -6rem; bottom: 0; width: 130%`;
 </script>
 
@@ -77,7 +78,7 @@
           behavior={ImageBehavior.CONTAIN}
           file={image.file}
           alt={image.alt}
-          style={$isMobile ? imageStyleMobile : imageStyle}
+          style={$isMobile ? imageStyleMobile : reverse ? imageStyleReversed : imageStyle}
         />
       </div>
     </Col>
