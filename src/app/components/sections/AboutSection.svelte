@@ -38,7 +38,7 @@
 
 <Section anchor="about" color="white">
     <Flex gap={2} direction={FlexDirection.COLUMN}>
-      <Grid gap={$isMobile ? 3 : $isTablet ? 4 :10}>
+      <Grid gap={$isMobile ? 4 : $isTablet ? 4 :10}>
         <Col desktop={4} tablet={4}>
           <Flex direction={FlexDirection.COLUMN} gap={4}>
             <div class="About__Image">
@@ -61,7 +61,7 @@
         {/if}
         <Col desktop={8} tablet={6} >
           <div class="About__Content">
-            <Flex direction={FlexDirection.COLUMN} gap={$isDesktop ? 5 : 3} height={MaxSize.FILL}>
+            <Flex direction={FlexDirection.COLUMN} gap={$isDesktop ? 5 : 4} height={MaxSize.FILL}>
               <Hero title={aboutContent.title} titleType={TitleType.H2} align={AlignItems.START} />
               <Flex direction={FlexDirection.COLUMN} gap={3}>
                 <Flex direction={FlexDirection.ROW}>

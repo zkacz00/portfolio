@@ -21,7 +21,7 @@
 
   /* VARIABLES */
   let flowerImageStyle: string = `z-index: 0; top: 20rem; right: -20rem; position: absolute; height: 60%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `z-index: 0; bottom: 5rem; right: -5rem; position: absolute; height: auto; width: 32rem; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 0; top: 38rem; right: -5rem; position: absolute; height: auto; width: 60%; overflow: hidden;`;
   /* METHODS */
   const handleKey = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {

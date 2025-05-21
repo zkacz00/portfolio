@@ -124,7 +124,7 @@ export const skills: Skills = {
       icon: "rocket",
       skills: {
         polish: { title: "Polish", level: "Native", procent: 100 },
-        english: { title: "English", level: "B2 / C1", procent: 75 },
+        english: { title: "English", level: "C1", procent: 75 },
       },
     },
     Polish: {
@@ -132,7 +132,7 @@ export const skills: Skills = {
       icon: "rocket",
       skills: {
         polish: { title: "Polski", level: "Ojczysty", procent: 100 },
-        english: { title: "Angielski", level: "B2 / C1", procent: 75 },
+        english: { title: "Angielski", level: "C1", procent: 75 },
       },
     },
   },

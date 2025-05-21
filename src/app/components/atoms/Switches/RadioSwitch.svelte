@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   const dispatch = createEventDispatcher();
 
   /* IMPORTS */
@@ -11,24 +11,32 @@
 
   /* ATTRIBUTES */
   export let label: string = "";
-
-  /** If the button is disabled or not */
   export let disabled: boolean = false;
-
-  /** Options for the switch */
   export let options: Array<string> = ["Pay yearly", "Pay monthly"];
-
-  /** The number of selected option (starting from 0) */
   export let selected: string = "Pay yearly";
-
-  /**  The width of the switch */
   export let width: MaxSize = MaxSize.DEFAULT;
 
-  /* METHODS */
+  /* INTERNAL */
   options = removeDuplicatesFromArray(options);
+  let sliderEl: HTMLDivElement;
+  let isAnimating = false;
+
+  /* HANDLERS */
+  const animateSlider = (option: string) => {
+    if (!sliderEl) return;
+
+    isAnimating = true;
+    sliderEl.classList.add('RadioSwitch__Slider--active');
+
+    setTimeout(() => {
+      sliderEl.classList.remove('RadioSwitch__Slider--active');
+      isAnimating = false;
+    }, 300);
+  };
 
   const handleClick = (option: string) => {
-    if (disabled) return;
+    if (disabled || selected === option) return;
+    animateSlider(option);
     selected = option;
     dispatch('change', option);
   };
@@ -38,16 +46,20 @@
     const currentIndex = options.indexOf(selected);
     const nextIndex = (currentIndex + 1) % options.length;
     const previousIndex = (currentIndex - 1 + options.length) % options.length;
-    selected =
+    const newOption =
       option === "next"
         ? options[nextIndex]
-        : option === "previous"
-          ? options[previousIndex]
-          : selected;
+        : options[previousIndex];
+
+    animateSlider(newOption);
+    selected = newOption;
+    dispatch('change', newOption);
   };
+
   const handleNextOption = () => {
     handleChangeOption("next");
   };
+
   const handlePreviousOption = () => {
     handleChangeOption("previous");
   };
@@ -63,6 +75,7 @@
   };
 </script>
 
+<!-- MARKUP -->
 <button
   class="RadioSwitch RadioSwitch--{width}"
   class:RadioSwitch--disabled={disabled}
@@ -72,6 +85,12 @@
   role="radiogroup"
   on:keydown={handleKeyDown}
 >
+  <div
+    class="RadioSwitch__Slider"
+    bind:this={sliderEl}
+    style="transform: translateX({selected === options[0] ? '0%' : '100%'})"
+  ></div>
+
   <button
     class="RadioSwitch__Option RadioSwitch__Option--{width}"
     class:RadioSwitch__Option--selected={selected === options[0]}
@@ -94,8 +113,10 @@
   </button>
 </button>
 
+<!-- STYLES -->
 <style>
   .RadioSwitch {
+    position: relative;
     display: flex;
     flex-direction: row;
     color: var(--color-primary-white);
@@ -105,11 +126,39 @@
     background: rgba(255, 255, 255, 0.2);
     height: 5.5rem;
     box-shadow: var(--box-shadow-small);
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s ease;
   }
 
-  /* RadioSwitch__Option */
+  .RadioSwitch:active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .RadioSwitch__Slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-image: var(--color-primary);
+    border-radius: 2rem;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), scale 0.4s ease;
+    transform-origin: center;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .RadioSwitch__Slider--active {
+  scale: 1.4 0.85; /* increased scale for bigger droplet effect */
+  transition: transform 0.4s ease-out, scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 1.2rem rgba(255, 255, 255, 0.4);
+}
 
   .RadioSwitch__Option {
+    position: relative;
+    z-index: 2;
+    flex: 1;
     cursor: pointer;
     padding: 0 1.5rem;
     font-size: 2rem;
@@ -117,13 +166,19 @@
     border-radius: 2rem;
     height: 100%;
     min-width: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    transition: color 0.3s ease;
   }
 
   .RadioSwitch__Option--selected {
-    background-image: var(--color-primary);
+    color: var(--color-primary-white);
   }
 
-  .RadioSwitch--fill, .RadioSwitch--fill .RadioSwitch__Option {
+  .RadioSwitch--fill,
+  .RadioSwitch--fill .RadioSwitch__Option {
     width: 100%;
   }
 
@@ -131,95 +186,3 @@
     height: 5rem;
   }
 </style>
-
-
-<!-- <style>
-  .RadioSwitch {
-    position: relative;
-    display: flex;
-    width: auto;
-    height: 6.5rem;
-    padding: 0.5rem;
-    gap: 0.5rem;
-    justify-content: flex-start;
-    align-items: center;
-    flex-shrink: 0;
-
-    background: var(--color-secondary-dark);
-    border: var(--border-secondary-light);
-  }
-
-  /* RadioSwitch__Option */
-
-  .RadioSwitch__Option {
-    z-index: 2;
-    width: 17rem;
-
-    height: 5.5rem;
-    color: var(--color-text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: var(--font-size-p-small);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition:
-      background-color 0.1s ease-out,
-      color 0.1s ease-out;
-  }
-
-  .RadioSwitch__Option--fill {
-    width: 100%;
-  }
-
-  .RadioSwitch__Option--small {
-    width: 10rem;
-  }
-
-  .RadioSwitch:focus-visible,
-  .RadioSwitch__Option:focus-visible {
-    outline: var(--outline-style-focus);
-  }
-
-  .RadioSwitch__Option:hover {
-    color: var(--color-primary-light);
-  }
-
-  .RadioSwitch__Option--selected {
-    background-color: var(--color-primary);
-  }
-
-  .RadioSwitch__Option--selected:hover {
-    background-color: var(--color-primary-light);
-    color: var(--color-text-primary);
-  }
-
-  .RadioSwitch__Option--selected:active {
-    background-color: var(--color-primary-dark);
-    color: var(--color-text-primary);
-  }
-
-  /* DISABLED */
-
-  .RadioSwitch--disabled,
-  .RadioSwitch--disabled:focus-visible {
-    cursor: not-allowed;
-    background-color: var(--color-disabled);
-    outline: none;
-  }
-
-  .RadioSwitch--disabled .RadioSwitch__Option {
-    cursor: not-allowed;
-    color: var(--color-text-disabled);
-  }
-
-  .RadioSwitch--disabled .RadioSwitch__Option--selected,
-  .RadioSwitch--disabled .RadioSwitch__Option--selected:hover,
-  .RadioSwitch--disabled .RadioSwitch__Option--selected:active {
-    cursor: not-allowed;
-    color: var(--color-text-primary);
-    background-color: var(--color-primary);
-  }
-</style> -->

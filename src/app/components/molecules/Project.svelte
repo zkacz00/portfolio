@@ -104,7 +104,7 @@
           {#each technologies as technology}
           <div class="Project__IconBox">
               <Logo color={LogoColorVariant.DEFAULT} logo={technology.key} size={Size.XSMALL} link={true} />
-              <Text fontWeight={FontWeight.MEDIUM} fontSize={1} align={Align.CENTER} color={TextColorVariant.WHITE_SECONDARY}>{technology.title.toUpperCase()}</Text>
+              <Text fontWeight={FontWeight.LIGHT} fontSize={1} align={Align.CENTER} color={TextColorVariant.WHITE_SECONDARY}>{technology.title.toUpperCase()}</Text>
           </div>
           {/each}
         </Flex>

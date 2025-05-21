@@ -14,31 +14,36 @@
 
   /* METHODS */
   const handleLanguageChange = (selected: string) => {
-    language.set(selected as 'Polish' | 'English');
+    language.set(selected as "Polish" | "English");
   };
 
   /* HOOKS */
   $: {
-    options = $language === 'Polish' ? ['Polski', 'Angielski'] : ['Polish', 'English'];
-    mobileOptions = ['Pl', 'Eng'];
+    options =
+      $language === "Polish" ? ["Polski", "Angielski"] : ["Polish", "English"];
+    mobileOptions = ["Pl", "Eng"];
   }
 </script>
 
 <div class={`LanguageSwitch LanguageSwitch--${width}`}>
-  <RadioSwitch 
+  <RadioSwitch
     options={mobileOptions}
-    selected={$language === 'Polish' ? 'Pl' : 'Eng'}
-    width={width}
+    selected={$language === "Polish" ? "Pl" : "Eng"}
+    {width}
     on:change={(e) => {
       const selected = e.detail;
       handleLanguageChange(
-        (selected === 'Pl') ? 'Polish' : (selected === 'Eng' ) ? 'English' : selected
+        selected === "Pl" ? "Polish" : selected === "Eng" ? "English" : selected
       );
-    }} 
+    }}
   />
 </div>
 
 <style>
+  .LanguageSwitch {
+    cursor: pointer;
+  }
+
   .LanguageSwitch--fill {
     width: 100%;
   }
