@@ -114,6 +114,11 @@
     min-width: 17.5rem;
   }
 
+  :global(.Mobile) .Button {
+    height: 6.5rem;
+    font-size: var(--font-size-p-large);
+  }
+
   /* WIDTH = FILL */
 
   .Button--fill {

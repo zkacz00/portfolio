@@ -92,13 +92,6 @@
             >
             <LanguageSwitch />
           </Flex>
-          <!-- <IconWrapper
-            name="menu"
-            icon="menu"
-            label="Menu"
-            transparentBcg={false}
-            onClick={handleToggleMenuClick}
-          /> -->
           <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
         </Flex>
       </div>
@@ -107,7 +100,7 @@
         width={MaxSize.DEFAULT}
         height={MaxSize.DEFAULT}
         align={AlignItems.CENTER}
-        gap={$isMobile ? 1 : 2}
+        gap={2}
         direction={FlexDirection.ROW}
       >
         {#if $isTablet}
@@ -118,13 +111,7 @@
           >
         {/if}
         <LanguageSwitch />
-        <IconWrapper
-          name="menu"
-          icon="menu"
-          label="Menu"
-          transparentBcg={false}
-          onClick={handleToggleMenuClick}
-        />
+        <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
       </Flex>
       <!-- <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} /> -->
     {/if}

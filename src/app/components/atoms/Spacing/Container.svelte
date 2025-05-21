@@ -68,4 +68,8 @@
     box-sizing: border-box;
     padding: var(--section-content-margin-vertical) var(--section-margin-horizontal);
   }
+
+  :global(.Mobile) .Container {
+    padding: var(--section-content-margin-vertical) 2.5rem;
+  }
 </style>

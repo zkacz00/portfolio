@@ -89,10 +89,10 @@
           <Title type={titleType} align={Align.LEFT} url={url} underline={titleUnderline}>{title}</Title>
           <Text size={Size.XLARGE} color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{subtitle}</Text>
         </Flex>
-        <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={3}>
+        <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isMobile ? 4 : 3}>
           {#each description as item}
           <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={1}>
-            <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={1}>
+            <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={1.5}>
               <IconWrapper icon={item.icon} isButton={false} />
               <Text align={Align.LEFT} size={Size.LARGE} fontWeight={FontWeight.MEDIUM}>{item.title}</Text>
             </Flex>
@@ -150,8 +150,9 @@
     justify-content: center;
     height: min-content;
     min-height: 40rem;
+    margin: 4rem 0;
   }
   :global(.Mobile) .Project__Text {
-    gap: 2rem;
+    gap: 4rem;
   }
 </style>

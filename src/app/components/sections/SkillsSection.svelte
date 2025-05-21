@@ -36,7 +36,7 @@
               color={TextColorVariant.WHITE}
               subtitleColor={TextColorVariant.WHITE}
             />
-            <Grid gap={1}>
+            <Grid gap={$isMobile ? 2.5 : 1}>
               <Col desktop={6} tablet={5} mobile={2} order={1}><SkillBox skill={skills.frontEnd} /></Col>
               <Col desktop={6} tablet={3} mobile={2} order={2}><SkillBox skill={skills.backEnd} /></Col>
               <Col desktop={3} tablet={3} mobile={2} order={3}><SkillBox skill={skills.design} /></Col>

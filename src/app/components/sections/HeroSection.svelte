@@ -82,7 +82,7 @@
             >{heroContent.title1}<br />{heroContent.title2}</Title
           >
           <Text
-            fontSize={$isDesktop ? 2 : $isTablet ? 3 : 3}
+            fontSize={$isDesktop ? 2.5 : $isTablet ? 3 : 3}
             color={TextColorVariant.BLACK}
             fontWeight={FontWeight.MEDIUM}
             >{heroContent.subtitle}

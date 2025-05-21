@@ -91,7 +91,9 @@
     user-select: none;
     border: none;
     width: 5.5rem;
+    min-width: 5.5rem;
     height: 5.5rem;
+    min-height: 5.5rem;
     font-size: 3rem;
     border-radius: 2rem;
     box-shadow: var(--box-shadow-small);
