@@ -21,18 +21,30 @@
   import { footerText } from "../../content/footer";
   import { language } from "../../stores/language";
   import Image from "../atoms/Images/Image.svelte";
+  import Link from "../atoms/Text/Link.svelte";
+  import { scrollTo } from "../../utils/scroll";
 
   /* VARIABLES */
   let logoImageStyle: string = "height: 4rem; width: auto;";
   let flowerImageStyle: string = `top: 12rem; right: -20rem; position: absolute; height: 70%; overflow: hidden;`;
+
+  /* METHODS */
+  const handleHeroClick = () => scrollTo("home");
 
   /* HOOKS */
   $: footerContent = footerText[$language];
 </script>
 
 <div class="Footer">
-  <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={12} position="relative">
-    <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+  <Flex
+    direction={FlexDirection.COLUMN}
+    align={AlignItems.START}
+    gap={12}
+    position="relative"
+  >
+    <Link url="#home" onClick={handleHeroClick}>
+      <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+    </Link>
     <FooterLinks />
     <div class="Footer__Image">
       <Image alt="flower" file="flower-footer.png" style={flowerImageStyle} />

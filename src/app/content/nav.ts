@@ -1,6 +1,7 @@
 import type { Language } from "../stores/language";
 
 type NavContent = {
+  homeLabel: string;
   aboutLabel: string;
   experienceLabel: string;
   skillsLabel: string;
@@ -11,6 +12,7 @@ type NavContent = {
 
 export const navText: Record<Language, NavContent> = {
   English: {
+    homeLabel: "Home",
     aboutLabel: "About",
     experienceLabel: "Experience",
     skillsLabel: "Skills",
@@ -19,6 +21,7 @@ export const navText: Record<Language, NavContent> = {
     workButton: "Work with me",
   },
   Polish: {
+    homeLabel: "Wstęp",
     aboutLabel: "O mnie",
     experienceLabel: "Doświadczenie",
     skillsLabel: "Umiejętności",

@@ -44,8 +44,8 @@ Language,
 export const projects: Project = {
   portfolio: {
     title: {
-      English: "ZB Portfolio",
-      Polish: "Portfolio ZB",
+      English: "Z.B. Portfolio",
+      Polish: "Portfolio Z.B.",
     },
     subtitle: {
       English: "You might have seen it already 😉",

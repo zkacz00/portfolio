@@ -22,6 +22,7 @@
     }
   };
 
+  const handleHeroClick = () => handleClick("home");
   const handleAboutClick = () => handleClick("about");
   const handleExperienceClick = () => handleClick("experience");
   const handleSkillsClick = () => handleClick("skills");
@@ -33,6 +34,14 @@
   $: fontSize = $isDesktop ? 5 : $isTablet ? 4 : $isMobile ? 3.5 : 2.25;
 </script>
 
+<div class="LinkItem LinkItem--selected">
+  <Link
+    url="#home"
+    onClick={handleHeroClick}
+    {fontSize}
+    color={TextColorVariant.WHITE}>{navContent.homeLabel}</Link
+  >
+</div>
 <div class="LinkItem">
   <Link
     url="#about"
@@ -105,7 +114,7 @@
     pointer-events: none;
 }
 
-.LinkItem:hover:after {
+.LinkItem:hover:after, .LinkItem--selected:after {
     width: 100%;
 }
 </style>

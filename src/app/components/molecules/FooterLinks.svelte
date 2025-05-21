@@ -13,7 +13,7 @@
   import { language } from "../../stores/language";
 
   /* METHODS */
-  const handleHeroClick = () => scrollTo("hero");
+  const handleHeroClick = () => scrollTo("home");
   const handleAboutClick = () => scrollTo("about");
   const handleExperienceClick = () => scrollTo("experience");
   const handleSkillsClick = () => scrollTo("skills");
@@ -55,7 +55,7 @@
         gap={2}
       >
         <Link
-          url="#hero"
+          url="#home"
           onClick={handleHeroClick}
           fontSize={linkFontSize}
           color={TextColorVariant.WHITE_SECONDARY}
@@ -109,7 +109,7 @@
           >{footerContent.portfolioLabel}</Link
         >
         <Link
-          url="#hero"
+          url="#home"
           onClick={handleCVClick}
           fontSize={linkFontSize}
           color={TextColorVariant.WHITE_SECONDARY}>{footerContent.cvLabel}</Link

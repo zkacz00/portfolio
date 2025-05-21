@@ -59,15 +59,12 @@
 
   /* Design url */
   export let designUrl: {name: string, active: boolean} | undefined;
-
-  /* VARIABLES */
-  const imagePositionRight: number = $isDesktop ? -20 : $isTablet ? 0 : $isMobile ? 0 : 0;
-  const imagePosition: string = $isDesktop ? "absolute" : "unset";
-  const imageStyle: string = `position: ${imagePosition}; right: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 100%` : `width: 80%`}`;
-  const reversedImageStyle: string = `position: ${imagePosition}; left: ${imagePositionRight}rem; bottom: 0; ${$isDesktop ? `height: 100%` : `width: 80%`}`;
   
   /* HOOKS */
   $: projectsContent = projectsText[$language];
+
+  $: imageStyle = `position: absolute; right: -20rem; bottom: 0; height: 100%`;
+  $: imageStyleMobile = `position: absolute; left: -6rem; bottom: 0; width: 130%`;
 </script>
 
 <div class="Project">
@@ -80,7 +77,7 @@
           behavior={ImageBehavior.CONTAIN}
           file={image.file}
           alt={image.alt}
-          style={reverse ? reversedImageStyle : imageStyle}
+          style={$isMobile ? imageStyleMobile : imageStyle}
         />
       </div>
     </Col>

@@ -21,14 +21,13 @@
   } from "../../types/variants";
   import { LogoName } from "../../types/logoNames";
   import LanguageSwitch from "../molecules/LanguageSwitch.svelte";
-  import Text from "../atoms/Text/Text.svelte";
   import { isDesktop, isTablet, isMobile } from "./../../stores/device";
-  import { focusNextTabbableElement } from "../../utils/keyboard";
   import { scrollTo } from "../../utils/scroll";
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
   import Image from "../atoms/Images/Image.svelte";
   import MenuButton from "../atoms/Buttons/MenuButton.svelte";
+  import Link from "../atoms/Text/Link.svelte";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void;
@@ -40,6 +39,10 @@
   /* METHODS */
   const handleContactClick = () => scrollTo("contact");
   const handleToggleMenuClick = () => toggleMenu();
+  const handleHeroClick = () => {
+    if (isMenuOpen === true) toggleMenu(); 
+    scrollTo("home");
+  }
 
   /* HOOKS */
   $: navContent = navText[$language];
@@ -47,7 +50,9 @@
 
 <nav class="Nav" id="Nav">
   <div class="Nav__ContentWrapper">
-    <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+    <Link url="#home" onClick={handleHeroClick}>
+      <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+    </Link>
     {#if $isDesktop}
       <div class="Nav__Content">
         <Flex

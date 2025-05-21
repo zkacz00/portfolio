@@ -46,7 +46,7 @@
                 behavior={ImageBehavior.CONTAIN}
                 file={aboutImage.file}
                 alt={aboutImage.alt}
-                contentStyle={$isMobile ? "max-height: 40rem;" : ""}
+                contentStyle={$isMobile ? "max-height: 46rem;" : ""}
               />
             </div>
             {#if $isDesktop}

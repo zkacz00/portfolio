@@ -183,8 +183,8 @@
   }
 
   :global(.Tablet) .IconWrapper, :global(.Mobile) .IconWrapper {
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
   }
 
 </style>

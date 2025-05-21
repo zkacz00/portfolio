@@ -107,12 +107,16 @@
   }
 
   .ExperienceBox:nth-child(even) {
-    transform: rotate(-1deg);
+    transform: rotate(1deg);
     z-index: 1;
   }
 
   .ExperienceBox:nth-child(odd) {
-    transform: rotate(1deg);
+    transform: rotate(-1deg);
+    z-index: 2;
+  }
+
+  .ExperienceBox:nth-child(3) {
     z-index: 0;
   }
 

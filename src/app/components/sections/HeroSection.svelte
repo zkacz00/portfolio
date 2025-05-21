@@ -41,10 +41,12 @@
   import { aboutImage } from "../../content/about";
 
   /* VARIABLES */
-  let splashesImageStyle: string = `top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyle: string = `z-index: 1; top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
   let splashesImageContentStyle: string = `height: 100%;`;
+  let splashesImageStyleMobile: string = `z-index: 1; transform: scaleY(-1); top: auto; bottom: 0; right: 0; position: absolute; height: auto; width: 94%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
 
-  let flowerImageStyle: string = `top: 0; right: 240px; position: absolute; height: 100%; overflow: hidden;`;
+  let flowerImageStyle: string = `z-index: 2; top: 0; right: 240px; position: absolute; height: 100%; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 2; height: 50rem;`;
 
   // let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
   // let faceImageContentStyle: string = `height: 120%;`;
@@ -61,7 +63,7 @@
 <Meta {...metaTags.home} />
 
 <Section
-  anchor="hero"
+  anchor="home"
   color="white"
   clearBottomPadding={true}
   clearTopPadding={true}
@@ -72,7 +74,7 @@
       <Col desktop={8}>
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isDesktop ? 4 : 5}>
           <Text
-            fontSize={$isDesktop ? 4 : $isTablet ? 4 : 3}
+            fontSize={$isDesktop ? 4 : $isTablet ? 4 : 3.5}
             color={TextColorVariant.BLACK}
             align={Align.LEFT}>{heroContent.greeting}</Text
           >
@@ -80,15 +82,22 @@
             >{heroContent.title1}<br />{heroContent.title2}</Title
           >
           <Text
-            size={Size.LARGE}
+            fontSize={$isDesktop ? 2 : $isTablet ? 3 : 3}
             color={TextColorVariant.BLACK}
             fontWeight={FontWeight.MEDIUM}
             >{heroContent.subtitle}
           </Text>
           <Flex
+            direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+            gap={$isMobile ? 6 : 2}
+            justify={JustifyContent.START}
+            align={AlignItems.START}
+          >
+          <Flex
             direction={FlexDirection.ROW}
             gap={2}
-            justify={JustifyContent.START}
+            width={MaxSize.DEFAULT} 
+            order={$isMobile ? 2 : 1}
           >
             <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
               ><Logo
@@ -102,29 +111,30 @@
                 color={LogoColorVariant.WHITE}
               /></IconWrapper
             >
-            <Button variant={ButtonVariant.PRIMARY} onClick={handleDownloadCV}
+          </Flex>
+            <Button variant={ButtonVariant.PRIMARY} onClick={handleDownloadCV} width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
               >{heroContent.downloadCV}</Button
             >
           </Flex>
         </Flex>
       </Col>
-      {#if !$isMobile}
+      <!-- {#if !$isMobile} -->
         <Col desktop={4}>
           <div class="HeroContainer__Image">
             <Image
               alt="splashes"
               file="splashes-color.png"
-              style={splashesImageStyle}
+              style={$isMobile ? splashesImageStyleMobile : splashesImageStyle}
               contentStyle={splashesImageContentStyle}
             />
             <Image
               alt="flower"
-              file="flower.png"
-              style={flowerImageStyle}
+              file={$isMobile ? "flower-cropped.png" : "flower.png"}
+              style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
             />
           </div>
         </Col>
-      {/if}
+      <!-- {/if} -->
     </Grid>
   </div>
 </Section>
@@ -142,7 +152,6 @@
   }
 
   .HeroContainer__Image {
-    height: 100%;
     width: 100%;
   }
 
@@ -150,13 +159,22 @@
     padding-top: calc(5rem + var(--section-margin-vertical));
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .HeroContainer__Image {
       display: none;
     }
+  } */
+
+  :global(.Mobile) .HeroContainer__Image {
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
   }
 
   :global(.Mobile) .HeroContainer {
     padding-top: calc(3rem + var(--section-margin-vertical));
+    padding-bottom: 0;
   }
 </style>

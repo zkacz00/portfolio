@@ -33,7 +33,7 @@
     >
     <Text
       color={TextColorVariant.WHITE}
-      size={Size.LARGE}
+      size={$isMobile? Size.MEDIUM : Size.LARGE}
       align={Align.CENTER}
       fontWeight={FontWeight.REGULAR}>{subtitle}</Text
     >
