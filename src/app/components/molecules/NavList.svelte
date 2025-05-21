@@ -31,7 +31,7 @@
 
   /* HOOKS */
   $: navContent = navText[$language];
-  $: fontSize = $isDesktop ? 5 : $isTablet ? 4 : $isMobile ? 3.5 : 2.25;
+  $: fontSize = $isDesktop ? 5 : $isTablet ? 4 : $isMobile ? 3 : 2.25;
 </script>
 
 <div class="LinkItem LinkItem--selected">
@@ -47,9 +47,7 @@
     url="#about"
     onClick={handleAboutClick}
     {fontSize}
-    color={!$isDesktop
-      ? TextColorVariant.WHITE
-      : TextColorVariant.WHITE_SECONDARY}>{navContent.aboutLabel}</Link
+    color={TextColorVariant.WHITE_SECONDARY}>{navContent.aboutLabel}</Link
   >
 </div>
 <div class="LinkItem">
@@ -57,9 +55,7 @@
     url="#skills"
     onClick={handleSkillsClick}
     {fontSize}
-    color={!$isDesktop
-      ? TextColorVariant.WHITE
-      : TextColorVariant.WHITE_SECONDARY}>{navContent.skillsLabel}</Link
+    color={TextColorVariant.WHITE_SECONDARY}>{navContent.skillsLabel}</Link
   >
 </div>
 <div class="LinkItem">
@@ -67,9 +63,7 @@
     url="#projects"
     onClick={handlePortfolioClick}
     {fontSize}
-    color={!$isDesktop
-      ? TextColorVariant.WHITE
-      : TextColorVariant.WHITE_SECONDARY}>{navContent.portfolioLabel}</Link
+    color={TextColorVariant.WHITE_SECONDARY}>{navContent.portfolioLabel}</Link
   >
 </div>
 <div class="LinkItem">
@@ -77,9 +71,7 @@
     url="#experience"
     onClick={handleExperienceClick}
     {fontSize}
-    color={!$isDesktop
-      ? TextColorVariant.WHITE
-      : TextColorVariant.WHITE_SECONDARY}>{navContent.experienceLabel}</Link
+    color={TextColorVariant.WHITE_SECONDARY}>{navContent.experienceLabel}</Link
   >
 </div>
 <div class="LinkItem">
@@ -87,9 +79,7 @@
     url="#contact"
     onClick={handleContactClick}
     {fontSize}
-    color={!$isDesktop
-      ? TextColorVariant.WHITE
-      : TextColorVariant.WHITE_SECONDARY}>{navContent.contactLabel}</Link
+    color={TextColorVariant.WHITE_SECONDARY}>{navContent.contactLabel}</Link
   >
 </div>
 

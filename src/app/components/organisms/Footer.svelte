@@ -27,6 +27,7 @@
   /* VARIABLES */
   let logoImageStyle: string = "height: 4rem; width: auto;";
   let flowerImageStyle: string = `top: 12rem; right: -20rem; position: absolute; height: 70%; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `bottom: -14rem; right: -5rem; position: absolute; height: auto; width: 32rem; overflow: hidden;`;
 
   /* METHODS */
   const handleHeroClick = () => scrollTo("home");
@@ -47,7 +48,7 @@
     </Link>
     <FooterLinks />
     <div class="Footer__Image">
-      <Image alt="flower" file="flower-footer.png" style={flowerImageStyle} />
+      <Image alt="flower" file={$isMobile ? "flower-footer-mobile.png" : "flower-footer.png"} style={$isMobile ? flowerImageStyleMobile : flowerImageStyle} />
     </div>
   </Flex>
   <div class="Footer__BottomPanel">
@@ -102,7 +103,6 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 8rem;
-    /* position: relative; */
   }
 
   .Footer__Image {

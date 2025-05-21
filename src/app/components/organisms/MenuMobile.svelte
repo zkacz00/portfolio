@@ -11,30 +11,28 @@
     FlexDirection,
     AlignItems,
     JustifyContent,
-    MaxSize
+    MaxSize,
   } from "../../types/styles";
-  import {
-    ButtonVariant,
-  } from "../../types/variants";
+  import { ButtonVariant } from "../../types/variants";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void = () => {};
   export let isMenuOpen: boolean = false;
 
   /* VARIABLES */
-  let flowerImageStyle: string = `top: 20rem; right: -20rem; position: absolute; height: 60%; overflow: hidden;`;
-
+  let flowerImageStyle: string = `z-index: 0; top: 20rem; right: -20rem; position: absolute; height: 60%; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 0; bottom: 5rem; right: -5rem; position: absolute; height: auto; width: 32rem; overflow: hidden;`;
   /* METHODS */
   const handleKey = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+    if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggleMenu();
     }
-  }
+  };
 
   /* HOOKS */
   $: navContent = navText[$language];
-  $: if (typeof window !== 'undefined') {
+  $: if (typeof window !== "undefined") {
     document.body.style.overflowY = isMenuOpen ? "hidden" : "auto";
   }
 </script>
@@ -50,22 +48,32 @@
 />
 
 <div class="MenuMobile" class:MenuMobile--open={isMenuOpen}>
-  <div
-    class="MenuMobile__Content"
-  >
-    <NavList {toggleMenu} />
+  <div class="MenuMobile__Content">
+    <Flex direction={FlexDirection.COLUMN} gap={4} align={AlignItems.START}>
+      <NavList {toggleMenu} />
+    </Flex>
     {#if $isMobile}
       <Button width={MaxSize.FILL} variant={ButtonVariant.PRIMARY}>
         {navContent.workButton}
       </Button>
     {/if}
-    </div>
+  </div>
+  {#if !$isMobile}
     <div class="MenuMobile__Image" class:MenuMobile__Image--open={isMenuOpen}>
-      <Image alt="splashes" file="flower-footer-shapes.png" style={flowerImageStyle} />
+      <Image
+        alt="splashes"
+        file="flower-footer-shapes.png"
+        style={flowerImageStyle}
+      />
     </div>
-    <div class="MenuMobile__Image" class:MenuMobile__Image--open={isMenuOpen}>
-      <Image alt="splashes" file="flower-footer-picture.png" style={flowerImageStyle} />
-    </div>
+  {/if}
+  <div class="MenuMobile__Image" class:MenuMobile__Image--open={isMenuOpen}>
+    <Image
+      alt="splashes"
+      file={$isMobile ? "flower-footer-mobile.png" : "flower-footer-picture.png"}
+      style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
+    />
+  </div>
 </div>
 
 <style>
@@ -79,7 +87,9 @@
     backdrop-filter: blur(0.5rem);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      visibility 0.5s ease;
     z-index: 899;
     cursor: pointer;
   }
@@ -126,7 +136,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    gap: 3rem;;
+    gap: 6rem;
   }
 
   @keyframes fadeInMenu {
@@ -145,6 +155,7 @@
   }
 
   :global(.Mobile) .MenuMobile {
-    padding: 2rem;
+    justify-content: flex-start;
+    padding: 20rem var(--section-margin-horizontal) 4rem;
   }
 </style>

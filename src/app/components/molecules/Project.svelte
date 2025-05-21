@@ -150,7 +150,7 @@
     justify-content: center;
     height: min-content;
     min-height: 40rem;
-    margin: 4rem 0;
+    margin: 2rem 0 0;
   }
   :global(.Mobile) .Project__Text {
     gap: 4rem;
