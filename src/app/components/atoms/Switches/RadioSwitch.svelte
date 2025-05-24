@@ -162,7 +162,7 @@
     cursor: pointer;
     padding: 0 1.5rem;
     font-size: 2rem;
-    color: inherit;
+    color: var(--color-secondary-white);
     border-radius: 2rem;
     height: 100%;
     min-width: 8rem;

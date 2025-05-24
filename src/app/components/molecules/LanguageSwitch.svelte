@@ -2,7 +2,6 @@
   import { MaxSize } from "../../types/styles";
   import RadioSwitch from "../atoms/Switches/RadioSwitch.svelte";
   import { language } from "../../stores/language";
-  import { isMobile } from "../../stores/device";
 
   /* ATTRIBUTES */
   /** The width of the switch */

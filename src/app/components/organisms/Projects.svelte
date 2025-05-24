@@ -32,6 +32,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--section-content-margin-vertical);
+    gap: 4rem;
   }
 </style>

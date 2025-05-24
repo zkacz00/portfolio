@@ -8,6 +8,8 @@
 
   import { projectsText } from "../../content/projects";
   import { language } from "../../stores/language"; 
+  import { isDarkMode } from "../../stores/lightMode";
+  import { TextColorVariant } from "../../types/variants";
 
   /* HOOKS */
   $: projectsContent = projectsText[$language];
@@ -18,6 +20,7 @@
       title={projectsContent.title}
       subtitle={projectsContent.subtitle}
       align={AlignItems.START}
+      subtitleColor={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
     />
     <Projects />
   </Section>

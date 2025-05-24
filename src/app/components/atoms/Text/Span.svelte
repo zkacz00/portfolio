@@ -62,6 +62,10 @@
     color: var(--color-text-primary-white);
   }
 
+  .Span--secondary-white {
+    color: var(--color-text-secondary-white);
+  }
+
   .Span--black {
     color: var(--color-text-primary-black);
   }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isMobile } from "./../../stores/device";
+  import { isMobile, isTablet, isDesktop } from "./../../stores/device";
   import Logo from "../atoms/Images/Logo.svelte";
   import Text from "../atoms/Text/Text.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
@@ -23,11 +23,13 @@
   import Image from "../atoms/Images/Image.svelte";
   import Link from "../atoms/Text/Link.svelte";
   import { scrollTo } from "../../utils/scroll";
+  import ModeButton from "../atoms/Buttons/ModeButton.svelte";
 
   /* VARIABLES */
   let logoImageStyle: string = "height: 4rem; width: auto;";
-  let flowerImageStyle: string = `top: 12rem; right: -20rem; position: absolute; height: 70%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `bottom: -14rem; right: -5rem; position: absolute; height: auto; width: 32rem; overflow: hidden;`;
+  let flowerImageStyle: string = `z-index: 0; top: 4rem; right: -16rem; position: absolute; width: 100%; overflow: hidden;`;
+  let flowerImageStyleTablet: string = `z-index: 0; top: 6rem; right: -10rem; position: absolute; width: 100%; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 0; bottom: -22rem; right: -5rem; position: absolute; width: 130%; overflow: hidden;`;
 
   /* METHODS */
   const handleHeroClick = () => scrollTo("home");
@@ -37,20 +39,30 @@
 </script>
 
 <div class="Footer">
-  <Flex
-    direction={FlexDirection.COLUMN}
-    align={AlignItems.START}
-    gap={12}
-    position="relative"
-  >
-    <Link url="#home" onClick={handleHeroClick}>
-      <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
-    </Link>
-    <FooterLinks />
-    <div class="Footer__Image">
-      <Image alt="flower" file={$isMobile ? "flower-footer-mobile.png" : "flower-footer.png"} style={$isMobile ? flowerImageStyleMobile : flowerImageStyle} />
-    </div>
-  </Flex>
+  <Grid>
+    <Col desktop={4} tablet={3} mobile={1}>
+      <Flex
+        direction={FlexDirection.COLUMN}
+        align={AlignItems.START}
+        gap={$isTablet ? 10 : 12}
+      >
+        <Link url="#home" onClick={handleHeroClick}>
+          <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+        </Link>
+        <FooterLinks />
+      </Flex>
+    </Col>
+    <Col desktop={8} tablet={5} mobile={1}>
+      <div class="Footer__Image">
+        <Image
+          alt="flower"
+          file={$isMobile ? "flower-footer-mobile.png" : "flower-footer.png"}
+          style={$isMobile ? flowerImageStyleMobile : $isTablet ? flowerImageStyleTablet : flowerImageStyle}
+        />
+      </div>
+    </Col>
+  </Grid>
+
   <div class="Footer__BottomPanel">
     <Flex
       direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
@@ -88,6 +100,7 @@
             size={Size.SMALL}
           />
         </Flex>
+        <ModeButton />
         <LanguageSwitch />
       </Flex>
     </Flex>
@@ -102,12 +115,13 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 8rem;
+    gap: 10rem;
   }
 
   .Footer__Image {
     height: 100%;
     width: 100%;
+    position: relative;
   }
 
   .Footer__BottomPanel {

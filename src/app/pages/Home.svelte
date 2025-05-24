@@ -8,17 +8,11 @@
   import ProjectsSection from "../components/sections/ProjectsSection.svelte";
   import SkillsSection from "../components/sections/SkillsSection.svelte";
   import ExperienceSection from "../components/sections/ExperienceSection.svelte";
-  import TestimonialsSection from "../components/sections/TestimonialsSection.svelte";
-  import CtaSection from "../components/sections/CtaSection.svelte";
   import ContactSection from "../components/sections/ContactSection.svelte";
   import FooterSection from "../components/sections/FooterSection.svelte";
   import ScrollingTextSection from "../components/sections/ScrollingTextSection.svelte";
   import SkillsHighlightSection from "../components/sections/SkillsHighlightSection.svelte";
-  import MenuMobile from "../components/organisms/MenuMobile.svelte";
-
-  import { isDesktop } from "../stores/device";
-
-  import { metaTags } from "../content/metaTags";
+  import Menu from "../components/organisms/Menu.svelte";
 
   /* VARIABLES */
   let isMenuOpen: boolean = false;
@@ -27,11 +21,9 @@
   const toggleMenu = () => (isMenuOpen = !isMenuOpen);
 </script>
 
-<Meta {...metaTags.home} />
-
 <div class="Home">
   <Nav isMenuOpen={isMenuOpen} {toggleMenu} />
-  <MenuMobile isMenuOpen={isMenuOpen} {toggleMenu} />
+  <Menu isMenuOpen={isMenuOpen} {toggleMenu} />
   <HeroSection />
   <ScrollingTextSection />
   <AboutSection />
@@ -40,8 +32,6 @@
   <SkillsHighlightSection />
   <ProjectsSection />
   <ExperienceSection />
-  <!-- <TestimonialsSection /> -->
-  <CtaSection />
   <ContactSection />
   <FooterSection />
 </div>
@@ -56,6 +46,10 @@
     justify-content: center;
     padding-top: 10rem;
     overflow-x: hidden;
+  }
+
+  :global(.DarkMode) .Home {
+    background: var(--color-gradient-grey);
   }
 
   :global(.Tablet) .Home {

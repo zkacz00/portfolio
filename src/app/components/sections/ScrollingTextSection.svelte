@@ -7,7 +7,7 @@
   import { TextColorVariant } from "../../types/variants";
   import { scrollingText } from "../../content/scrollingText";
   import { language } from "../../stores/language"; 
-  
+
   /* HOOKS */
   $: scrollingTextContent = scrollingText[$language];
 </script>

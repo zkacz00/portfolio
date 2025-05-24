@@ -9,6 +9,7 @@
   import { JustifyContent, AlignItems, FlexDirection, FlexWrap, FontWeight, Size, Align } from '../../types/styles';
   import Span from '../atoms/Text/Span.svelte';
   import { language, type Language } from "../../stores/language"; 
+  import { isDesktop, isTablet, isMobile } from "../../stores/device";
 
   /* ATTRIBUTES */
   export let skill: {[key in Language]: Skill} ;
@@ -18,7 +19,7 @@
 </script>
 
 <div class={`SkillBox SkillBox--${skill}`}>
-  <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={2}>
+  <Flex direction={FlexDirection.ROW} justify={JustifyContent.START} gap={$isTablet ? 1 : 1.5}>
       <IconWrapper icon={skillContent.icon} isButton={false} />
     <Text color={TextColorVariant.BLACK} align={Align.LEFT} fontWeight={FontWeight.MEDIUM}>{skillContent.title}</Text>
   </Flex>

@@ -6,7 +6,7 @@
   import Flex from "../atoms/Spacing/Flex.svelte";
   import { AlignItems, Size, FlexDirection, MaxSize } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
-  import { isMobile } from "./../../stores/device";
+  import { isMobile, isTablet } from "./../../stores/device";
   import { scrollTo } from "../../utils/scroll";
   import { myCvUrl } from "../../content/urls";
   import { footerText } from "../../content/footer";
@@ -31,7 +31,7 @@
 
 <div class="FooterLinks">
   <Flex
-    direction={FlexDirection.COLUMN}
+    direction={$isTablet ? FlexDirection.ROW : FlexDirection.COLUMN}
     width={MaxSize.DEFAULT}
     height={MaxSize.DEFAULT}
     align={AlignItems.START}

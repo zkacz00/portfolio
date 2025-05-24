@@ -13,14 +13,14 @@ export const heroText: Record<Language, HeroContent> = {
     greeting: "Hi, I'm Zofia,",
     title1: "WEB DEVELOPER",
     title2: "& UI/UX DESIGNER",
-    subtitle: "Nice to meet you 😊",
-    downloadCV: "Download my CV",
+    subtitle: "Let's get to know each other! 😊",
+    downloadCV: "See my CV",
   },
   Polish: {
     greeting: "Cześć, jestem Zofia,",
     title1: "WEB DEVELOPER",
     title2: "& UI/UX DESIGNER",
-    subtitle: "Miło cię poznać 😊",
-    downloadCV: "Pobierz moje CV",
+    subtitle: "Poznajmy się! 😊",
+    downloadCV: "Zobacz moje CV",
   },
 };

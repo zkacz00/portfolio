@@ -25,7 +25,7 @@
   /* METHODS */
   const getColumns = (size: string) => {
     if (size === ScreenSize.DESKTOP) return 12;
-    if (size === ScreenSize.TABLET) return 6;
+    if (size === ScreenSize.TABLET) return 8;
     if (size === ScreenSize.MOBILE) return 2;
   };
 </script>

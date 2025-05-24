@@ -8,7 +8,7 @@
   export let desktop: number = 12;
 
   /** The number of columns to span on tablet */
-  export let tablet: number = 6;
+  export let tablet: number = 8;
 
   /** The number of columns to span on mobile */
   export let mobile: number = 2;

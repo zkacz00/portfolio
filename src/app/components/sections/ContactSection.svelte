@@ -35,6 +35,7 @@
   } from "../../content/urls";
   import { contactText } from "../../content/contact";
   import { language } from "../../stores/language";
+  import { isDarkMode } from '../../stores/lightMode';
 
   /* METHODS */
   const handleEmailClick = () => {
@@ -49,7 +50,7 @@
   <Background>
     <Container>
       <Grid gap={$isDesktop ? 3 : 4}>
-        <Col desktop={5} tablet={6} mobile={3}>
+        <Col desktop={5} tablet={4} mobile={3}>
           <Hero
             title={contactContent.title}
             subtitle={contactContent.subtitle}
@@ -63,13 +64,13 @@
               justify={JustifyContent.START}
             >
               <Button
-                width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
                 variant={ButtonVariant.PRIMARY_WHITE}
                 shadowColor="white">{contactContent.downloadCV}</Button
               >
               <Button
                 onClick={handleEmailClick}
-                width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
                 variant={ButtonVariant.SECONDARY_WHITE}
                 shadowColor="white">{contactContent.emailMe}</Button
               >
@@ -77,9 +78,9 @@
           </Hero>
         </Col>
         {#if $isDesktop}<Col desktop={2}></Col>{/if}
-        <Col desktop={5} tablet={6} mobile={3}>
+        <Col desktop={5} tablet={4} mobile={3}>
           <Flex direction={FlexDirection.COLUMN} width={MaxSize.FILL} gap={2}>
-            <div class="ContactSection__InfoBox">
+            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
               <div class="ContactSection__InfoIcon">
                 <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
                   <Icon
@@ -106,7 +107,7 @@
                 >
               </Flex>
             </div>
-            <div class="ContactSection__InfoBox">
+            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
               <div class="ContactSection__InfoIcon">
                 <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
                   <Icon
@@ -133,7 +134,7 @@
                 >
               </Flex>
             </div>
-            <div class="ContactSection__InfoBox">
+            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
               <div class="ContactSection__InfoIcon">
                 <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
                   <Logo
@@ -181,6 +182,10 @@
     border-radius: 3rem;
     box-shadow: var(--box-shadow-small-white);
     word-break: break-all;
+  }
+
+  .ContactSection__InfoBox--reversed {
+    background-color: var(--color-primary-white);
   }
 
   .ContactSection__InfoIcon {

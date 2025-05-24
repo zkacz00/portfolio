@@ -66,7 +66,7 @@
   .Container {
     margin: 0;
     box-sizing: border-box;
-    padding: var(--section-content-margin-vertical) var(--section-margin-horizontal);
+    padding: var(--section-content-margin-vertical) var(--section-content-margin-horizontal);
   }
 
   :global(.Mobile) .Container {

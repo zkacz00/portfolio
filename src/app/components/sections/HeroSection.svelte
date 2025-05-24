@@ -18,7 +18,7 @@
     MaxSize,
   } from "../../types/styles";
 
-  import { metaTags } from "../../content/metaTags";
+
   import Text from "../atoms/Text/Text.svelte";
   import Title from "../atoms/Text/Title.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
@@ -38,15 +38,17 @@
   import { myCvUrl } from "../../content/urls";
   import { heroText } from "../../content/hero";
   import { language } from "../../stores/language";
-  import { aboutImage } from "../../content/about";
+  import { isDarkMode } from "../../stores/lightMode";
 
   /* VARIABLES */
-  let splashesImageStyle: string = `z-index: 1; top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyle: string = `z-index: 0; top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
   let splashesImageContentStyle: string = `height: 100%;`;
-  let splashesImageStyleMobile: string = `z-index: 1; transform: scaleY(-1); top: auto; bottom: 0; right: 0; position: absolute; height: auto; width: 94%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyleTablet: string = `z-index: 0; top: 0; right: 0; position: absolute; height: auto; width: 53%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyleMobile: string = `z-index: 0; transform: scaleY(-1); top: auto; bottom: 0; right: 0; position: absolute; height: auto; width: 94%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
 
-  let flowerImageStyle: string = `z-index: 2; top: 0; right: 240px; position: absolute; height: 100%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `z-index: 2; height: 50rem;`;
+  let flowerImageStyle: string = `z-index: 1; top: 0; right: 30rem; position: absolute; height: 100%; overflow: hidden;`;
+  let flowerImageStyleTablet: string = `z-index: 1; top: 0; right: 18rem; position: absolute; height: 100%; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 1; height: 50rem;`;
 
   // let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
   // let faceImageContentStyle: string = `height: 120%;`;
@@ -60,8 +62,6 @@
   $: heroContent = heroText[$language];
 </script>
 
-<Meta {...metaTags.home} />
-
 <Section
   anchor="home"
   color="white"
@@ -70,20 +70,20 @@
   clearSidePadding={true}
 >
   <div class="HeroContainer">
-    <Grid>
+    <Grid gap={0}>
       <Col desktop={8}>
-        <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isDesktop ? 4 : 5}>
+        <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isDesktop ? 4 : $isMobile ? 5 : 4}>
           <Text
-            fontSize={$isDesktop ? 4 : $isTablet ? 4 : 3.5}
-            color={TextColorVariant.BLACK}
+            fontSize={3}
+            color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
             align={Align.LEFT}>{heroContent.greeting}</Text
           >
           <Title type={TitleType.H1} align={Align.LEFT}
             >{heroContent.title1}<br />{heroContent.title2}</Title
           >
           <Text
-            fontSize={$isDesktop ? 2.5 : $isTablet ? 3 : 3}
-            color={TextColorVariant.BLACK}
+            fontSize={2.5}
+            color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
             fontWeight={FontWeight.MEDIUM}
             >{heroContent.subtitle}
           </Text>
@@ -123,14 +123,14 @@
           <div class="HeroContainer__Image">
             <Image
               alt="splashes"
-              file="splashes-color.png"
-              style={$isMobile ? splashesImageStyleMobile : splashesImageStyle}
+              file={$isDarkMode ? "splashes-color-dark.png" : "splashes-color.png"}
+              style={$isMobile ? splashesImageStyleMobile : $isTablet ? splashesImageStyleTablet : splashesImageStyle}
               contentStyle={splashesImageContentStyle}
             />
             <Image
               alt="flower"
               file={$isMobile ? "flower-cropped.png" : "flower.png"}
-              style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
+              style={$isMobile ? flowerImageStyleMobile : $isTablet ? flowerImageStyleTablet : flowerImageStyle}
             />
           </div>
         </Col>
@@ -164,6 +164,11 @@
       display: none;
     }
   } */
+
+  :global(.Tablet) .HeroContainer {
+    padding-top: calc(4rem + var(--section-margin-vertical));
+    padding-bottom: var(--section-margin-vertical);
+  }
 
   :global(.Mobile) .HeroContainer__Image {
     padding-top: 4rem;

@@ -9,7 +9,6 @@
   import Container from "../atoms/Spacing/Container.svelte";
 
   import {
-    ImageBehavior,
     Align,
     Size,
     AlignItems,
@@ -23,6 +22,8 @@
   import { ButtonVariant, TextColorVariant } from "../../types/variants";
   import { experienceText, type ExperienceEl } from "../../content/experience";
   import { language } from "../../stores/language"; 
+  import { isTablet } from "../../stores/device";
+  import { isDarkMode } from '../../stores/lightMode';
 
   /* ATTRIBUTES */
 
@@ -36,20 +37,20 @@
   $: experienceContent = experienceText[$language];
 </script>
 
-<div class="ExperienceBox" role="group" on:mouseenter={() => isHovered = true} on:mouseleave={() => isHovered = false}>
+<div class="ExperienceBox" class:ExperienceBox--dark={$isDarkMode} role="group" on:mouseenter={() => isHovered = true} on:mouseleave={() => isHovered = false}>
   <Container>
-  <Grid>
-    <Col desktop={4} tablet={6}>
+  <Grid gap={$isTablet ? 3 : 4}>
+    <Col desktop={4} tablet={8}>
       <Flex
         align={AlignItems.START}
         direction={FlexDirection.COLUMN}
         gap={0}
         height={MaxSize.FILL}
       >
-        <Text align={Align.LEFT} size={Size.XSMALL} color={TextColorVariant.BLACK}>{experienceContent.what}</Text
+        <Text align={Align.LEFT} size={Size.XSMALL} color={$isDarkMode ? TextColorVariant.WHITE_SECONDARY : TextColorVariant.BLACK}>{experienceContent.what}</Text
         >
         <Title
-          color={TextColorVariant.BLACK}
+          color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
           align={Align.LEFT}
           type={TitleType.H3}
           fontWeight={FontWeight.MEDIUM}
@@ -57,30 +58,30 @@
         >
       </Flex>
     </Col>
-    <Col desktop={3} tablet={6}>
+    <Col desktop={3} tablet={8}>
       <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={2} height={MaxSize.FILL}>
         <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={0}>
-          <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
+          <Text color={$isDarkMode ? TextColorVariant.WHITE_SECONDARY : TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
             >{experienceContent.where}</Text
           >
-          <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}
+          <Text color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}
             >{experienceEl.location}</Text
           >
         </Flex>
         <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={0}>
-          <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
+          <Text color={$isDarkMode ? TextColorVariant.WHITE_SECONDARY : TextColorVariant.BLACK} align={Align.LEFT} size={Size.XSMALL}
             >{experienceContent.when}</Text
           >
-          <Text color={TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}>{experienceEl.date}</Text>
+          <Text color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK} align={Align.LEFT} size={Size.MEDIUM} fontWeight={FontWeight.MEDIUM}>{experienceEl.date}</Text>
         </Flex>
       </Flex>
     </Col>
-    <Col desktop={5} tablet={6}>
+    <Col desktop={5} tablet={8}>
       <Flex align={AlignItems.START} direction={FlexDirection.COLUMN} gap={2} height={MaxSize.FILL}>
         <Text
           align={Align.LEFT}
           size={Size.SMALL}
-          color={TextColorVariant.BLACK}>{experienceEl.description}</Text
+          color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}>{experienceEl.description}</Text
         >
         <Flex
           direction={FlexDirection.ROW}
@@ -104,6 +105,10 @@
     background: var(--color-gradient-white);
     border-radius:  var(--border-radius-section);
     box-shadow: var(--box-shadow-small);
+  }
+
+  .ExperienceBox--dark {
+    background: var(--color-gradient-black-secondary);
   }
 
   .ExperienceBox:nth-child(even) {

@@ -1,10 +1,6 @@
-<!--
-  @description
-    A Backround component that can be used to wrap other components.
--->
-
 <script lang="ts">
   import { MaxSize } from '../../../types/styles';
+  import { isDarkMode } from '../../../stores/lightMode';
 
   /* VARIABLES */
   /** The color of the background */
@@ -16,6 +12,7 @@
 
 <div 
   class="Background Background--{color}" 
+  class:Background--reversed={$isDarkMode}
   class:Background--fill={height === MaxSize.FILL}
 >
   <slot />
@@ -56,7 +53,16 @@
     border-radius:  var(--border-radius-section)
   }
 
+  .Background--white.Background--reversed {
+    background-color: var(--color-gradient-black);
+    border-radius:  var(--border-radius-section)
+  }
+
   .Background--black {
     background: var(--color-gradient-black);
+  }
+
+  .Background--black.Background--reversed {
+    background: var(--color-gradient-grey);
   }
 </style>

@@ -1,38 +1,37 @@
 <script lang="ts">
   /* IMPORTS */
-  import Flex from '../atoms/Spacing/Flex.svelte';
-  import { AlignItems, FlexDirection } from '../../types/styles';
-  import Subtitle from '../atoms/Text/Subtitle.svelte';
-  import Title from '../atoms/Text/Title.svelte';
-  import Text from '../atoms/Text/Text.svelte';
-  import { TextColorVariant } from '../../types/variants';
-  import { Align, Size, TitleType } from '../../types/styles';
-  import { isMobile } from '../../stores/device';
+  import Flex from "../atoms/Spacing/Flex.svelte";
+  import { AlignItems, FlexDirection } from "../../types/styles";
+  import Subtitle from "../atoms/Text/Subtitle.svelte";
+  import Title from "../atoms/Text/Title.svelte";
+  import Text from "../atoms/Text/Text.svelte";
+  import { TextColorVariant } from "../../types/variants";
+  import { Align, Size, TitleType } from "../../types/styles";
+  import { isMobile } from "../../stores/device";
 
   /* ATTRIBUTES */
   /** The gap of the Hero */
-  export let gap: number | string = 'var(--section-content-margin-vertical)';
+  export let gap: number | string = "var(--section-content-margin-vertical)";
 
   /** The align-items property of the Hero */
   export let align: AlignItems = AlignItems.CENTER;
 
   /** The title of the Hero */
-  export let title: string = '';
-
-  /** The pretitle of the Hero */
-  export let pretitle: string = '';
+  export let title: string = "";
 
   /** The title type of the Hero */
   export let titleType: TitleType = TitleType.H2;
 
   /** The subtitle of the Hero */
-  export let subtitle: string = '';
+  export let subtitle: string = "";
 
   /** The color variant of the Hero */
-  export let color: TextColorVariant.PRIMARY | TextColorVariant.WHITE = TextColorVariant.PRIMARY;
+  export let color: TextColorVariant.PRIMARY | TextColorVariant.WHITE =
+    TextColorVariant.PRIMARY;
 
   /** The color variant of subtitle */
-  export let subtitleColor: TextColorVariant.BLACK | TextColorVariant.WHITE = TextColorVariant.BLACK;
+  export let subtitleColor: TextColorVariant.BLACK | TextColorVariant.WHITE =
+    TextColorVariant.BLACK;
 
   /* VARIABLES */
   let textAlign: Align;
@@ -47,14 +46,20 @@
   $: setTextAlign(align);
 </script>
 
-<div class="Hero" style:gap={typeof gap === 'number' ? `${gap}rem` : gap} style:align-items={align}>
+<div
+  class="Hero"
+  style:gap={typeof gap === "number" ? `${gap}rem` : gap}
+  style:align-items={align}
+>
   <Flex direction={FlexDirection.COLUMN} gap={3} {align}>
-    {#if pretitle}
-    <Text color={color === TextColorVariant.PRIMARY ? TextColorVariant.BLACK : color} size={Size.XLARGE} align={textAlign}>{pretitle}</Text>
-  {/if}
-    <Title type={titleType} align={textAlign} color={color}>{title}</Title>
+    <Title type={titleType} align={textAlign} {color}>{title}</Title>
     {#if subtitle}
-      <Subtitle maxWidth="auto" size={$isMobile ? Size.MEDIUM : Size.LARGE} align={textAlign} color={subtitleColor}>
+      <Subtitle
+        maxWidth="auto"
+        size={$isMobile ? Size.MEDIUM : Size.LARGE}
+        align={textAlign}
+        color={subtitleColor}
+      >
         {subtitle}
       </Subtitle>
     {/if}
@@ -65,6 +70,7 @@
 <style>
   .Hero {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -4,7 +4,7 @@
   import Logo from "../atoms/Images/Logo.svelte";
   import Flex from "../../components/atoms/Spacing/Flex.svelte";
   import NavList from "../molecules/NavList.svelte";
-  import MenuMobile from "./MenuMobile.svelte";
+  import Menu from "./Menu.svelte";
   import IconWrapper from "../atoms/Buttons/IconWrapper.svelte";
 
   import {
@@ -28,6 +28,8 @@
   import Image from "../atoms/Images/Image.svelte";
   import MenuButton from "../atoms/Buttons/MenuButton.svelte";
   import Link from "../atoms/Text/Link.svelte";
+  import ThemeToggleButton from "../atoms/Buttons/ModeButton.svelte";
+  import ModeButton from "../atoms/Buttons/ModeButton.svelte";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void;
@@ -92,6 +94,7 @@
             >
             <LanguageSwitch />
           </Flex>
+          <ModeButton />
           <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
         </Flex>
       </div>
@@ -111,9 +114,9 @@
           >
         {/if}
         <LanguageSwitch />
+        <ModeButton />
         <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
       </Flex>
-      <!-- <MenuMobile isMenuOpen={$isDesktop ? false : isMenuOpen} {toggleMenu} /> -->
     {/if}
   </div>
 </nav>
@@ -126,7 +129,7 @@
     display: flex;
     height: 10rem;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(6, 6, 6, 0.9);
     backdrop-filter: blur(0.4rem);
     z-index: 999;
   }

@@ -1,7 +1,7 @@
 <script lang="ts">
   /* IMPORTS */
   import Icon from "../Text/Icon.svelte";
-  import { ButtonVariant } from "../../../types/variants";
+  import { ButtonVariant, TextColorVariant } from "../../../types/variants";
   import { Size } from "../../../types/styles";
   import type { BaseEvent } from "../../../types/events";
 
@@ -20,6 +20,7 @@
     | ButtonVariant.PRIMARY
     | ButtonVariant.PRIMARY_WHITE
     | ButtonVariant.PRIMARY_BLACK
+    | ButtonVariant.SECONDARY
     | ButtonVariant.SECONDARY_WHITE = ButtonVariant.PRIMARY;
 
   /** The transparent background */
@@ -73,7 +74,7 @@
   {role}
 >
   {#if icon}
-    <Icon {icon} color={undefined} size={undefined} />
+    <Icon {icon} color={variant === ButtonVariant.SECONDARY ? TextColorVariant.PRIMARY : undefined} size={undefined} />
   {/if}
   <slot />
 </svelte:element>
@@ -140,6 +141,12 @@
     opacity: 0.6;
   }
 
+  /* VARIANT = SECONDARY */
+
+  .IconWrapper--secondary {
+    background: transparent;
+  }
+
   /* VARIANT = SECONDARY_WHITE */
 
   .IconWrapper--secondary-white {
@@ -147,7 +154,7 @@
     border: 0.25rem solid var(--color-primary-white);
     color: var(--color-primary-white);
   }
-  .IconWrapper--primary-white:hover {
+  .IconWrapper--secondary-white:hover {
     opacity: 0.6;
   }
 
@@ -182,11 +189,23 @@
 
   .IconWrapper--transparentBcg {
     background: transparent;
+    box-shadow: none;
   }
 
-  :global(.Tablet) .IconWrapper, :global(.Mobile) .IconWrapper {
+  :global(.Tablet) .IconWrapper {
+    width: 5rem;
+    min-width: 5rem;
+    height: 5rem;
+    min-height: 5rem;
+    border-radius: 1.75rem;
+  }
+
+  :global(.Mobile) .IconWrapper {
     width: 6rem;
+    min-width: 6rem;
     height: 6rem;
+    min-height: 6rem;
+    border-radius: 2rem;
   }
 
 </style>

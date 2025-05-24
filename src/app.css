@@ -29,7 +29,7 @@
 
   /* SECTION MARGIN - LEFT, RIGHT */
   --section-margin-horizontal-desktop: 9rem;
-  --section-margin-horizontal-tablet: 5rem;
+  --section-margin-horizontal-tablet: 4rem;
   --section-margin-horizontal-mobile: 3rem;
   --section-margin-horizontal: var(--section-margin-horizontal-desktop);
 
@@ -42,9 +42,15 @@
   --section-margin-vertical-mobile: 7rem;
   --section-margin-vertical: var(--section-margin-vertical-desktop);
 
+  /* SECTION CONTENT MARGIN - LEFT, RIGHT */
+  --section-content-margin-horizontal-desktop: 9rem;
+  --section-content-margin-horizontal-tablet: 3rem;
+  --section-content-margin-horizontal-mobile: 2.5rem;
+  --section-content-margin-horizontal: var(--section-margin-horizontal-desktop);
+
   /* SECTION CONTENT MARGIN - TOP, BOTTOM */
   --section-content-margin-vertical-desktop: 8rem;
-  --section-content-margin-vertical-tablet: 4rem;
+  --section-content-margin-vertical-tablet: 3rem;
   --section-content-margin-vertical-mobile: 4rem;
   --section-content-margin-vertical: var(
     --section-content-margin-vertical-desktop
@@ -85,13 +91,28 @@
     rgba(214, 214, 214, 1) 0%,
     rgba(247, 247, 247, 1) 60%
   );
-  --color-secondary-white: #999999;
+  --color-secondary-white: #bfbfbf;
   --color-primary-gray: #2c2c2c;
   --color-primary-black: #000000;
   --color-gradient-black: radial-gradient(
     1064px 438px ellipse at 45% 32px,
     rgba(56, 56, 56, 1) 0%,
     rgba(28, 28, 28, 1) 60%
+  );
+  --color-gradient-black-secondary: radial-gradient(
+    1064px 438px ellipse at 45% 32px,
+    rgb(35, 35, 35) 0%,
+    rgba(28, 28, 28, 1) 60%
+  );
+  /* --color-gradient-grey: radial-gradient(
+    1064px 438px ellipse at 45% 32px,
+    rgba(110, 110, 110, 1) 0%,
+    rgba(65, 65, 65, 1) 60%
+  ); */
+  --color-gradient-grey: radial-gradient(
+    1064px 438px ellipse at 45% 32px,
+    rgb(84, 83, 83) 0%,
+    rgb(64, 64, 64) 60%
   );
   --color-secondary-black: #323232;
   --color-accent: #ae5df4;
@@ -163,7 +184,6 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  /* background: var(--color-gradient-black); */
   overflow-x: hidden;
 
   background: var(--color-gradient-black);
@@ -272,6 +292,11 @@ textarea {
   /* SECTION MARGIN - TOP, BOTTOM */
   --section-margin-vertical: var(--section-margin-vertical-tablet);
 
+  /* SECTION CONTENT MARGIN - LEFT, RIGHT */
+  --section-content-margin-horizontal: var(
+    --section-content-margin-horizontal-tablet
+  );
+
   /* SECTION CONTENT MARGIN - TOP, BOTTOM */
   --section-content-margin-vertical: var(
     --section-content-margin-vertical-tablet
@@ -314,6 +339,11 @@ textarea {
 
   /* SECTION MARGIN - TOP, BOTTOM */
   --section-margin-vertical: var(--section-margin-vertical-mobile);
+
+  /* SECTION CONTENT MARGIN - LEFT, RIGHT */
+  --section-content-margin-horizontal: var(
+    --section-content-margin-horizontal-mobile
+  );
 
   /* SECTION CONTENT MARGIN - TOP, BOTTOM */
   --section-content-margin-vertical: var(

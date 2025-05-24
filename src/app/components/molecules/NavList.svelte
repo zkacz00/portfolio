@@ -31,7 +31,7 @@
 
   /* HOOKS */
   $: navContent = navText[$language];
-  $: fontSize = $isDesktop ? 5 : $isTablet ? 4 : $isMobile ? 3 : 2.25;
+  $: fontSize = $isDesktop ? 4 : 3;
 </script>
 
 <div class="LinkItem LinkItem--selected">

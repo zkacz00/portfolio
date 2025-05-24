@@ -65,6 +65,10 @@
     background-clip: text;
   }
 
+  .Icon--primary:hover {
+    color: white;
+  }
+
   .Icon--white {
     color: var(--color-text-primary-white);
   }

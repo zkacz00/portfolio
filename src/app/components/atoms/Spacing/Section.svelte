@@ -1,10 +1,6 @@
-<!--
-  @description
-    A Page section component that can be used to wrap other components.
--->
-
 <script lang="ts">
-  import { Size, MaxSize } from "../../../types/styles";
+  import { MaxSize } from "../../../types/styles";
+  import { isDarkMode } from '../../../stores/lightMode';
 
   /* VARIABLES */
   /** The anchor for the container */
@@ -29,6 +25,7 @@
 <section
   id={anchor}
   class={`Section Section--${color}`}
+  class:Section--reversed={$isDarkMode}
   class:Section--clear-padding-top={clearTopPadding}
   class:Section--clear-padding-bottom={clearBottomPadding}
   class:Section--clear-padding-sides={clearSidePadding}
@@ -45,7 +42,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--section-content-margin-vertical);
+    gap: 6rem;
     padding: var(--section-margin-vertical) var(--section-margin-horizontal);
   }
 
@@ -61,8 +58,17 @@
     border-radius:  1rem;
   }
 
+  .Section--white.Section--reversed {
+    background: var(--color-gradient-black);
+    border-radius:  1rem;
+  }
+
   .Section--black {
     background: var(--color-gradient-black);
+  }
+
+  .Section--black.Section--reversed {
+    background: var(--color-gradient-grey);
   }
 
   .Section--transparent {
@@ -82,6 +88,14 @@
   .Section--clear-padding-sides {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  :global(.Tablet) .Section {
+    gap: 4rem
+  }
+
+  :global(.Mobile) .Section {
+    gap: 4rem
   }
 
   :global(.Mobile) .Section--black {

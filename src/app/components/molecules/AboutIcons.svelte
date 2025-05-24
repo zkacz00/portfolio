@@ -16,6 +16,8 @@
   import { isDesktop, isTablet, isMobile } from "../../stores/device";
   import { aboutText } from "../../content/about";
   import { language } from "../../stores/language";
+  import { TextColorVariant } from "../../types/variants";
+  import { isDarkMode } from "../../stores/lightMode";
 
   let age: number =
     new Date().getFullYear() -
@@ -38,20 +40,20 @@
 
 <div class="About__Icons">
   <Flex
-    direction={$isTablet ? FlexDirection.COLUMN : FlexDirection.ROW}
+    direction={FlexDirection.ROW}
     justify={$isMobile ? JustifyContent.START : JustifyContent.CENTER}
-    align={$isTablet ? AlignItems.START : AlignItems.CENTER}
+    align={AlignItems.CENTER}
     height={MaxSize.FILL}
-    gap={4}
+    gap={$isTablet ? 3 : 4}
   >
     <Flex
       direction={FlexDirection.ROW}
       justify={JustifyContent.START}
       width={MaxSize.ADJUST}
-      gap={1.5}
+      gap={$isTablet ? 1 : 1.5}
     >
       <IconWrapper icon="user-id" isButton={false} />
-      <Text align={Align.LEFT} size={Size.MEDIUM} wrap={false}>
+      <Text align={Align.LEFT} size={$isDesktop ? Size.MEDIUM : Size.SMALL} wrap={false} color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}>
         {`${age} ${$language === 'Polish' ? ageSuffix : aboutContent.age}`}
       </Text>
     </Flex>
@@ -62,9 +64,9 @@
       gap={1.5}
     >
       <IconWrapper icon="location" isButton={false} />
-      <Text align={Align.LEFT} size={Size.MEDIUM} style="line-height: 1.2;">
+      <Text align={Align.LEFT} size={$isDesktop ? Size.MEDIUM : Size.SMALL} style="line-height: 1.2;" color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}>
         {aboutContent.city},
-        {#if $isDesktop}<br />{/if}
+        {#if !$isMobile}<br />{/if}
         {aboutContent.country}
       </Text>
     </Flex>
