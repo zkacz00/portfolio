@@ -4,7 +4,7 @@
   import type { BaseEvent } from "../../../types/events";
   import { ButtonVariant } from "../../../types/variants";
   import { Size, MaxSize } from "../../../types/styles";
-  // import { goto } from '../../../utils/location';
+  import { Target } from "../../../types/targets";
 
   /* ATTRIBUTES */
   /** The name of the button for the onClick callback */
@@ -29,7 +29,7 @@
   export let iconRight: string = "";
 
   /** The color of the shadow */
-  export let shadowColor: 'white' | 'black' = 'black';
+  export let shadowColor: "white" | "black" = "black";
 
   /** The callback to be called when the link is clicked */
   export let onClick: BaseEvent | undefined = undefined;
@@ -37,15 +37,15 @@
   /** The href for the button */
   export let url: string | undefined = undefined;
 
-  /** Whether to append to existing query parameters or replace them */
-  // export let append: boolean = false;
+  /** Where to open the link */
+  export let target: Target = Target.SELF;
 
   /* METHODS */
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       if (!disabled && onClick) onClick({ name });
-      // if (url) goto(url, append);
+      if (!disabled && url) window.open(url, "_blank");
     }
   };
 
@@ -55,13 +55,17 @@
       e.preventDefault();
       return onClick({ name });
     }
-    // if (url) goto(url, append);
   };
 
   /* HOOKS */
   $: element = url ? "a" : "button";
   $: tagProps =
-    element === "a" ? { href: disabled ? undefined : url } : { disabled };
+    element === "a"
+      ? {
+          href: disabled ? undefined : url,
+          target: url?.startsWith("mailto:") ? "_self" : target,
+        }
+      : { disabled, role: "button" };
   $: role = element === "a" && !url ? "button" : undefined;
 </script>
 
@@ -77,7 +81,9 @@
   on:click|stopPropagation={handleOnClick}
   on:keydown={handleKeyDown}
   {...tagProps}
-  style:box-shadow={shadowColor=== "black" ? 'var(--box-shadow-small)' : 'var(--box-shadow-small-white)'}
+  style:box-shadow={shadowColor === "black"
+    ? "var(--box-shadow-small)"
+    : "var(--box-shadow-small-white)"}
 >
   {#if iconLeft}
     <Icon size={Size.SMALL} icon={iconLeft} />
@@ -100,10 +106,12 @@
     padding: 1rem;
     cursor: pointer;
     height: 5.5rem;
+    min-height: 5.5rem;
     font-size: var(--font-size-p-small);
     border: none;
     font-weight: var(--font-weight-medium);
     border-radius: 2rem;
+    z-index: 1;
 
     transition-property: all;
     transition-duration: var(--transition-duration);
@@ -116,6 +124,7 @@
 
   :global(.Mobile) .Button {
     height: 6.5rem;
+    min-height: 6.5rem;
     font-size: var(--font-size-p-large);
   }
 
@@ -126,7 +135,7 @@
   }
 
   .Button:hover {
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
@@ -213,7 +222,7 @@
   .Button--disabled,
   .Button--disabled:hover,
   .Button--disabled:active,
-  .Button--disabled:focus-visible, 
+  .Button--disabled:focus-visible,
   .Button--contextual.Button--disabled {
     color: rgba(255, 255, 255, 0.8);
     background: rgba(0, 0, 0, 0.5);

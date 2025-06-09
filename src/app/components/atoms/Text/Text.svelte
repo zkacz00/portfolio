@@ -40,6 +40,7 @@
   .Text {
     margin: 0;
     line-height: 1.6;
+    z-index: 2;
   }
 
   /* Text Align */

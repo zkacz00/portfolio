@@ -12,9 +12,6 @@
 
   /** The size of the span */
   export let size: Size | undefined = undefined;
-
-  /** Text alignment */
-  //   export let align: Align = Align.LEFT;
 </script>
 
 <span
@@ -28,6 +25,7 @@
   .Span {
     margin: 0;
     line-height: 1.6;
+    z-index: 2;
   }
 
   /* Font Size */

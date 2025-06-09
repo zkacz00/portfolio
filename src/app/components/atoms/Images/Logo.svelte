@@ -27,6 +27,9 @@
   /** Where to open the link */
   export let target: Target = Target.SELF;
 
+  /** The style of image on focus*/
+  export let isFocus: boolean = true;
+
   /* VARIABLES */
   let linkUrl: string | undefined;
 
@@ -37,6 +40,7 @@
 <div class="Logo Logo--{logo} Logo--{size}" class:Logo--link={link}>
   <Image
     target={target ?? target}
+    {isFocus}
     url={link && linkUrl ? linkUrl : undefined}
     file={logos[logo]?.[color]?.file}
     alt={logos[logo]?.alt ?? ""}
@@ -52,6 +56,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border-radius: 1rem;
   }
 
   .Logo--link {

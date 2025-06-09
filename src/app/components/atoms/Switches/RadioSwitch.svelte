@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
   /* IMPORTS */
@@ -75,7 +75,6 @@
   };
 </script>
 
-<!-- MARKUP -->
 <button
   class="RadioSwitch RadioSwitch--{width}"
   class:RadioSwitch--disabled={disabled}
@@ -113,7 +112,6 @@
   </button>
 </button>
 
-<!-- STYLES -->
 <style>
   .RadioSwitch {
     position: relative;
@@ -160,12 +158,12 @@
     z-index: 2;
     flex: 1;
     cursor: pointer;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
     font-size: 2rem;
     color: var(--color-secondary-white);
     border-radius: 2rem;
     height: 100%;
-    min-width: 8rem;
+    width: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,5 +182,10 @@
 
   :global(.Mobile) .RadioSwitch {
     height: 5rem;
+  }
+
+  .RadioSwitch:focus-visible {
+    border: var(--outline-style-focus);
+    outline: none;
   }
 </style>

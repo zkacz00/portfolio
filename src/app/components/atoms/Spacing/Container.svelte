@@ -1,10 +1,3 @@
-<!--
-  @description
-    A container component that can be used to wrap other components.
-    It can be used to set the max width and height of a component.
-    It can also be used to set the padding of a component.
--->
-
 <script lang="ts">
   import { size } from '../../../stores/device';
   import { isNumber, isString } from '../../../types/checks';

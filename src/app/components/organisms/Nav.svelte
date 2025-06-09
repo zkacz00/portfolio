@@ -3,10 +3,6 @@
   import Button from "../atoms/Buttons/Button.svelte";
   import Logo from "../atoms/Images/Logo.svelte";
   import Flex from "../../components/atoms/Spacing/Flex.svelte";
-  import NavList from "../molecules/NavList.svelte";
-  import Menu from "./Menu.svelte";
-  import IconWrapper from "../atoms/Buttons/IconWrapper.svelte";
-
   import {
     Size,
     MaxSize,
@@ -17,7 +13,6 @@
   import {
     ButtonVariant,
     LogoColorVariant,
-    TextColorVariant,
   } from "../../types/variants";
   import { LogoName } from "../../types/logoNames";
   import LanguageSwitch from "../molecules/LanguageSwitch.svelte";
@@ -28,97 +23,100 @@
   import Image from "../atoms/Images/Image.svelte";
   import MenuButton from "../atoms/Buttons/MenuButton.svelte";
   import Link from "../atoms/Text/Link.svelte";
-  import ThemeToggleButton from "../atoms/Buttons/ModeButton.svelte";
   import ModeButton from "../atoms/Buttons/ModeButton.svelte";
+  import { Target } from "../../types/targets";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void;
   export let isMenuOpen: boolean = false;
 
   /* VARIABLES */
-  const logoImageStyle: string = "height: 4rem; width: auto;";
+  let logoImageStyle: string = "height: 4rem; width: auto;";
 
   /* METHODS */
   const handleContactClick = () => scrollTo("contact");
   const handleToggleMenuClick = () => toggleMenu();
   const handleHeroClick = () => {
-    if (isMenuOpen === true) toggleMenu(); 
+    if (isMenuOpen === true) toggleMenu();
     scrollTo("home");
-  }
+  };
 
   /* HOOKS */
   $: navContent = navText[$language];
 </script>
 
 <nav class="Nav" id="Nav">
-  <div class="Nav__ContentWrapper">
-    <Link url="#home" onClick={handleHeroClick}>
-      <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
-    </Link>
-    {#if $isDesktop}
-      <div class="Nav__Content">
+    <div class="Nav__ContentWrapper">
+      <Link url="#home" onClick={handleHeroClick}>
+        <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+      </Link>
+      {#if $isDesktop}
+        <div class="Nav__Content">
+          <Flex
+            width={MaxSize.DEFAULT}
+            height={MaxSize.DEFAULT}
+            align={AlignItems.CENTER}
+            gap={4}
+            direction={FlexDirection.ROW}
+          >
+            <Flex
+              width={MaxSize.DEFAULT}
+              height={MaxSize.DEFAULT}
+              align={AlignItems.START}
+              gap={3}
+            >
+              <Logo
+                logo={LogoName.GITHUB}
+                color={LogoColorVariant.WHITE}
+                size={Size.SMALL}
+                target={Target.BLANK}
+              />
+              <Logo
+                logo={LogoName.LINKEDIN}
+                color={LogoColorVariant.WHITE}
+                size={Size.SMALL}
+                target={Target.BLANK}
+              />
+            </Flex>
+            <Flex
+              width={MaxSize.DEFAULT}
+              height={MaxSize.DEFAULT}
+              align={AlignItems.START}
+              gap={2}
+            >
+              <Button
+                variant={ButtonVariant.CONTEXTUAL}
+                url="#contact"
+                onClick={handleContactClick}>{navContent.workButton}</Button
+              >
+              <LanguageSwitch />
+              <ModeButton />
+            </Flex>
+            <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
+          </Flex>
+        </div>
+      {:else}
         <Flex
           width={MaxSize.DEFAULT}
           height={MaxSize.DEFAULT}
           align={AlignItems.CENTER}
-          gap={4}
+          gap={$isMobile ? 1 : 2}
           direction={FlexDirection.ROW}
         >
-          <Flex
-            width={MaxSize.DEFAULT}
-            height={MaxSize.DEFAULT}
-            align={AlignItems.START}
-            gap={3}
-          >
-            <Logo
-              logo={LogoName.GITHUB}
-              color={LogoColorVariant.WHITE}
-              size={Size.SMALL}
-            />
-            <Logo
-              logo={LogoName.LINKEDIN}
-              color={LogoColorVariant.WHITE}
-              size={Size.SMALL}
-            />
-          </Flex>
-          <Flex
-            width={MaxSize.DEFAULT}
-            height={MaxSize.DEFAULT}
-            align={AlignItems.START}
-            gap={2}
-          >
+          {#if $isTablet}
             <Button
               variant={ButtonVariant.CONTEXTUAL}
               url="#contact"
               onClick={handleContactClick}>{navContent.workButton}</Button
             >
-            <LanguageSwitch />
-          </Flex>
+          {/if}
+          <LanguageSwitch />
           <ModeButton />
           <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
         </Flex>
-      </div>
-    {:else}
-      <Flex
-        width={MaxSize.DEFAULT}
-        height={MaxSize.DEFAULT}
-        align={AlignItems.CENTER}
-        gap={2}
-        direction={FlexDirection.ROW}
-      >
-        {#if $isTablet}
-          <Button
-            variant={ButtonVariant.CONTEXTUAL}
-            url="#contact"
-            onClick={handleContactClick}>{navContent.workButton}</Button
-          >
-        {/if}
-        <LanguageSwitch />
-        <ModeButton />
-        <MenuButton isOpen={isMenuOpen} onClick={handleToggleMenuClick} />
-      </Flex>
-    {/if}
-  </div>
+      {/if}
+    </div>
+  
 </nav>
 
 <style>
@@ -136,6 +134,7 @@
 
   .Nav__ContentWrapper {
     width: 100%;
+    height: 100%;
     max-width: var(--content-max-width);
     padding: 0 var(--section-margin-horizontal);
     display: flex;

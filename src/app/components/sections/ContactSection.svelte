@@ -3,7 +3,6 @@
   import Section from "../atoms/Spacing/Section.svelte";
   import Hero from "../organisms/Hero.svelte";
   import Button from "../atoms/Buttons/Button.svelte";
-
   import {
     ButtonVariant,
     LogoColorVariant,
@@ -32,14 +31,20 @@
     myLinkedinUrl,
     myEmail,
     myLinkedinUrlShort,
+    myCvUrl,
   } from "../../content/urls";
   import { contactText } from "../../content/contact";
   import { language } from "../../stores/language";
-  import { isDarkMode } from '../../stores/lightMode';
+  import { isDarkMode } from "../../stores/lightMode";
+  import { Target } from "../../types/targets";
 
   /* METHODS */
   const handleEmailClick = () => {
     window.location.href = `mailto:${myEmail}`;
+  };
+
+  const handleDownloadCV = () => {
+    window.open(myCvUrl, "_blank");
   };
 
   /* HOOKS */
@@ -47,128 +52,159 @@
 </script>
 
 <Section anchor="contact" color="white">
-  <Background>
-    <Container>
-      <Grid gap={$isDesktop ? 3 : 4}>
-        <Col desktop={5} tablet={4} mobile={3}>
-          <Hero
-            title={contactContent.title}
-            subtitle={contactContent.subtitle}
-            align={AlignItems.START}
-            color={TextColorVariant.WHITE}
-            subtitleColor={TextColorVariant.WHITE}
-          >
-            <Flex
-              direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-              gap={2}
-              justify={JustifyContent.START}
+    <Background>
+      <Container>
+        <Grid gap={$isDesktop ? 3 : $isMobile ? 2 : 4}>
+          <Col desktop={6} tablet={8} mobile={2}>
+            <Hero
+              title={contactContent.title}
+              subtitle={contactContent.subtitle}
+              align={AlignItems.START}
+              color={TextColorVariant.WHITE}
+              subtitleColor={TextColorVariant.WHITE}
             >
-              <Button
-                width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
-                variant={ButtonVariant.PRIMARY_WHITE}
-                shadowColor="white">{contactContent.downloadCV}</Button
+              <Flex
+                direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+                gap={2}
+                justify={JustifyContent.START}
               >
-              <Button
-                onClick={handleEmailClick}
-                width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
-                variant={ButtonVariant.SECONDARY_WHITE}
-                shadowColor="white">{contactContent.emailMe}</Button
+                <Button
+                  width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                  variant={ButtonVariant.PRIMARY_WHITE}
+                  onClick={handleDownloadCV}
+                  shadowColor="white">{contactContent.downloadCV}</Button
+                >
+                <Button
+                  onClick={handleEmailClick}
+                  width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                  variant={ButtonVariant.SECONDARY_WHITE}
+                  shadowColor="white">{contactContent.emailMe}</Button
+                >
+              </Flex>
+            </Hero>
+          </Col>
+          <Col desktop={6} tablet={8} mobile={2}>
+            <Flex
+                direction={FlexDirection.COLUMN}
+                align={AlignItems.END}
               >
+            <div class="ContactSection__InfoBoxWrapper">
+              <Flex
+                direction={FlexDirection.COLUMN}
+                width={MaxSize.FILL}
+                gap={2}
+                align={$isMobile ? AlignItems.CENTER : AlignItems.END}
+              >
+                  <div
+                    class="ContactSection__InfoBox"
+                    class:ContactSection__InfoBox--reversed={$isDarkMode}
+                  >
+                    <div class="ContactSection__InfoIcon">
+                      <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
+                        <Icon
+                          color={TextColorVariant.PRIMARY}
+                          size={Size.LARGE}
+                          icon="mail"
+                        />
+                      </Flex>
+                    </div>
+                    <Flex
+                      direction={FlexDirection.COLUMN}
+                      gap={0}
+                      align={AlignItems.START}
+                    >
+                      <Text
+                        color={TextColorVariant.BLACK}
+                        size={Size.SMALL}
+                        align={Align.LEFT}>{contactContent.emailLabel}</Text
+                      >
+                      <Text
+                        color={TextColorVariant.PRIMARY}
+                        size={Size.MEDIUM}
+                        align={Align.LEFT}>{myEmail}</Text
+                      >
+                    </Flex>
+                  </div>
+                
+                  <div
+                    class="ContactSection__InfoBox"
+                    class:ContactSection__InfoBox--reversed={$isDarkMode}
+                  >
+                    <div class="ContactSection__InfoIcon">
+                      <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
+                        <Icon
+                          color={TextColorVariant.PRIMARY}
+                          size={Size.LARGE}
+                          icon="phone"
+                        />
+                      </Flex>
+                    </div>
+                    <Flex
+                      direction={FlexDirection.COLUMN}
+                      gap={0}
+                      align={AlignItems.START}
+                    >
+                      <Text
+                        color={TextColorVariant.BLACK}
+                        size={Size.SMALL}
+                        align={Align.LEFT}>{contactContent.phoneLabel}</Text
+                      >
+                      <Text
+                        color={TextColorVariant.PRIMARY}
+                        size={Size.LARGE}
+                        align={Align.LEFT}>{contactContent.phoneNr}</Text
+                      >
+                    </Flex>
+                  </div>
+                
+                  <div
+                    class="ContactSection__InfoBox"
+                    class:ContactSection__InfoBox--reversed={$isDarkMode}
+                  >
+                    <div class="ContactSection__InfoIcon">
+                      <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
+                        <Logo
+                          logo={LogoName.LINKEDIN}
+                          color={LogoColorVariant.DEFAULT}
+                          size={Size.MEDIUM}
+                          target={Target.BLANK}
+                        />
+                      </Flex>
+                    </div>
+                    <Flex
+                      direction={FlexDirection.COLUMN}
+                      gap={0}
+                      align={AlignItems.START}
+                    >
+                      <Text
+                        color={TextColorVariant.BLACK}
+                        size={Size.SMALL}
+                        align={Align.LEFT}>{contactContent.linkedinLabel}</Text
+                      >
+                      <Link
+                        color={TextColorVariant.LINKEDIN}
+                        size={Size.MEDIUM}
+                        url={myLinkedinUrl}
+                        target={Target.BLANK}
+                        align={Align.LEFT}>{myLinkedinUrlShort}</Link
+                      >
+                    </Flex>
+                  </div>
+                
+              </Flex>
+            </div>
             </Flex>
-          </Hero>
-        </Col>
-        {#if $isDesktop}<Col desktop={2}></Col>{/if}
-        <Col desktop={5} tablet={4} mobile={3}>
-          <Flex direction={FlexDirection.COLUMN} width={MaxSize.FILL} gap={2}>
-            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
-              <div class="ContactSection__InfoIcon">
-                <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
-                  <Icon
-                    color={TextColorVariant.PRIMARY}
-                    size={Size.LARGE}
-                    icon="mail"
-                  />
-                </Flex>
-              </div>
-              <Flex
-                direction={FlexDirection.COLUMN}
-                gap={0}
-                align={AlignItems.START}
-              >
-                <Text
-                  color={TextColorVariant.BLACK}
-                  size={Size.SMALL}
-                  align={Align.LEFT}>{contactContent.emailLabel}</Text
-                >
-                <Text
-                  color={TextColorVariant.PRIMARY}
-                  size={Size.MEDIUM}
-                  align={Align.LEFT}>{myEmail}</Text
-                >
-              </Flex>
-            </div>
-            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
-              <div class="ContactSection__InfoIcon">
-                <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
-                  <Icon
-                    color={TextColorVariant.PRIMARY}
-                    size={Size.LARGE}
-                    icon="phone"
-                  />
-                </Flex>
-              </div>
-              <Flex
-                direction={FlexDirection.COLUMN}
-                gap={0}
-                align={AlignItems.START}
-              >
-                <Text
-                  color={TextColorVariant.BLACK}
-                  size={Size.SMALL}
-                  align={Align.LEFT}>{contactContent.phoneLabel}</Text
-                >
-                <Text
-                  color={TextColorVariant.PRIMARY}
-                  size={Size.LARGE}
-                  align={Align.LEFT}>{contactContent.phoneNr}</Text
-                >
-              </Flex>
-            </div>
-            <div class="ContactSection__InfoBox" class:ContactSection__InfoBox--reversed={$isDarkMode}>
-              <div class="ContactSection__InfoIcon">
-                <Flex height={MaxSize.FILL} width={MaxSize.FILL}>
-                  <Logo
-                    logo={LogoName.LINKEDIN}
-                    color={LogoColorVariant.DEFAULT}
-                    size={Size.MEDIUM}
-                  />
-                </Flex>
-              </div>
-              <Flex
-                direction={FlexDirection.COLUMN}
-                gap={0}
-                align={AlignItems.START}
-              >
-                <Text
-                  color={TextColorVariant.BLACK}
-                  size={Size.SMALL}
-                  align={Align.LEFT}>{contactContent.linkedinLabel}</Text
-                >
-                <Link
-                  color={TextColorVariant.LINKEDIN}
-                  size={Size.MEDIUM}
-                  url={myLinkedinUrl}>{myLinkedinUrlShort}</Link
-                >
-              </Flex>
-            </div>
-          </Flex>
-        </Col>
-      </Grid>
-    </Container>
-  </Background>
+          </Col>
+        </Grid>
+      </Container>
+    </Background>
+  
 </Section>
 
 <style>
+  .ContactSection__InfoBoxWrapper {
+    width: 95%;
+  }
   .ContactSection__InfoBox {
     background-color: var(--color-primary-white);
     width: 100%;
@@ -179,7 +215,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
-    border-radius: 3rem;
+    border-radius: 2rem;
     box-shadow: var(--box-shadow-small-white);
     word-break: break-all;
   }
@@ -194,8 +230,11 @@
     justify-content: center;
   }
 
+  :global(.Tablet) .ContactSection__InfoBoxWrapper, :global(.Mobile) .ContactSection__InfoBoxWrapper {
+    width: 100%;
+  }
+
   :global(.Mobile) .ContactSection__InfoBox {
-    border-radius: 2rem;
     padding: 1rem;
   }
 </style>

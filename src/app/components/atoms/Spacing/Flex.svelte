@@ -1,10 +1,3 @@
-<!--
-  @description
-    A flexbox component that can be used to wrap other components.
-    It can be used to set the direction of the flexbox.
-    It can also be used to set the justify and align of the flexbox.
--->
-
 <script lang="ts">
   import { AlignItems, JustifyContent, FlexDirection, MaxSize, FlexWrap } from '../../../types/styles';
 

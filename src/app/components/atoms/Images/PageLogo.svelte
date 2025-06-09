@@ -6,19 +6,12 @@
   import { Size, AlignItems, FlexDirection } from '../../../types/styles';
   import { LogoColorVariant } from '../../../types/variants';
 
-  // import { isMobile } from '../../../stores/device';
-
   /* ATTRIBUTES */
   export let page: string = 'Blog';
 </script>
 
 <div class="PageLogo">
   <Flex direction={FlexDirection.ROW} align={AlignItems.BASELINE}>
-    <!-- <Logo 
-      type={$isMobile ? 'logo' : 'text'} 
-      size={Size.SMALL} 
-      color={$isMobile ? LogoColorVariant.DEFAULT : LogoColorVariant.WHITE} 
-    /> -->
     <Logo 
     size={Size.SMALL} 
     color={LogoColorVariant.WHITE} 

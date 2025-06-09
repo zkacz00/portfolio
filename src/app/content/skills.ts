@@ -52,6 +52,8 @@ export const skills: Skills = {
         "CSS",
         "HTML5",
         "Contentful",
+        "Histoire",
+        "Storybook",
       ],
     },
     Polish: {
@@ -65,6 +67,8 @@ export const skills: Skills = {
         "CSS",
         "HTML5",
         "Contentful",
+        "Histoire",
+        "Storybook",
       ],
     },
   },
@@ -72,24 +76,24 @@ export const skills: Skills = {
     English: {
       title: "Back-End",
       icon: "link",
-      skills: ["JavaScript", "Docker", "Node.js", "PostgreSQL", "MySQL"],
+      skills: ["JavaScript", "Docker", "Postman", "Node.js", "PostgreSQL", "MySQL", "GitHub"],
     },
     Polish: {
       title: "Back-End",
       icon: "link",
-      skills: ["JavaScript", "Docker", "Node.js", "PostgreSQL", "MySQL"],
+      skills: ["JavaScript", "Docker", "Postman", "Node.js", "PostgreSQL", "MySQL", "GitHub"],
     },
   },
   design: {
     English: {
       title: "Design",
       icon: "brush",
-      skills: ["Figma", "Responsive Design", "UI/UX", "Procreate"],
+      skills: ["Figma", "Procreate", "UI/UX", "Pixel Perfect", "Responsive Design"],
     },
     Polish: {
       title: "Design",
       icon: "brush",
-      skills: ["Figma", "responsywność", "UI/UX", "Procreate"],
+      skills: ["Figma", "Procreate", "UI/UX", "Pixel Perfect", "Responsywność"],
     },
   },
   interpersonal: {
@@ -138,13 +142,13 @@ export const skills: Skills = {
   },
   lacking: {
     English: {
-      title: "Lacking... (shhhh, don't tell anyone! 🤫)",
+      title: "I can't... (shhhh, don't tell anyone! 🤫)",
       icon: "loading",
       skills: [
-        "whistling",
-        "surviving without coffee",
-        "keeping plants alive",
-        "resisting the urge to pet cats",
+        "whistle",
+        "survive without coffee",
+        "keep plants alive",
+        "resist the urge to pet cats",
       ],
     },
     Polish: {
@@ -154,7 +158,7 @@ export const skills: Skills = {
         "gwizdać",
         "przetrwać bez kawy",
         "utrzymać roślinek przy życiu",
-        "oprzeć się pokusie głaskania kotów",
+        "nie głaskać kitków",
       ],
     },
   },

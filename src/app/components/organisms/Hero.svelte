@@ -4,7 +4,6 @@
   import { AlignItems, FlexDirection } from "../../types/styles";
   import Subtitle from "../atoms/Text/Subtitle.svelte";
   import Title from "../atoms/Text/Title.svelte";
-  import Text from "../atoms/Text/Text.svelte";
   import { TextColorVariant } from "../../types/variants";
   import { Align, Size, TitleType } from "../../types/styles";
   import { isMobile } from "../../stores/device";

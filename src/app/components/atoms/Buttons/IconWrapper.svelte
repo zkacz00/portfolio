@@ -2,7 +2,6 @@
   /* IMPORTS */
   import Icon from "../Text/Icon.svelte";
   import { ButtonVariant, TextColorVariant } from "../../../types/variants";
-  import { Size } from "../../../types/styles";
   import type { BaseEvent } from "../../../types/events";
 
   /* ATTRIBUTES */
@@ -11,9 +10,6 @@
 
   /** The label of the button for aria-label and visible label */
   export let label: string = "";
-
-  // /** The size of the button */
-  // export let size: Size.SMALL | Size.MEDIUM | Size.LARGE = Size.SMALL;
 
   /** The variant of the button */
   export let variant:
@@ -57,8 +53,8 @@
   };
 
   /* HOOKS */
-  $: element = isButton ? 'button' : 'div';
-  $: role = element === 'button' ? 'button' : undefined;
+  $: element = isButton ? "button" : "div";
+  $: role = element === "button" ? "button" : undefined;
 </script>
 
 <svelte:element
@@ -67,14 +63,23 @@
   class:IconWrapper--active={isActive && toggle}
   class:IconWrapper--transparentBcg={transparentBcg}
   class:IconWrapper--block={!isButton}
-  tabindex={0}
+  tabindex={isButton ? 0 : -1}
   aria-label={label}
   on:click={checkOnClick}
   on:keydown={handleKeyDown}
   {role}
 >
   {#if icon}
-    <Icon {icon} color={variant === ButtonVariant.SECONDARY ? TextColorVariant.PRIMARY : undefined} size={undefined} />
+    <Icon
+      {icon}
+      color={variant === ButtonVariant.SECONDARY
+        ? TextColorVariant.PRIMARY
+        : undefined}
+      hoverColor={variant === ButtonVariant.SECONDARY
+        ? TextColorVariant.WHITE
+        : undefined}
+      size={undefined}
+    />
   {/if}
   <slot />
 </svelte:element>
@@ -98,7 +103,8 @@
     font-size: 3rem;
     border-radius: 2rem;
     box-shadow: var(--box-shadow-small);
-
+    z-index: 1;
+    
     transition-property: all;
     transition-duration: 0.8s;
     transition-timing-function: var(--transition-timing);
@@ -109,7 +115,7 @@
   }
 
   .IconWrapper:hover {
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
@@ -144,7 +150,7 @@
   /* VARIANT = SECONDARY */
 
   .IconWrapper--secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   /* VARIANT = SECONDARY_WHITE */
@@ -208,4 +214,8 @@
     border-radius: 2rem;
   }
 
+  :global(.Mobile) .IconWrapper--secondary {
+    background: none;
+    box-shadow: none;
+  }
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
   /* IMPORTS */
-  // import { isWEBPAvailable } from '../../../utils/browsers';
   import { ImageBehavior } from '../../../types/styles';
   import { Target } from '../../../types/targets';
 
@@ -38,6 +37,9 @@
   /** The style of image content*/
   export let contentStyle: string = '';
 
+  /** The style of image on focus*/
+  export let isFocus: boolean = true;
+
   /* VARIABLES */
   let imagePathPrefix: string = "images/";
 
@@ -57,7 +59,7 @@
       class:Image__Link--logo={type === 'logo'}
       {target}
       href={url}
-      tabindex={0}
+      tabindex={isFocus ? 0 : -1}
       style:border-radius={borderRadius ? '1rem' : 'none'}
     >
       <img
@@ -105,6 +107,7 @@
     box-sizing: border-box;
     overflow: hidden;
     cursor: pointer;
+    border-radius: 1rem;
   }
 
   .Image__Link--logo {
@@ -115,6 +118,10 @@
   .Image__Content {
     width: 100%;
     height: 100%;
+  }
+
+  .Image__Link .Image__Content {
+    border-radius: 1rem;
   }
 
   .Image__Content--transition {
@@ -136,7 +143,6 @@
 
   .Image__Link--logo:focus-visible .Image__Content--link {
     border: none;
-
     outline: var(--outline-style-focus);
   }
 </style>

@@ -75,4 +75,9 @@
     transform: rotate(-45deg) translate(0.6rem, -1rem) scale(1.1);
     transition-delay: 0.1s;
   }
+
+  .MenuButton:focus-visible {
+    border: var(--outline-style-focus);
+    outline: none;
+  }
 </style>

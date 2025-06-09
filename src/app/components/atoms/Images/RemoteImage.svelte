@@ -1,6 +1,5 @@
 <script lang="ts">
     /* IMPORTS */
-    // import { isWEBPAvailable } from '../../../utils/browsers';
     import { ImageBehavior, ImageFit, ImageFocus } from '../../../types/styles';
     import { ImageExtension } from '../../../types/extensions';
     import { Target } from '../../../types/targets';

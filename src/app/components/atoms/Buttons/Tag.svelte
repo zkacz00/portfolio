@@ -50,14 +50,12 @@
       if (!disabled && onClick) {
         onClick({ name });
       }
-      // if (url) goto(url, append);
     }
   };
 
   const handleOnClick = (e: MouseEvent) => {
     if (disabled) return;
     if (onClick) return onClick({ name });
-    // if (url) goto(url, append);
   };
 
   /* HOOKS */

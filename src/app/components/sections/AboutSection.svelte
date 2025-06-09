@@ -1,14 +1,12 @@
 <script lang="ts">
   /* IMPORTS */
-  import Meta from "../atoms/Meta/Meta.svelte";
   import Section from "../atoms/Spacing/Section.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
-  import Hero from "../organisms/Hero.svelte";
   import Grid from "../atoms/Grid/Grid.svelte";
   import Col from "../atoms/Grid/Col.svelte";
   import AboutIcons from "./../molecules/AboutIcons.svelte";
 
-  import { TextColorVariant } from "../../types/variants";
+  import { ButtonVariant, TextColorVariant } from "../../types/variants";
   import {
     Align,
     AlignItems,
@@ -23,6 +21,7 @@
 
   import { aboutImage } from "../../content/about";
   import { isDarkMode } from "../../stores/lightMode";
+  import { myCvUrl } from "../../content/urls";
 
   import Text from "../atoms/Text/Text.svelte";
   import Span from "../atoms/Text/Span.svelte";
@@ -31,30 +30,48 @@
   import { aboutText } from "../../content/about";
   import { language } from "../../stores/language";
   import Title from "../atoms/Text/Title.svelte";
+  import Button from "../atoms/Buttons/Button.svelte";
+  import { heroText } from "../../content/hero";
+
+  /* METHODS */
+  const handleDownloadCV = () => {
+    window.open(myCvUrl, "_blank");
+  };
 
   /* HOOKS */
   $: aboutContent = aboutText[$language];
+  $: heroContent = heroText[$language];
 </script>
 
 <Section anchor="about" color="white">
   <Flex gap={2} direction={FlexDirection.COLUMN}>
     <Grid gap={$isMobile ? 4 : $isTablet ? 4 : 10}>
-      <Col desktop={4} tablet={3}>
-        <Flex direction={FlexDirection.COLUMN} gap={$isTablet ? 2 : 4}>
+      <Col desktop={4} tablet={8} mobile={2}>
+        <Flex
+          direction={FlexDirection.COLUMN}
+          gap={$isTablet ? 2 : 4}
+          height={MaxSize.FILL}
+        >
           <div class="About__Image">
             <Image
               behavior={ImageBehavior.CONTAIN}
-              file={$isDarkMode ? "zofia-real-picture-dark.png" : aboutImage.file}
+              file={$isDarkMode
+                ? "zofia-real-picture-dark.png"
+                : aboutImage.file}
               alt={aboutImage.alt}
-              contentStyle={$isMobile ? "max-height: 46rem;" : ""}
+              contentStyle={$isMobile
+                ? "max-height: 46rem;"
+                : $isTablet
+                  ? "max-height: 56rem;"
+                  : ""}
             />
           </div>
-          {#if !$isMobile}
+          {#if $isDesktop}
             <AboutIcons />
           {/if}
         </Flex>
       </Col>
-      <Col desktop={8} tablet={5}>
+      <Col desktop={8} tablet={8} mobile={2}>
         <div class="About__Content">
           <Flex
             direction={FlexDirection.COLUMN}
@@ -63,10 +80,7 @@
             height={MaxSize.FILL}
             justify={$isTablet ? JustifyContent.END : JustifyContent.CENTER}
           >
-            <Title
-              type={TitleType.H2}
-              align={Align.LEFT}
-            >
+            <Title type={TitleType.H2} align={Align.LEFT}>
               {aboutContent.title}
             </Title>
             <Flex direction={FlexDirection.COLUMN} gap={3}>
@@ -79,7 +93,9 @@
                     <Span
                       color={part.highlight
                         ? TextColorVariant.PRIMARY
-                        : $isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK }
+                        : $isDarkMode
+                          ? TextColorVariant.WHITE
+                          : TextColorVariant.BLACK}
                       fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
                       >{part.text}</Span
                     >
@@ -95,7 +111,9 @@
                     <Span
                       color={part.highlight
                         ? TextColorVariant.PRIMARY
-                        : $isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK }
+                        : $isDarkMode
+                          ? TextColorVariant.WHITE
+                          : TextColorVariant.BLACK}
                       fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
                       >{part.text}</Span
                     >
@@ -111,15 +129,24 @@
                     <Span
                       color={part.highlight
                         ? TextColorVariant.PRIMARY
-                        : $isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK }
+                        : $isDarkMode
+                          ? TextColorVariant.WHITE
+                          : TextColorVariant.BLACK}
                       fontWeight={part.bold ? FontWeight.MEDIUM : undefined}
                       >{part.text}</Span
                     >
                   {/each}
                 </Text>
               </Flex>
-              {#if $isMobile}
-                <AboutIcons />
+              {#if !$isDesktop}
+                  <AboutIcons />
+                  {#if $isMobile}
+                  <Button
+                    variant={ButtonVariant.PRIMARY}
+                    onClick={handleDownloadCV}
+                    width={MaxSize.FILL}>{heroContent.downloadCV}</Button
+                  >
+                  {/if}
               {/if}
             </Flex>
           </Flex>
@@ -131,7 +158,6 @@
 
 <style>
   .About__Content {
-    width: 100%;
     height: 100%;
   }
 

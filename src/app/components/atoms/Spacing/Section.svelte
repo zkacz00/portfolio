@@ -1,10 +1,10 @@
 <script lang="ts">
   import { MaxSize } from "../../../types/styles";
-  import { isDarkMode } from '../../../stores/lightMode';
+  import { isDarkMode } from "../../../stores/lightMode";
 
   /* VARIABLES */
   /** The anchor for the container */
-  export let anchor: string = '';
+  export let anchor: string = "";
 
   /** Whether to remove padding top */
   export let clearTopPadding: boolean = false;
@@ -16,23 +16,25 @@
   export let clearSidePadding: boolean = false;
 
   /** The color of the background */
-  export let color: 'main' | 'white' | 'black' | 'transparent' = 'black';
+  export let color: "main" | "white" | "black" | "transparent" = "black";
 
   /** The height of the background */
   export let height: MaxSize = MaxSize.DEFAULT;
 </script>
 
-<section
-  id={anchor}
-  class={`Section Section--${color}`}
-  class:Section--reversed={$isDarkMode}
-  class:Section--clear-padding-top={clearTopPadding}
-  class:Section--clear-padding-bottom={clearBottomPadding}
-  class:Section--clear-padding-sides={clearSidePadding}
-  class:Section--fill={height === MaxSize.FILL}
->
-  <slot />
-</section>
+
+  <section
+    id={anchor}
+    class={`Section Section--${color}`}
+    class:Section--reversed={$isDarkMode}
+    class:Section--clear-padding-top={clearTopPadding}
+    class:Section--clear-padding-bottom={clearBottomPadding}
+    class:Section--clear-padding-sides={clearSidePadding}
+    class:Section--fill={height === MaxSize.FILL}
+  >
+    <slot />
+  </section>
+
 
 <style>
   .Section {
@@ -44,23 +46,24 @@
     justify-content: center;
     gap: 6rem;
     padding: var(--section-margin-vertical) var(--section-margin-horizontal);
+    transition: background-color 0.3s ease, background 0.3s ease, color 0.3s ease;
   }
 
   /* BACKGROUND */
 
   .Section--main {
-    background-image: var(--color-primary);
-    border-radius:  1rem;
+    background: var(--color-primary);
+    border-radius: 1rem;
   }
 
   .Section--white {
     background: var(--color-gradient-white);
-    border-radius:  1rem;
+    border-radius: 1rem;
   }
 
   .Section--white.Section--reversed {
     background: var(--color-gradient-black);
-    border-radius:  1rem;
+    border-radius: 1rem;
   }
 
   .Section--black {
@@ -72,7 +75,7 @@
   }
 
   .Section--transparent {
-    background-color: transparent;
+    background: transparent;
   }
 
   /* PADDING */
@@ -91,11 +94,11 @@
   }
 
   :global(.Tablet) .Section {
-    gap: 4rem
+    gap: 4rem;
   }
 
   :global(.Mobile) .Section {
-    gap: 4rem
+    gap: 4rem;
   }
 
   :global(.Mobile) .Section--black {

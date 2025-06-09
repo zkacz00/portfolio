@@ -1,10 +1,6 @@
 <script lang="ts">
   /* IMPORTS */
-  import Meta from "../atoms/Meta/Meta.svelte";
   import Section from "../atoms/Spacing/Section.svelte";
-  import Container from "../atoms/Spacing/Container.svelte";
-  import Hero from "../organisms/Hero.svelte";
-  import Background from "../atoms/Spacing/Background.svelte";
 
   import {
     Align,
@@ -17,7 +13,6 @@
     ImageBehavior,
     MaxSize,
   } from "../../types/styles";
-
 
   import Text from "../atoms/Text/Text.svelte";
   import Title from "../atoms/Text/Title.svelte";
@@ -34,24 +29,68 @@
   import Grid from "../atoms/Grid/Grid.svelte";
   import Col from "../atoms/Grid/Col.svelte";
   import Image from "../atoms/Images/Image.svelte";
-  import { isDesktop, isTablet, isMobile } from "../../stores/device";
+  import { isTablet, isMobile } from "../../stores/device";
   import { myCvUrl } from "../../content/urls";
   import { heroText } from "../../content/hero";
   import { language } from "../../stores/language";
   import { isDarkMode } from "../../stores/lightMode";
 
+  import { Target } from "../../types/targets";
+
   /* VARIABLES */
-  let splashesImageStyle: string = `z-index: 0; top: 0; right: 0; position: absolute; height: 75%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyle = `
+    z-index: 0; 
+    top: 0; 
+    right: 0; 
+    position: absolute; 
+    height: 70%; 
+    width: max-content; 
+    overflow: hidden; 
+    border-radius: 1rem; 
+    overflow: hidden;
+`;
   let splashesImageContentStyle: string = `height: 100%;`;
-  let splashesImageStyleTablet: string = `z-index: 0; top: 0; right: 0; position: absolute; height: auto; width: 53%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
-  let splashesImageStyleMobile: string = `z-index: 0; transform: scaleY(-1); top: auto; bottom: 0; right: 0; position: absolute; height: auto; width: 94%; overflow: hidden; border-radius:  1rem; overflow: hidden;`;
+  let splashesImageStyleTablet: string = `
+    z-index: 0; 
+    top: 0; 
+    right: 0; 
+    position: absolute; 
+    height: auto; 
+    width: 64rem; 
+    overflow: hidden; 
+    border-radius:  1rem; 
+    overflow: hidden;`;
+  let splashesImageStyleMobile: string = `
+    z-index: 0; 
+    transform: scaleY(-1); 
+    top: auto; 
+    bottom: 0; 
+    right: 0; 
+    position: absolute; 
+    height: auto; width: 110%; 
+    overflow: hidden; 
+    border-radius:  1rem; 
+    overflow: hidden;`;
 
-  let flowerImageStyle: string = `z-index: 1; top: 0; right: 30rem; position: absolute; height: 100%; overflow: hidden;`;
-  let flowerImageStyleTablet: string = `z-index: 1; top: 0; right: 18rem; position: absolute; height: 100%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `z-index: 1; height: 50rem;`;
-
-  // let faceImageStyle: string = `display: flex; align-items: flex-start; top: 0; right: 0; position: absolute; height: 100%; border-radius:  var(--border-radius-section); overflow: hidden;`;
-  // let faceImageContentStyle: string = `height: 120%;`;
+  let flowerImageStyle: string = `
+    z-index: 0; bottom: -5rem; 
+    right: 30rem; 
+    position: absolute; 
+    height: 100%; 
+    width: max-content; 
+    overflow: hidden;`;
+  let flowerImageStyleTablet: string = `
+    z-index: 0; 
+    bottom: 0; 
+    left: 20%; 
+    position: absolute; 
+    height: 60rem; 
+    width: max-content; 
+    overflow: hidden;`;
+  let flowerImageStyleMobile: string = 
+    `z-index: 0; 
+    height: 40rem; 
+    width: max-content;`;
 
   /* METHODS */
   const handleDownloadCV = () => {
@@ -71,70 +110,110 @@
 >
   <div class="HeroContainer">
     <Grid gap={0}>
-      <Col desktop={8}>
-        <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={$isDesktop ? 4 : $isMobile ? 5 : 4}>
-          <Text
-            fontSize={3}
-            color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
-            align={Align.LEFT}>{heroContent.greeting}</Text
-          >
-          <Title type={TitleType.H1} align={Align.LEFT}
-            >{heroContent.title1}<br />{heroContent.title2}</Title
-          >
-          <Text
-            fontSize={2.5}
-            color={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
-            fontWeight={FontWeight.MEDIUM}
-            >{heroContent.subtitle}
-          </Text>
+      <Col desktop={8} tablet={3} mobile={2}>
+        <div class="HeroContainer__Content">
           <Flex
-            direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-            gap={$isMobile ? 6 : 2}
-            justify={JustifyContent.START}
+            direction={FlexDirection.COLUMN}
             align={AlignItems.START}
+            gap={4}
           >
-          <Flex
-            direction={FlexDirection.ROW}
-            gap={2}
-            width={MaxSize.DEFAULT} 
-            order={$isMobile ? 2 : 1}
-          >
-            <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
-              ><Logo
-                logo={LogoName.GITHUB}
-                color={LogoColorVariant.WHITE}
-              /></IconWrapper
+              <Text
+                fontSize={$isTablet ? 3 : 2.75}
+                color={$isDarkMode
+                  ? TextColorVariant.WHITE
+                  : TextColorVariant.BLACK}
+                align={Align.LEFT}>{heroContent.greeting}</Text
+              >
+            
+              <Title type={TitleType.H1} align={Align.LEFT}
+                >{heroContent.title1}<br />{heroContent.title2}</Title
+              >
+            
+              <Text
+                fontSize={2.5}
+                color={$isDarkMode
+                  ? TextColorVariant.WHITE
+                  : TextColorVariant.BLACK}
+                fontWeight={FontWeight.MEDIUM}
+                align={Align.LEFT}
+                >{heroContent.subtitle}
+              </Text>
+            
+            <Flex
+              direction={FlexDirection.ROW}
+              gap={$isMobile ? 6 : 2}
+              justify={JustifyContent.START}
+              align={AlignItems.START}
+              width={MaxSize.DEFAULT}
             >
-            <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
-              ><Logo
-                logo={LogoName.LINKEDIN}
-                color={LogoColorVariant.WHITE}
-              /></IconWrapper
-            >
+              {#if !$isMobile}
+                  <Button
+                    variant={ButtonVariant.PRIMARY}
+                    onClick={handleDownloadCV}
+                    width={MaxSize.DEFAULT}>{heroContent.downloadCV}</Button
+                  >
+                
+              {/if}
+              <Flex
+                direction={FlexDirection.ROW}
+                gap={2}
+                width={MaxSize.DEFAULT}
+                order={$isMobile ? 2 : 1}
+              >
+                  <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
+                    ><Logo
+                      logo={LogoName.GITHUB}
+                      color={LogoColorVariant.WHITE}
+                      isFocus={false}
+                      target={Target.BLANK}
+                    /></IconWrapper
+                  >
+                
+                  <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
+                    ><Logo
+                      logo={LogoName.LINKEDIN}
+                      color={LogoColorVariant.WHITE}
+                      isFocus={false}
+                      target={Target.BLANK}
+                    /></IconWrapper
+                  >
+                
+              </Flex>
+            </Flex>
           </Flex>
-            <Button variant={ButtonVariant.PRIMARY} onClick={handleDownloadCV} width={$isMobile ? MaxSize.FILL : MaxSize.DEFAULT}
-              >{heroContent.downloadCV}</Button
-            >
-          </Flex>
-        </Flex>
+        </div>
       </Col>
-      <!-- {#if !$isMobile} -->
-        <Col desktop={4}>
+      <Col desktop={4} tablet={5} mobile={2}>
+
           <div class="HeroContainer__Image">
             <Image
               alt="splashes"
-              file={$isDarkMode ? "splashes-color-dark.png" : "splashes-color.png"}
-              style={$isMobile ? splashesImageStyleMobile : $isTablet ? splashesImageStyleTablet : splashesImageStyle}
+              file={$isDarkMode
+                ? "splashes-color-dark.png"
+                : "splashes-color.png"}
+              style={$isMobile
+                ? splashesImageStyleMobile
+                : $isTablet
+                  ? splashesImageStyleTablet
+                  : splashesImageStyle}
               contentStyle={splashesImageContentStyle}
+              behavior={ImageBehavior.COVER}
             />
-            <Image
-              alt="flower"
-              file={$isMobile ? "flower-cropped.png" : "flower.png"}
-              style={$isMobile ? flowerImageStyleMobile : $isTablet ? flowerImageStyleTablet : flowerImageStyle}
-            />
+
+              <Image
+                alt="flower"
+                file={$isMobile ? "flower-cropped.png" : "flower.png"}
+                style={$isMobile
+                  ? flowerImageStyleMobile
+                  : $isTablet
+                    ? flowerImageStyleTablet
+                    : flowerImageStyle}
+                behavior={ImageBehavior.COVER}
+              />
+            
           </div>
-        </Col>
-      <!-- {/if} -->
+        
+      </Col>
     </Grid>
   </div>
 </Section>
@@ -145,41 +224,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    padding: calc(20rem + var(--section-margin-vertical))
-      var(--section-margin-horizontal) 12rem;
+    padding: 0;
     overflow: hidden;
+  }
+
+  .HeroContainer__Content {
+    width: 100%;
+    height: 100%;
+    padding: calc(14rem + var(--section-margin-vertical)) 0 12rem
+      var(--section-margin-horizontal);
+    z-index: 20;
+    position: relative;
   }
 
   .HeroContainer__Image {
     width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
   }
 
-  :global(.Tablet) .HeroContainer {
-    padding-top: calc(5rem + var(--section-margin-vertical));
-  }
-
-  /* @media (max-width: 768px) {
-    .HeroContainer__Image {
-      display: none;
-    }
-  } */
-
-  :global(.Tablet) .HeroContainer {
+  :global(.Tablet) .HeroContainer__Content {
     padding-top: calc(4rem + var(--section-margin-vertical));
     padding-bottom: var(--section-margin-vertical);
   }
 
   :global(.Mobile) .HeroContainer__Image {
-    padding-top: 4rem;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: auto;
+    height: 40rem;
   }
 
-  :global(.Mobile) .HeroContainer {
-    padding-top: calc(3rem + var(--section-margin-vertical));
-    padding-bottom: 0;
+  :global(.Mobile) .HeroContainer__Content {
+    padding: calc(0.5rem + var(--section-margin-vertical))
+      var(--section-margin-horizontal) 0 var(--section-margin-horizontal);
   }
 </style>

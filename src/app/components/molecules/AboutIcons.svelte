@@ -41,9 +41,9 @@
 <div class="About__Icons">
   <Flex
     direction={FlexDirection.ROW}
-    justify={$isMobile ? JustifyContent.START : JustifyContent.CENTER}
+    justify={$isDesktop ? JustifyContent.CENTER : JustifyContent.START}
+    width={MaxSize.FILL}
     align={AlignItems.CENTER}
-    height={MaxSize.FILL}
     gap={$isTablet ? 3 : 4}
   >
     <Flex
@@ -76,6 +76,6 @@
 <style>
   .About__Icons {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 </style>

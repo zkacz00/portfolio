@@ -20,7 +20,6 @@
   import { type Testimonial } from "./../../content/testimonials";
   import Span from "../atoms/Text/Span.svelte";
   import Title from "../atoms/Text/Title.svelte";
-
   import { testimonialsUtils } from "./../../content/testimonials";
 
   /* ATTRIBUTES */

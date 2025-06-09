@@ -43,6 +43,7 @@
     margin: 0;
     letter-spacing: 0.1rem;
     text-decoration: none;
+    z-index: 2;
   }
 
   /* TITLE__LINK */

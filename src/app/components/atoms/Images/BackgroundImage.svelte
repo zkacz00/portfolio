@@ -1,6 +1,5 @@
 <script lang="ts">
   /* IMPORTS */
-  // import { isWEBPAvailable } from '../../../utils/browsers';
   import { ImageBehavior, ImageFit, ImageFocus } from '../../../types/styles';
   import { ImageExtension } from '../../../types/extensions';
 
@@ -54,9 +53,7 @@
   let clientHeight: number = 0;
 
   /* METHODS */
-  /* Auto sets the client size of the image */
   const clientSize = (w: number, h: number): void => {
-    /* If either of these are set we don't need to auto set them for caching */
     if (!width && !height) {
       localWidth = w;
       localHeight = h;
@@ -65,7 +62,6 @@
 
   let src: string = '';
 
-  /* Gets a new url whenever a prop updates */
   const getUrl = (
     assetId: string,
     uniqueId: string,
@@ -93,10 +89,6 @@
     dpi: number
   ): string => {
     let url = `https://images.ctfassets.net/dftkr9apurxl/${assetId}/${uniqueId}/${file}`;
-
-    // if (!isWEBPAvailable() && ext === 'webp') {
-    //   ext = 'png';
-    // }
 
     width = width ? Math.round(parseInt(width.toString(), 10)) : Math.round(localWidth);
     height = height ? Math.round(parseInt(height.toString(), 10)) : Math.round(localHeight);

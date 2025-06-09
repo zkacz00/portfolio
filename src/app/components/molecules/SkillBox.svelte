@@ -6,10 +6,10 @@
   import Flex from "../atoms/Spacing/Flex.svelte";
   import { TextColorVariant } from "../../types/variants";
   import { type Skill } from '../../content/skills';
-  import { JustifyContent, AlignItems, FlexDirection, FlexWrap, FontWeight, Size, Align } from '../../types/styles';
+  import { JustifyContent, AlignItems, FlexDirection, FlexWrap, FontWeight, Size, Align, MaxSize } from '../../types/styles';
   import Span from '../atoms/Text/Span.svelte';
   import { language, type Language } from "../../stores/language"; 
-  import { isDesktop, isTablet, isMobile } from "../../stores/device";
+  import { isTablet } from "../../stores/device";
 
   /* ATTRIBUTES */
   export let skill: {[key in Language]: Skill} ;
@@ -45,6 +45,7 @@
   {/if}
 </div>
 
+
 <style>
   .SkillBox {
     background-color: var(--color-primary-white);
@@ -53,17 +54,8 @@
     gap: 2rem;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     border-radius: 2rem;
     box-shadow: var(--box-shadow-small-white);
   }
-
-  /* .SkillBox--lacking i {
-    background-color: var(--color-primary-white);
-    padding: 2rem;
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
-    height: auto;
-    border-radius: var(--border-radius-small);
-  } */
 </style>

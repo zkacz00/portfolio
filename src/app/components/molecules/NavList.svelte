@@ -1,12 +1,13 @@
 <script lang="ts">
   /* IMPORTS */
   import Link from "../atoms/Text/Link.svelte";
-  import { Size } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
-  import { isDesktop, isTablet, isMobile } from "../../stores/device";
+  import { isDesktop, isMobile } from "../../stores/device";
   import { scrollTo } from "../../utils/scroll";
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
+  import { myCvUrl } from "../../content/urls";
+  import Reveal from "../atoms/Spacing/Reveal.svelte";
 
   /* ATTRIBUTES */
   /** Function to open and close menu */
@@ -28,83 +29,55 @@
   const handleSkillsClick = () => handleClick("skills");
   const handlePortfolioClick = () => handleClick("projects");
   const handleContactClick = () => handleClick("contact");
+  const handleCVClick = () => {
+    window.open(myCvUrl, "_blank"); 
+  };
 
   /* HOOKS */
   $: navContent = navText[$language];
-  $: fontSize = $isDesktop ? 4 : 3;
+  $: fontSize = $isDesktop ? 4 : $isMobile ? 2.5 : 3;
 </script>
 
-<div class="LinkItem LinkItem--selected">
-  <Link
-    url="#home"
-    onClick={handleHeroClick}
-    {fontSize}
-    color={TextColorVariant.WHITE}>{navContent.homeLabel}</Link
-  >
-</div>
-<div class="LinkItem">
-  <Link
-    url="#about"
-    onClick={handleAboutClick}
-    {fontSize}
-    color={TextColorVariant.WHITE_SECONDARY}>{navContent.aboutLabel}</Link
-  >
-</div>
-<div class="LinkItem">
-  <Link
-    url="#skills"
-    onClick={handleSkillsClick}
-    {fontSize}
-    color={TextColorVariant.WHITE_SECONDARY}>{navContent.skillsLabel}</Link
-  >
-</div>
-<div class="LinkItem">
-  <Link
-    url="#projects"
-    onClick={handlePortfolioClick}
-    {fontSize}
-    color={TextColorVariant.WHITE_SECONDARY}>{navContent.portfolioLabel}</Link
-  >
-</div>
-<div class="LinkItem">
-  <Link
-    url="#experience"
-    onClick={handleExperienceClick}
-    {fontSize}
-    color={TextColorVariant.WHITE_SECONDARY}>{navContent.experienceLabel}</Link
-  >
-</div>
-<div class="LinkItem">
-  <Link
-    url="#contact"
-    onClick={handleContactClick}
-    {fontSize}
-    color={TextColorVariant.WHITE_SECONDARY}>{navContent.contactLabel}</Link
-  >
-</div>
+{#each [{ label: navContent.homeLabel, click: handleHeroClick, selected: true }, { label: navContent.aboutLabel, click: handleAboutClick }, { label: navContent.skillsLabel, click: handleSkillsClick }, { label: navContent.portfolioLabel, click: handlePortfolioClick }, { label: navContent.experienceLabel, click: handleExperienceClick }, { label: navContent.cvLabel, click: handleCVClick }, { label: navContent.contactLabel, click: handleContactClick }] as item, index}
+  <Reveal once={false} reset={true} delay={0.2 + index / 6} duration={index / 6} direction="left" disabled={false}>
+    <div class="LinkItem {item.selected ? 'LinkItem--selected' : ''}">
+      <Link
+        url="#"
+        onClick={item.click}
+        {fontSize}
+        color={item.selected
+          ? TextColorVariant.WHITE
+          : TextColorVariant.WHITE_SECONDARY}
+      >
+        {item.label}
+      </Link>
+    </div>
+  </Reveal>
+{/each}
 
 <style>
-.LinkItem {
+  .LinkItem {
     position: relative;
-}
+  }
 
-.LinkItem:after {
+  .LinkItem:after {
     position: absolute;
     content: "";
     top: 55%;
-    margin-top: -2px; 
+    margin-top: -2px;
     left: 0;
-    width: 0; 
+    width: 0;
     height: 4px;
-    opacity: 1; 
-    background: var(--color-orange); 
+    opacity: 1;
+    background: var(--color-orange);
     border-radius: 2px;
     z-index: 1;
     transition: width 200ms ease-in-out;
     pointer-events: none;
-}
+  }
 
-.LinkItem:hover:after, .LinkItem--selected:after {
+  .LinkItem:hover:after,
+  .LinkItem--selected:after {
     width: 100%;
-}
+  }
 </style>

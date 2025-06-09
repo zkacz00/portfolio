@@ -1,11 +1,11 @@
 <script lang="ts">
   /* IMPORTS */
-  import Icon from '../Text/Icon.svelte';
-  import type { BaseEvent } from '../../../types/events.d.ts';
-  import { Target } from '../../../types/targets';
-  import { TextColorVariant } from '../../../types/variants';
-  import { Size } from '../../../types/styles';
-  import { scrollTo } from '../../../utils/scroll';
+  import Icon from "../Text/Icon.svelte";
+  import type { BaseEvent } from "../../../types/events.d.ts";
+  import { Target } from "../../../types/targets";
+  import { TextColorVariant } from "../../../types/variants";
+  import { Align, Size } from "../../../types/styles";
+  import { scrollTo } from "../../../utils/scroll";
 
   /* ATTRIBUTES */
   /** The outside destination of the link */
@@ -15,7 +15,12 @@
   export let color: TextColorVariant | undefined = undefined;
 
   /** The size of the link */
-  export let size: Size.SMALL | Size.MEDIUM | Size.LARGE | Size.XLARGE | undefined = undefined;
+  export let size:
+    | Size.SMALL
+    | Size.MEDIUM
+    | Size.LARGE
+    | Size.XLARGE
+    | undefined = undefined;
 
   /* Font size of Text (non-standard) */
   export let fontSize: number | undefined = undefined;
@@ -24,10 +29,10 @@
   export let disabled: boolean = false;
 
   /** The icon to be displayed on the left of the link */
-  export let iconLeft: string = '';
+  export let iconLeft: string = "";
 
   /** The icon to be displayed on the right of the link */
-  export let iconRight: string = '';
+  export let iconRight: string = "";
 
   /** Where to open the link */
   export let target: Target = Target.SELF;
@@ -36,10 +41,10 @@
   export let visited: boolean = false;
 
   /** The name of the link for the aria-label and onClick callback */
-  export let name: string = '';
+  export let name: string = "";
 
-  /** Whether to append to existing query parameters or replace them */
-  // export let append: boolean = false;
+  /* Link Align */
+  export let align: Align = Align.CENTER;
 
   /** The callback to be called when the link is clicked */
   export let onClick: BaseEvent | undefined = undefined;
@@ -50,37 +55,46 @@
   /* METHODS */
   const handleKeyDown = (e: KeyboardEvent) => {
     e.stopPropagation();
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       if (!disabled && onClick) onClick({ name });
     }
   };
 
   const handleOnClick = (e: MouseEvent) => {
-  if (disabled) return;
-  if (onClick) {
-    e.preventDefault();
-    onClick({ name });
-  }
-};
+    if (disabled) return;
+    if (onClick) {
+      e.preventDefault();
+      onClick({ name });
+    }
+  };
 
   /* HOOKS */
-  $: element = url ? 'a' : 'button';
+  $: element = url ? "a" : "button";
   $: tagProps =
-    element === 'a'
-      ? { href: disabled ? undefined : url, target: url?.startsWith('mailto:') ? '_self' : target }
-      : { disabled, role: 'button' };
-  $: role = element === 'a' && !url ? 'button' : undefined;
+    element === "a"
+      ? {
+          href: disabled ? undefined : url,
+          target: url?.startsWith("mailto:") ? "_self" : target,
+        }
+      : { disabled, role: "button" };
+  $: role = element === "a" && !url ? "button" : undefined;
 </script>
 
 <svelte:element
   this={element}
-  class="Link {color ? `Link--${color}` : ''} {size ? `Link--${size}` : ''}"
+  class="Link Link--{align} {color ? `Link--${color}` : ''} {size
+    ? `Link--${size}`
+    : ''}"
   class:Link--disabled={disabled}
   class:Link--visited={visited}
   class:Link--underline={underline}
   class:Link--inheritColor={typeof color === undefined}
-  style:font-size={fontSize ? `${fontSize}rem` : typeof size === undefined ? 'inherit' : 'auto'}
+  style:font-size={fontSize
+    ? `${fontSize}rem`
+    : typeof size === undefined
+      ? "inherit"
+      : "auto"}
   tabindex={0}
   aria-disabled={disabled}
   href={disabled ? undefined : url}
@@ -90,11 +104,21 @@
   {...tagProps}
 >
   {#if iconLeft}
-    <Icon size={size === Size.XLARGE ? Size.LARGE : size} icon={iconLeft} color={undefined} hoverColor={undefined} />
+    <Icon
+      size={size === Size.XLARGE ? Size.LARGE : size}
+      icon={iconLeft}
+      color={undefined}
+      hoverColor={undefined}
+    />
   {/if}
   <slot />
   {#if iconRight}
-    <Icon size={size === Size.XLARGE ? Size.LARGE : size} icon={iconRight} color={undefined} hoverColor={undefined} />
+    <Icon
+      size={size === Size.XLARGE ? Size.LARGE : size}
+      icon={iconRight}
+      color={undefined}
+      hoverColor={undefined}
+    />
   {/if}
 </svelte:element>
 
@@ -107,13 +131,14 @@
     display: inline-flex;
     align-items: center;
     gap: 1rem;
+    z-index: 2;
 
     justify-content: center;
-    text-align: center;
     border: none;
     background: transparent;
     font-size: inherit;
     color: inherit;
+    border-radius: 1rem;
 
     transition-property: all;
     transition-duration: var(--transition-duration);
@@ -130,6 +155,19 @@
 
   .Link:focus-visible {
     outline: var(--outline-style-focus);
+  }
+
+  /* Align */
+  .Link--left {
+    text-align: left;
+  }
+
+  .Link--center {
+    text-align: center;
+  }
+
+  .Link--right {
+    text-align: right;
   }
 
   /* SIZE */
@@ -187,7 +225,7 @@
   }
 
   .Link--linkedin:hover {
-    color: #589FE5;
+    color: #589fe5;
   }
 
   .Link--inheritColor {

@@ -18,6 +18,15 @@ const match = (media: string) => {
  * @example
  * getScreenSize(); // 'mobile'
  */
+// export const getScreenSize = (): ScreenSize => {
+//   if (match('(max-width: 600px)')) {
+//     return ScreenSize.MOBILE;
+//   }
+//   if (match('(min-width: 600px) and (max-width: 1024px)')) {
+//     return ScreenSize.TABLET;
+//   }
+//   return ScreenSize.DESKTOP;
+// };
 export const getScreenSize = (): ScreenSize => {
   if (match('(max-width: 600px)')) {
     return ScreenSize.MOBILE;

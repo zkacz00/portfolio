@@ -1,8 +1,7 @@
 <script lang="ts">
-  import Link from "../atoms/Text/Link.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
   import Button from "../atoms/Buttons/Button.svelte";
-  import { isMobile, isDesktop } from "../../stores/device";
+  import { isMobile } from "../../stores/device";
   import NavList from "../molecules/NavList.svelte";
   import Image from "../atoms/Images/Image.svelte";
   import { navText } from "../../content/nav";
@@ -10,12 +9,13 @@
   import {
     FlexDirection,
     AlignItems,
-    JustifyContent,
     MaxSize,
   } from "../../types/styles";
   import { ButtonVariant } from "../../types/variants";
   import Col from "../atoms/Grid/Col.svelte";
   import Grid from "../atoms/Grid/Grid.svelte";
+  import Reveal from "../atoms/Spacing/Reveal.svelte";
+  import { scrollTo } from "../../utils/scroll";
 
   /* ATTRIBUTES */
   export let toggleMenu: () => void = () => {};
@@ -23,12 +23,22 @@
 
   /* VARIABLES */
   let flowerImageStyle: string = `z-index: 0; top: -2rem; right: -22rem; position: absolute; width: 100%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `z-index: 0; bottom: -18rem; right: -5rem; position: absolute; height: 100%; width: auto; overflow: hidden;`;
+  let flowerImageStyleMobile: string = `z-index: 0; top: 1rem; right: -4rem; position: absolute; height: 100%; width: 110%; overflow: hidden;`;
+  
   /* METHODS */
   const handleKey = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggleMenu();
+    }
+  };
+
+  const handleContactClick = () => {
+    if (toggleMenu) {
+      scrollTo("contact", "auto");
+      toggleMenu();
+    } else {
+      scrollTo("contact");
     }
   };
 
@@ -41,7 +51,7 @@
 
 <div
   class="Overlay"
-  class:visible={isMenuOpen}
+  class:Overlay--visible={isMenuOpen}
   tabindex="0"
   role="button"
   aria-label="Close menu"
@@ -49,37 +59,43 @@
   on:keydown={handleKey}
 />
 
-<div class="Menu" class:Menu--open={isMenuOpen}>
+<div class="Menu" class:Menu--visible={isMenuOpen}>
   <Grid>
     <Col desktop={4} tablet={3} mobile={1}>
-      <div class="Menu__Content">
+      <div class="Menu__Content" class:Menu__Content--visible={isMenuOpen}>
         <Flex direction={FlexDirection.COLUMN} gap={4} align={AlignItems.START}>
           <NavList {toggleMenu} />
         </Flex>
         {#if $isMobile}
-          <Button width={MaxSize.FILL} variant={ButtonVariant.PRIMARY}>
+        <Reveal once={false} reset={true} delay={0.2 + 8 / 6} duration={8 / 6} direction="left">
+          <Button width={MaxSize.FILL} variant={ButtonVariant.PRIMARY} onClick={handleContactClick}>
             {navContent.workButton}
           </Button>
+          </Reveal>
         {/if}
       </div>
     </Col>
     <Col desktop={8} tablet={5} mobile={1}>
-      <div class="Menu__Image" class:Menu__Image--open={isMenuOpen}>
-        {#if !$isMobile}
-          <Image
-            alt="splashes"
-            file="flower-footer-shapes.png"
-            style={flowerImageStyle}
-          />
-        {/if}
-        <Image
-          alt="splashes"
-          file={$isMobile
-            ? "flower-footer-mobile.png"
-            : "flower-footer-picture.png"}
-          style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
-        />
-      </div>
+      <Reveal once={false} delay={0.4} duration={0.4} direction="left" disabled={false}>
+        <div class="Menu__Image" class:Menu__Image--open={isMenuOpen}>
+          {#if !$isMobile}
+            <Image
+              alt="splashes"
+              file="flower-footer-shapes.png"
+              style={flowerImageStyle}
+            />
+          {/if}
+          <Reveal once={false} delay={0.6} duration={0.6} direction="left" disabled={false}>
+            <Image
+              alt="splashes"
+              file={$isMobile
+                ? "flower-footer-mobile.png"
+                : "flower-footer-picture.png"}
+              style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
+            />
+          </Reveal>
+        </div>
+      </Reveal>
     </Col>
   </Grid>
 </div>
@@ -102,7 +118,7 @@
     cursor: pointer;
   }
 
-  .Overlay.visible {
+  .Overlay--visible {
     opacity: 1;
     visibility: visible;
   }
@@ -131,7 +147,7 @@
     pointer-events: none;
   }
 
-  .Menu--open {
+  .Menu--visible {
     opacity: 1;
     transform: scale(1);
     clip-path: circle(150% at 50% 50%);
@@ -140,11 +156,16 @@
 
   .Menu__Content {
     animation: fadeInMenu 0.6s ease forwards;
-    display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
     gap: 6rem;
+
+    display: none;
+  }
+
+  .Menu__Content--visible {
+    display: flex;;
   }
 
   @keyframes fadeInMenu {

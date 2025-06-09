@@ -38,6 +38,7 @@
     align-items: center;
     justify-content: center;
     font-size: inherit;
+    z-index: 2;
 
     transition-property: all;
     transition-duration: 0.4s;

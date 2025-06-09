@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { scrollToTop } from '../utils/scroll'; // Adjust path if needed
+
   /* IMPORTS */
-  import Meta from "../components/atoms/Meta/Meta.svelte";
   import Nav from "../components/organisms/Nav.svelte";
   import HeroSection from "../components/sections/HeroSection.svelte";
   import AboutSection from "../components/sections/AboutSection.svelte";
@@ -13,17 +15,32 @@
   import ScrollingTextSection from "../components/sections/ScrollingTextSection.svelte";
   import SkillsHighlightSection from "../components/sections/SkillsHighlightSection.svelte";
   import Menu from "../components/organisms/Menu.svelte";
+  import LoadingOverlay from '../components/organisms/LoadingOverlay.svelte';
 
   /* VARIABLES */
-  let isMenuOpen: boolean = false;
+  let isMenuOpen = false;
+  let loadingComplete = false;
+  let hideOverlay = false;
 
-   /* METHODS */
   const toggleMenu = () => (isMenuOpen = !isMenuOpen);
+
+  onMount(() => {
+    scrollToTop();
+
+    setTimeout(() => {
+      loadingComplete = true;
+      setTimeout(() => {
+        hideOverlay = true;
+      }, 1400);
+    }, 1600);
+  });
 </script>
 
-<div class="Home">
-  <Nav isMenuOpen={isMenuOpen} {toggleMenu} />
-  <Menu isMenuOpen={isMenuOpen} {toggleMenu} />
+<LoadingOverlay visible={!loadingComplete} />
+
+<div class="Home" class:Home--noScroll={!loadingComplete}>
+  <Nav {isMenuOpen} {toggleMenu} />
+  <Menu {isMenuOpen} {toggleMenu} />
   <HeroSection />
   <ScrollingTextSection />
   <AboutSection />
@@ -46,10 +63,16 @@
     justify-content: center;
     padding-top: 10rem;
     overflow-x: hidden;
+    background-color: rgb(35, 35, 35);
+  }
+
+  .Home--noScroll {
+    overflow: hidden;
+    height: 100vh;
   }
 
   :global(.DarkMode) .Home {
-    background: var(--color-gradient-grey);
+    background-color: rgb(14, 14, 14);
   }
 
   :global(.Tablet) .Home {

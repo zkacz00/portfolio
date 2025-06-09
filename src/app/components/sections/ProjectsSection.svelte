@@ -4,12 +4,13 @@
   import Hero from "../organisms/Hero.svelte";
   import Projects from "../organisms/Projects.svelte";
 
-  import { AlignItems } from "../../types/styles";
+  import { AlignItems, MaxSize } from "../../types/styles";
 
   import { projectsText } from "../../content/projects";
   import { language } from "../../stores/language"; 
   import { isDarkMode } from "../../stores/lightMode";
   import { TextColorVariant } from "../../types/variants";
+
 
   /* HOOKS */
   $: projectsContent = projectsText[$language];
@@ -22,5 +23,6 @@
       align={AlignItems.START}
       subtitleColor={$isDarkMode ? TextColorVariant.WHITE : TextColorVariant.BLACK}
     />
+  
     <Projects />
   </Section>

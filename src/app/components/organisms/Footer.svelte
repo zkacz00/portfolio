@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isMobile, isTablet, isDesktop } from "./../../stores/device";
+  import { isMobile, isTablet } from "./../../stores/device";
   import Logo from "../atoms/Images/Logo.svelte";
   import Text from "../atoms/Text/Text.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
@@ -25,6 +25,8 @@
   import { scrollTo } from "../../utils/scroll";
   import ModeButton from "../atoms/Buttons/ModeButton.svelte";
 
+  import { Target } from "../../types/targets";
+
   /* VARIABLES */
   let logoImageStyle: string = "height: 4rem; width: auto;";
   let flowerImageStyle: string = `z-index: 0; top: 4rem; right: -16rem; position: absolute; width: 100%; overflow: hidden;`;
@@ -38,74 +40,98 @@
   $: footerContent = footerText[$language];
 </script>
 
-<div class="Footer">
-  <Grid>
-    <Col desktop={4} tablet={3} mobile={1}>
-      <Flex
-        direction={FlexDirection.COLUMN}
-        align={AlignItems.START}
-        gap={$isTablet ? 10 : 12}
-      >
-        <Link url="#home" onClick={handleHeroClick}>
-          <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
-        </Link>
-        <FooterLinks />
-      </Flex>
-    </Col>
-    <Col desktop={8} tablet={5} mobile={1}>
-      <div class="Footer__Image">
-        <Image
-          alt="flower"
-          file={$isMobile ? "flower-footer-mobile.png" : "flower-footer.png"}
-          style={$isMobile ? flowerImageStyleMobile : $isTablet ? flowerImageStyleTablet : flowerImageStyle}
-        />
-      </div>
-    </Col>
-  </Grid>
-
-  <div class="Footer__BottomPanel">
-    <Flex
-      direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-      justify={JustifyContent.BETWEEN}
-      align={$isMobile ? AlignItems.START : AlignItems.CENTER}
-    >
-      <Text
-        size={Size.XSMALL}
-        align={Align.LEFT}
-        color={TextColorVariant.WHITE_SECONDARY}
-      >
-        {footerContent.signature}
-      </Text>
-      <Flex
-        order={$isMobile ? -1 : 2}
-        direction={FlexDirection.ROW}
-        align={AlignItems.CENTER}
-        justify={JustifyContent.END}
-        width={MaxSize.ADJUST}
-      >
+  <div class="Footer">
+    <Grid>
+      <Col desktop={4} tablet={3} mobile={1}>
         <Flex
-          width={MaxSize.DEFAULT}
-          height={MaxSize.DEFAULT}
+          direction={FlexDirection.COLUMN}
           align={AlignItems.START}
-          gap={$isMobile ? 4 : 3}
+          gap={$isTablet ? 10 : 12}
         >
-          <Logo
-            logo={LogoName.GITHUB}
-            color={LogoColorVariant.WHITE}
-            size={Size.SMALL}
-          />
-          <Logo
-            logo={LogoName.LINKEDIN}
-            color={LogoColorVariant.WHITE}
-            size={Size.SMALL}
-          />
+          <Link url="#home" onClick={handleHeroClick}>
+            <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+          </Link>
+          <FooterLinks />
         </Flex>
-        <ModeButton />
-        <LanguageSwitch />
+      </Col>
+      <Col desktop={8} tablet={5} mobile={1}>
+          <div class="Footer__Image">
+            {#if !$isMobile}
+              <Image
+                alt="splashes"
+                file="flower-footer-shapes.png"
+                style={flowerImageStyle}
+              />
+            {/if}
+              <Image
+                alt="splashes"
+                file={$isMobile
+                  ? "flower-footer-mobile.png"
+                  : "flower-footer-picture.png"}
+                style={$isMobile
+                  ? flowerImageStyleMobile
+                  : $isTablet
+                    ? flowerImageStyleTablet
+                    : flowerImageStyle}
+              />
+            
+          </div>
+        
+      </Col>
+    </Grid>
+    <div class="Footer__BottomPanel">
+      <Flex
+        direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+        justify={JustifyContent.BETWEEN}
+        align={$isMobile ? AlignItems.START : AlignItems.CENTER}
+      >
+        <Text
+          size={Size.XSMALL}
+          align={Align.LEFT}
+          color={TextColorVariant.WHITE_SECONDARY}
+        >
+          {footerContent.signature}
+        </Text>
+        <Flex
+          order={$isMobile ? -1 : 2}
+          direction={FlexDirection.ROW}
+          align={AlignItems.CENTER}
+          justify={JustifyContent.CENTER}
+          width={MaxSize.ADJUST}
+        >
+          <Flex
+            width={MaxSize.DEFAULT}
+            height={MaxSize.DEFAULT}
+            align={AlignItems.CENTER}
+            gap={$isMobile ? 4 : 3}
+          >
+            <Logo
+              logo={LogoName.GITHUB}
+              color={LogoColorVariant.WHITE}
+              size={Size.SMALL}
+              target={Target.BLANK}
+            />
+            <Logo
+              logo={LogoName.LINKEDIN}
+              color={LogoColorVariant.WHITE}
+              size={Size.SMALL}
+              target={Target.BLANK}
+            />
+          </Flex>
+          <Flex
+            width={MaxSize.DEFAULT}
+            height={MaxSize.DEFAULT}
+            align={AlignItems.CENTER}
+            gap={$isMobile ? 2 : 3}
+          >
+            <LanguageSwitch />
+            <ModeButton />
+          </Flex>
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   </div>
-</div>
+
 
 <style>
   .Footer {

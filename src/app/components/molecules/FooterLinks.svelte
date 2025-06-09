@@ -4,7 +4,7 @@
   import Link from "../atoms/Text/Link.svelte";
   import Text from "../atoms/Text/Text.svelte";
   import Flex from "../atoms/Spacing/Flex.svelte";
-  import { AlignItems, Size, FlexDirection, MaxSize } from "../../types/styles";
+  import { AlignItems, FlexDirection, MaxSize } from "../../types/styles";
   import { TextColorVariant } from "../../types/variants";
   import { isMobile, isTablet } from "./../../stores/device";
   import { scrollTo } from "../../utils/scroll";
@@ -37,91 +37,95 @@
     align={AlignItems.START}
     gap={$isMobile ? 5 : 8}
   >
-    <Flex
-      direction={FlexDirection.COLUMN}
-      width={MaxSize.DEFAULT}
-      height={MaxSize.DEFAULT}
-      align={AlignItems.START}
-      gap={4}
-    >
-      <Text fontSize={labelFontSize} color={TextColorVariant.WHITE}
-        >{footerContent.coreLabel}</Text
-      >
       <Flex
         direction={FlexDirection.COLUMN}
         width={MaxSize.DEFAULT}
         height={MaxSize.DEFAULT}
         align={AlignItems.START}
-        gap={2}
+        gap={4}
       >
-        <Link
-          url="#home"
-          onClick={handleHeroClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.homeLabel}</Link
+        <Text fontSize={labelFontSize} color={TextColorVariant.WHITE}
+          >{footerContent.coreLabel}</Text
         >
-        <Link
-          url="#about"
-          onClick={handleAboutClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.aboutLabel}</Link
+
+        <Flex
+          direction={FlexDirection.COLUMN}
+          width={MaxSize.DEFAULT}
+          height={MaxSize.DEFAULT}
+          align={AlignItems.START}
+          gap={2}
         >
-        <Link
-          url="#skills"
-          onClick={handleSkillsClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.skillsLabel}</Link
-        >
-        <Link
-          url="#experience"
-          onClick={handleExperienceClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.experienceLabel}</Link
-        >
+          <Link
+            url="#home"
+            onClick={handleHeroClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.homeLabel}</Link
+          >
+          <Link
+            url="#about"
+            onClick={handleAboutClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.aboutLabel}</Link
+          >
+          <Link
+            url="#skills"
+            onClick={handleSkillsClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.skillsLabel}</Link
+          >
+          <Link
+            url="#experience"
+            onClick={handleExperienceClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.experienceLabel}</Link
+          >
+        </Flex>
       </Flex>
-    </Flex>
-    <Flex
-      direction={FlexDirection.COLUMN}
-      width={MaxSize.DEFAULT}
-      height={MaxSize.DEFAULT}
-      align={AlignItems.START}
-      gap={4}
-    >
-      <Text fontSize={labelFontSize} color={TextColorVariant.WHITE}
-        >{footerContent.exploreLabel}</Text
-      >
+    
       <Flex
         direction={FlexDirection.COLUMN}
         width={MaxSize.DEFAULT}
         height={MaxSize.DEFAULT}
         align={AlignItems.START}
-        gap={2}
+        gap={4}
       >
-        <Link
-          url="#projects"
-          onClick={handlePortfolioClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.portfolioLabel}</Link
+        <Text fontSize={labelFontSize} color={TextColorVariant.WHITE}
+          >{footerContent.exploreLabel}</Text
         >
-        <Link
-          url="#home"
-          onClick={handleCVClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}>{footerContent.cvLabel}</Link
+        <Flex
+          direction={FlexDirection.COLUMN}
+          width={MaxSize.DEFAULT}
+          height={MaxSize.DEFAULT}
+          align={AlignItems.START}
+          gap={2}
         >
-        <Link
-          url="#contact"
-          onClick={handleContactClick}
-          fontSize={linkFontSize}
-          color={TextColorVariant.WHITE_SECONDARY}
-          >{footerContent.contactLabel}</Link
-        >
+          <Link
+            url="#projects"
+            onClick={handlePortfolioClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.portfolioLabel}</Link
+          >
+          <Link
+            url="#home"
+            onClick={handleCVClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.cvLabel}</Link
+          >
+          <Link
+            url="#contact"
+            onClick={handleContactClick}
+            fontSize={linkFontSize}
+            color={TextColorVariant.WHITE_SECONDARY}
+            >{footerContent.contactLabel}</Link
+          >
+        </Flex>
       </Flex>
-    </Flex>
+    
   </Flex>
 </div>

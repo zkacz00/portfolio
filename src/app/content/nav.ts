@@ -7,6 +7,7 @@ type NavContent = {
   skillsLabel: string;
   portfolioLabel: string;
   contactLabel: string;
+  cvLabel: string,
   workButton: string;
 };
 
@@ -17,6 +18,7 @@ export const navText: Record<Language, NavContent> = {
     experienceLabel: "Experience",
     skillsLabel: "Skills",
     portfolioLabel: "Portfolio",
+    cvLabel: "My CV",
     contactLabel: "Contact",
     workButton: "Work with me",
   },
@@ -26,6 +28,7 @@ export const navText: Record<Language, NavContent> = {
     experienceLabel: "Doświadczenie",
     skillsLabel: "Umiejętności",
     portfolioLabel: "Portfolio",
+    cvLabel: "Moje CV",
     contactLabel: "Kontakt",
     workButton: "Zatrudnij mnie",
   },

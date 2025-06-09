@@ -10,7 +10,6 @@
 </script>
 
 <IconWrapper
-  transparentBcg={true}
   variant={ButtonVariant.SECONDARY}
   icon={$isDarkMode ? "brightness-max" : "brightness-medium"}
   onClick={toggleMode}

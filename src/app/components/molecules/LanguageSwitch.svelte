@@ -20,19 +20,19 @@
   $: {
     options =
       $language === "Polish" ? ["Polski", "Angielski"] : ["Polish", "English"];
-    mobileOptions = ["Pl", "Eng"];
+    mobileOptions = ["PL", "EN"];
   }
 </script>
 
 <div class={`LanguageSwitch LanguageSwitch--${width}`}>
   <RadioSwitch
     options={mobileOptions}
-    selected={$language === "Polish" ? "Pl" : "Eng"}
+    selected={$language === "Polish" ? "PL" : "EN"}
     {width}
     on:change={(e) => {
       const selected = e.detail;
       handleLanguageChange(
-        selected === "Pl" ? "Polish" : selected === "Eng" ? "English" : selected
+        selected === "PL" ? "Polish" : selected === "EN" ? "English" : selected
       );
     }}
   />

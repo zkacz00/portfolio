@@ -36,6 +36,8 @@
   import { projectsText } from "../../content/projects";
   import { language } from "../../stores/language";
 
+  import { Target } from "../../types/targets";
+
   /* ATTRIBUTES */
   /** Whether the hero layout should be reversed or not (false - image on the right, true - image on the left) */
   export let reverse: boolean = false;
@@ -83,16 +85,20 @@
   /* HOOKS */
   $: projectsContent = projectsText[$language];
 
-  $: imageStyle = `position: absolute; right: -20rem; bottom: 0; height: 100%`;
-  $: imageStyleReversed = `position: absolute; left: -20rem; bottom: 0; height: 100%`;
-  $: imageStyleTablet = `position: absolute; right: -12rem; top: 20rem; width: 130%`;
-  $: imageStyleTabletReversed = `position: absolute; left: -12rem; top: 20rem; width: 130%`;
+  $: imageStyle = `position: absolute; right: -18rem; bottom: 0; height: 100%`;
+  $: imageStyleReversed = `position: absolute; left: -18rem; bottom: 0; height: 100%`;
+  $: imageStyleTablet = `position: absolute; right: -12rem; bottom: 0; width: 130%`;
   $: imageStyleMobile = `position: absolute; left: -7rem; bottom: 0; width: 130%`;
 </script>
 
 <div class="Project">
-  <Grid align={AlignItems.CENTER}>
-    <Col desktop={6} tablet={4} order={$isMobile ? 1 : reverse ? 1 : 3}>
+  <Grid align={AlignItems.CENTER} gap={$isDesktop ? 8 : $isTablet ? 4 : 3}>
+    <Col
+      desktop={6}
+      tablet={8}
+      mobile={2}
+      order={!$isDesktop ? 1 : reverse ? 1 : 3}
+    >
       <div class="Project__ImageWrapper">
         <Image
           url={isImageLink && url ? url : undefined}
@@ -103,17 +109,19 @@
           style={$isMobile
             ? imageStyleMobile
             : $isTablet
-              ? reverse
-                ? imageStyleTabletReversed
-                : imageStyleTablet
+              ? imageStyleTablet
               : reverse
                 ? imageStyleReversed
                 : imageStyle}
         />
       </div>
     </Col>
-    {#if $isDesktop}<Col desktop={1} order={2}></Col>{/if}
-    <Col desktop={5} tablet={4} order={$isMobile ? 3 : reverse ? 3 : 1}>
+    <Col
+      desktop={6}
+      tablet={8}
+      mobile={2}
+      order={!$isDesktop ? 3 : reverse ? 3 : 1}
+    >
       <div class="Project__Text">
         <Flex direction={FlexDirection.COLUMN} align={AlignItems.START} gap={2}>
           <Title
@@ -193,33 +201,39 @@
             </div>
           {/each}
         </Flex>
-        <Flex
-          direction={!$isDesktop ? FlexDirection.COLUMN : FlexDirection.ROW}
-          justify={JustifyContent.START}
-          gap={!$isDesktop ? 2 : 3}
-        >
-          {#if liveUrl}<Button
-              width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT}
-              variant={ButtonVariant.PRIMARY}
-              url={liveUrl.name}
-              disabled={!liveUrl.active && true}
-              >{projectsContent.liveButton}</Button
-            >{/if}
-          {#if githubUrl}<Button
-              width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT}
-              variant={$isDarkMode ? ButtonVariant.PRIMARY_WHITE : ButtonVariant.SECONDARY}
-              url={githubUrl.name}
-              disabled={!githubUrl.active && true}
-              >{projectsContent.githubButton}</Button
-            >{/if}
-          {#if designUrl}<Button
-              width={!$isDesktop ? MaxSize.FILL : MaxSize.DEFAULT}
-              variant={$isDarkMode ? ButtonVariant.PRIMARY_WHITE : ButtonVariant.SECONDARY}
-              url={designUrl.name}
-              disabled={!designUrl.active && true}
-              >{projectsContent.designButton}</Button
-            >{/if}
-        </Flex>
+        {#if liveUrl || githubUrl || designUrl}
+          <Flex
+            direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+            justify={JustifyContent.START}
+            gap={!$isDesktop ? 2 : 3}
+          >
+            {#if liveUrl}<Button
+                width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                variant={ButtonVariant.PRIMARY}
+                url={liveUrl.name}
+                disabled={!liveUrl.active && true}
+                target={Target.BLANK}>{projectsContent.liveButton}</Button
+              >{/if}
+            {#if githubUrl}<Button
+                width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                variant={$isDarkMode
+                  ? ButtonVariant.PRIMARY_WHITE
+                  : ButtonVariant.SECONDARY}
+                url={githubUrl.name}
+                disabled={!githubUrl.active && true}
+                target={Target.BLANK}>{projectsContent.githubButton}</Button
+              >{/if}
+            {#if designUrl}<Button
+                width={$isDesktop ? MaxSize.DEFAULT : MaxSize.FILL}
+                variant={$isDarkMode
+                  ? ButtonVariant.PRIMARY_WHITE
+                  : ButtonVariant.SECONDARY}
+                url={designUrl.name}
+                disabled={!designUrl.active && true}
+                target={Target.BLANK}>{projectsContent.designButton}</Button
+              >{/if}
+          </Flex>
+        {/if}
       </div>
     </Col>
   </Grid>
@@ -256,7 +270,6 @@
   :global(.Mobile) .Project__ImageWrapper {
     display: flex;
     justify-content: center;
-    height: min-content;
     min-height: 40rem;
     margin: 2rem 0 0;
   }
