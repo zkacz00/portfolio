@@ -86,17 +86,17 @@ const logos: Logos = {
         file: "figma-logo--default.png",
       },
     },
-    // js: {
-    //   key: LogoName.JS,
-    //   name: "JavaScript",
-    //   url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    //   alt: "JavaScript",
-    //   default: {
-    //     assetId: "4wdUUArmKkR78q5Kamv7sQ",
-    //     uniqueId: "d3e4a7c93383d1dadd94bd3cdca1f447",
-    //     file: "javascript-logo--default.png",
-    //   },
-    // },
+    nodejs: {
+      key: LogoName.NODEJS,
+      name: "NodeJS",
+      url: "https://nodejs.org/en",
+      alt: "NodeJS",
+      default: {
+        assetId: "4wdUUArmKkR78q5Kamv7sQ",
+        uniqueId: "d3e4a7c93383d1dadd94bd3cdca1f447",
+        file: "nodejs-logo--default.png",
+      },
+    },
     ts: {
       key: LogoName.TS,
       name: "TypeScript",
