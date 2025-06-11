@@ -15,7 +15,7 @@ type FooterContent = {
 
 export const footerText: Record<Language, FooterContent> = {
   English: {
-    signature: "©zkacz 2025",
+    signature: "©zkacz00 2025",
     coreLabel: "Get to Know Me",
     homeLabel: "Home",
     aboutLabel: "About",
@@ -27,7 +27,7 @@ export const footerText: Record<Language, FooterContent> = {
     contactLabel: "Contact",
   },
   Polish: {
-    signature: "©zkacz 2025",
+    signature: "©zkacz00 2025",
     coreLabel: "Poznaj mnie",
     homeLabel: "Wstęp",
     aboutLabel: "O mnie",
