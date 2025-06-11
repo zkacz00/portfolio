@@ -43,8 +43,8 @@
     top: 0; 
     right: 0; 
     position: absolute; 
-    height: 70%; 
-    width: max-content; 
+    width: 100%; 
+    height: max-content; 
     overflow: hidden; 
     border-radius: 1rem; 
     overflow: hidden;
@@ -55,8 +55,8 @@
     top: 0; 
     right: 0; 
     position: absolute; 
-    height: auto; 
-    width: 64rem; 
+    width: 100%; 
+    height: max-content;
     overflow: hidden; 
     border-radius:  1rem; 
     overflow: hidden;`;
@@ -74,7 +74,7 @@
 
   let flowerImageStyle: string = `
     z-index: 0; bottom: -5rem; 
-    right: 30rem; 
+    right: calc(50% - 24rem); 
     position: absolute; 
     height: 100%; 
     width: max-content; 
@@ -82,13 +82,12 @@
   let flowerImageStyleTablet: string = `
     z-index: 0; 
     bottom: 0; 
-    left: 20%; 
+    left: 35%; 
     position: absolute; 
     height: 60rem; 
     width: max-content; 
     overflow: hidden;`;
-  let flowerImageStyleMobile: string = 
-    `z-index: 0; 
+  let flowerImageStyleMobile: string = `z-index: 0; 
     height: 40rem; 
     width: max-content;`;
 
@@ -110,35 +109,35 @@
 >
   <div class="HeroContainer">
     <Grid gap={0}>
-      <Col desktop={8} tablet={3} mobile={2}>
+      <Col desktop={5} tablet={3} mobile={2}>
         <div class="HeroContainer__Content">
           <Flex
             direction={FlexDirection.COLUMN}
             align={AlignItems.START}
             gap={4}
           >
-              <Text
-                fontSize={$isTablet ? 3 : 2.75}
-                color={$isDarkMode
-                  ? TextColorVariant.WHITE
-                  : TextColorVariant.BLACK}
-                align={Align.LEFT}>{heroContent.greeting}</Text
-              >
-            
-              <Title type={TitleType.H1} align={Align.LEFT}
-                >{heroContent.title1}<br />{heroContent.title2}</Title
-              >
-            
-              <Text
-                fontSize={2.5}
-                color={$isDarkMode
-                  ? TextColorVariant.WHITE
-                  : TextColorVariant.BLACK}
-                fontWeight={FontWeight.MEDIUM}
-                align={Align.LEFT}
-                >{heroContent.subtitle}
-              </Text>
-            
+            <Text
+              fontSize={$isTablet ? 3 : 2.75}
+              color={$isDarkMode
+                ? TextColorVariant.WHITE
+                : TextColorVariant.BLACK}
+              align={Align.LEFT}>{heroContent.greeting}</Text
+            >
+
+            <Title type={TitleType.H1} align={Align.LEFT}
+              >{heroContent.title1}<br />{heroContent.title2}</Title
+            >
+
+            <Text
+              fontSize={2.5}
+              color={$isDarkMode
+                ? TextColorVariant.WHITE
+                : TextColorVariant.BLACK}
+              fontWeight={FontWeight.MEDIUM}
+              align={Align.LEFT}
+              >{heroContent.subtitle}
+            </Text>
+
             <Flex
               direction={FlexDirection.ROW}
               gap={$isMobile ? 6 : 2}
@@ -147,12 +146,11 @@
               width={MaxSize.DEFAULT}
             >
               {#if !$isMobile}
-                  <Button
-                    variant={ButtonVariant.PRIMARY}
-                    onClick={handleDownloadCV}
-                    width={MaxSize.DEFAULT}>{heroContent.downloadCV}</Button
-                  >
-                
+                <Button
+                  variant={ButtonVariant.PRIMARY}
+                  onClick={handleDownloadCV}
+                  width={MaxSize.DEFAULT}>{heroContent.downloadCV}</Button
+                >
               {/if}
               <Flex
                 direction={FlexDirection.ROW}
@@ -160,59 +158,55 @@
                 width={MaxSize.DEFAULT}
                 order={$isMobile ? 2 : 1}
               >
-                  <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
-                    ><Logo
-                      logo={LogoName.GITHUB}
-                      color={LogoColorVariant.WHITE}
-                      isFocus={false}
-                      target={Target.BLANK}
-                    /></IconWrapper
-                  >
-                
-                  <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
-                    ><Logo
-                      logo={LogoName.LINKEDIN}
-                      color={LogoColorVariant.WHITE}
-                      isFocus={false}
-                      target={Target.BLANK}
-                    /></IconWrapper
-                  >
-                
+                <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
+                  ><Logo
+                    logo={LogoName.GITHUB}
+                    color={LogoColorVariant.WHITE}
+                    isFocus={false}
+                    target={Target.BLANK}
+                  /></IconWrapper
+                >
+
+                <IconWrapper variant={ButtonVariant.PRIMARY_BLACK}
+                  ><Logo
+                    logo={LogoName.LINKEDIN}
+                    color={LogoColorVariant.WHITE}
+                    isFocus={false}
+                    target={Target.BLANK}
+                  /></IconWrapper
+                >
               </Flex>
             </Flex>
           </Flex>
         </div>
       </Col>
-      <Col desktop={4} tablet={5} mobile={2}>
+      <Col desktop={7} tablet={5} mobile={2}>
+        <div class="HeroContainer__Image">
+          <Image
+            alt="splashes"
+            file={$isDarkMode
+              ? "splashes-color-dark.png"
+              : "splashes-color.png"}
+            style={$isMobile
+              ? splashesImageStyleMobile
+              : $isTablet
+                ? splashesImageStyleTablet
+                : splashesImageStyle}
+            contentStyle={splashesImageContentStyle}
+            behavior={ImageBehavior.COVER}
+          />
 
-          <div class="HeroContainer__Image">
-            <Image
-              alt="splashes"
-              file={$isDarkMode
-                ? "splashes-color-dark.png"
-                : "splashes-color.png"}
-              style={$isMobile
-                ? splashesImageStyleMobile
-                : $isTablet
-                  ? splashesImageStyleTablet
-                  : splashesImageStyle}
-              contentStyle={splashesImageContentStyle}
-              behavior={ImageBehavior.COVER}
-            />
-
-              <Image
-                alt="flower"
-                file={$isMobile ? "flower-cropped.png" : "flower.png"}
-                style={$isMobile
-                  ? flowerImageStyleMobile
-                  : $isTablet
-                    ? flowerImageStyleTablet
-                    : flowerImageStyle}
-                behavior={ImageBehavior.COVER}
-              />
-            
-          </div>
-        
+          <Image
+            alt="flower"
+            file={$isMobile ? "flower-cropped.png" : "flower.png"}
+            style={$isMobile
+              ? flowerImageStyleMobile
+              : $isTablet
+                ? flowerImageStyleTablet
+                : flowerImageStyle}
+            behavior={ImageBehavior.COVER}
+          />
+        </div>
       </Col>
     </Grid>
   </div>
@@ -231,7 +225,7 @@
   .HeroContainer__Content {
     width: 100%;
     height: 100%;
-    padding: calc(14rem + var(--section-margin-vertical)) 0 12rem
+    padding: calc(16rem + var(--section-margin-vertical)) 0 12rem
       var(--section-margin-horizontal);
     z-index: 20;
     position: relative;

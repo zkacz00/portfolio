@@ -12,6 +12,12 @@
   /** Whether to remove padding bottom */
   export let clearBottomPadding: boolean = false;
 
+  /** Whether to remove padding right */
+  export let clearRightPadding: boolean = false;
+
+  /** Whether to remove padding left */
+  export let clearLeftPadding: boolean = false;
+
   /** Whether to remove padding on sides */
   export let clearSidePadding: boolean = false;
 
@@ -30,6 +36,8 @@
     class:Section--clear-padding-top={clearTopPadding}
     class:Section--clear-padding-bottom={clearBottomPadding}
     class:Section--clear-padding-sides={clearSidePadding}
+    class:Section--clear-padding-left={clearLeftPadding}
+    class:Section--clear-padding-right={clearRightPadding}
     class:Section--fill={height === MaxSize.FILL}
   >
     <slot />
@@ -91,6 +99,14 @@
   .Section--clear-padding-sides {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  .Section--clear-padding-left {
+    padding-left: 0;
+  }
+
+  .Section--clear-padding-right {
+    padding-right: 0;
   }
 
   :global(.Tablet) .Section {

@@ -26,15 +26,15 @@ Language,
 { title: string; subtitle: string; designButton: string; githubButton: string; liveButton: string; }
 > = {
   English: {
-    title: "My Projects",
-    subtitle: "Here you can explore some of the personal and client projects I’ve created, each featuring its own case study.",
-    designButton: "See the Design",
-    githubButton: "See on GitHub",
-    liveButton: "See Live"
+    title: "Projects",
+    subtitle: "Take a look at what I’ve been working on lately — a mix of personal experiments and commissioned work. Every project has its own story, and I’m happy to share each one.",
+    designButton: "View Design",
+    githubButton: "View on GitHub",
+    liveButton: "View Live",
   },
   Polish: {
-    title: "Moje Projekty",
-    subtitle: "Znajdziesz tutaj wybrane projekty osobiste i dla klientów, z każdą realizacją opisaną w formie studium przypadku.",
+    title: "Projekty",
+    subtitle: "Zobacz, nad czym ostatnio pracowałam — trochę eksperymentów, trochę na zamówienie. Każdy z nich to inna historia, którą chętnie opowiem.",
     designButton: "Zobacz projekt",
     githubButton: "Zobacz na GitHub",
     liveButton: "Zobacz na żywo"
@@ -44,12 +44,12 @@ Language,
 export const projects: Project = {
   portfolio: {
     title: {
-      English: "Z.B. Portfolio",
-      Polish: "Portfolio Z.B.",
+      English: "Web | Design Portfolio",
+      Polish: "Web | Design Portfolio",
     },
     subtitle: {
-      English: "You might have seen it already 😉",
-      Polish: "Może już je widziałeś 😉",
+      English: "You might recognize it already.",
+      Polish: "Może już je skądś kojarzysz?",
     },
     technologies: [
       { key: LogoName.SVELTE, title: "Svelte" },
@@ -61,39 +61,39 @@ export const projects: Project = {
       English: [
         {
           icon: "photo-group",
-          title: "Questionnaires with User Experience Gamification",
+          title: "Design Work",
           content:
-            "Using Figma, I independently designed the entire UI/UX project, including key elements such as the homepage, blog, and dashboard.",
+            "In Figma, I created a design that combines my style with simplicity and clarity. I also prepared custom graphics that highlight both my personality and the aesthetic consistency of the project.",
         },
         {
           icon: "network-3",
-          title: "Data Collection & Visualisation",
-          content: "I handled both front-end and back-end implementation.",
+          title: "Behind the Code",
+          content: "I wrote the code following best practices I learned from my former boss, Greg Guidero — it had to be clean, scalable, and efficient. I used my favorite stack: Svelte, Node.js, and TypeScript.",
         },
         {
-          icon: "browser-upload",
-          title: "Reward System Integration",
+          icon: "brightness-medium",
+          title: "Accessibility & Comfort",
           content:
-            "This included API integrations with services like Discord, OpenAI, Stripe, and ElevenLabs, as well as database management.",
+            "The site works in both Polish and English, and offers light and dark mode — because who doesn’t like options?",
         },
       ],
       Polish: [
         {
           icon: "photo-group",
-          title: "Ankiety z grywalizacją doświadczenia użytkownika",
+          title: "Projekt graficzny",
           content:
-            "Z pomocą Figma zaprojektowałam cały projekt UI/UX, w tym kluczowe elementy takie jak strona główna, blog i panel użytkownika.",
+            "W Figmie stworzyłam design, który łączy mój styl z prostotą i przejrzystością. Przygotowałam też dedykowane grafiki, które podkreślają mój charakter oraz spójność estetyki projektu.",
         },
         {
           icon: "network-3",
-          title: "Zbieranie i wizualizacja danych",
-          content: "Zajmowałam się zarówno implementacją front-endu, jak i back-endu.",
+          title: "Za kulisami kodu",
+          content: "Pisałam kod według najlepszych wskazówek mojego byłego szefa, Grega Guidero - ma być czytelnie, skalowalnie i wydajnie. Wykorzystałam swoje ulubione technologie: Svelte, Node.js oraz Typescript.",
         },
         {
-          icon: "browser-upload",
-          title: "Integracja systemu nagród",
+          icon: "brightness-medium",
+          title: "Dostępność i wygoda",
           content:
-            "Zrealizowałam integrację z takimi usługami jak Discord, OpenAI, Stripe i ElevenLabs, a także zarządzałam bazą danych.",
+            "Portfolio działa w dwóch językach (PL/EN) i oferuje tryb jasny oraz ciemny — bo każdy lubi wybór.",
         },
       ],
     },
@@ -106,12 +106,12 @@ export const projects: Project = {
   },
   robiki: {
     title: {
-      English: "Robiki",
-      Polish: "Robiki",
+      English: "Robiki.ai",
+      Polish: "Robiki.ai",
     },
     subtitle: {
-      English: "AI-powered Robotics Platform",
-      Polish: "Platforma Robotyki wspierana przez AI",
+      English: "An AI assistant helping with automation and day-to-day tasks in businesses.",
+      Polish: "Asystent AI wspierający automatyzację i codzienne działania w firmach.",
     },
     technologies: [
       { key: LogoName.SVELTE, title: "Svelte" },
@@ -128,36 +128,36 @@ export const projects: Project = {
     description: {
       English: [
         {
-          icon: "help",
-          title: "AI-Powered Robotics",
-          content: "Robiki is an AI-powered platform that integrates robotics with machine learning.",
-        },
-        {
-          icon: "stack",
-          title: "Cloud Integration",
-          content: "The platform supports cloud-based deployment and scalability using Docker and Kubernetes.",
+          icon: "photo",
+          title: "UI/UX Design",
+          content: "I prepared a complete UI/UX project in Figma — from the smallest components, through homepage and blog, to a full dashboard. The entire UI was built following Atomic Design principles, focusing on consistency, responsiveness, and accessibility.",
         },
         {
           icon: "toggles",
-          title: "Custom AI Solutions",
-          content: "Built with Python, Node.js, and TensorFlow, Robiki allows for flexible AI model integration.",
+          title: "Front-End",
+          content: "I implemented the design in Svelte and TypeScript, writing clean code, building custom hooks, and prioritizing custom solutions over unnecessary dependencies. The team prioritized quality and optimization.",
+        },
+        {
+          icon: "stack",
+          title: "Back-End & Integrations",
+          content: "I also handled the backend (PostgreSQL) and integrated APIs like Discord, OpenAI, Stripe, and ElevenLabs. We used Docker and Postman for testing and deployment.",
         },
       ],
       Polish: [
         {
-          icon: "help",
-          title: "Robotyka wspierana przez AI",
-          content: "Robiki to platforma wspierana przez AI, która integruje robotykę z uczeniem maszynowym.",
-        },
-        {
-          icon: "stack",
-          title: "Integracja z chmurą",
-          content: "Platforma obsługuje wdrożenia oparte na chmurze i skalowalność z użyciem Dockera i Kubernetesa.",
+          icon: "photo",
+          title: "Projekt UI/UX",
+          content: "Przygotowałam pełny projekt UI/UX w Figmie — od najdrobniejszych komponentów, przez stronę główną i blog, po dashboard. Wszystko zgodnie z zasadami Atomic Design, z naciskiem na spójność, responsywność i dostępność dla różnych użytkowników i przeglądarek."
         },
         {
           icon: "toggles",
-          title: "Dostosowane rozwiązania AI",
-          content: "Zbudowana z wykorzystaniem Pythona, Node.js i TensorFlow, Robiki umożliwia elastyczną integrację modeli AI.",
+          title: "Front-End",
+          content: "Wdrażałam design w Svelte i TypeScript, pisząc przejrzysty kod, tworząc własne hooki i unikając zbędnych bibliotek. Zespół stawiał na jakość i optymalizację."
+        },
+        {
+          icon: "stack",
+          title: "Back-End & Integracje",
+          content: "Odpowiadałam też za implementację back-endu (PostgreSQL) i integrację z API (Discord, OpenAI, Stripe, ElevenLabs). Do testów i wdrożeń wykorzystywaliśmy Dockera i Postmana.",
         },
       ],
     },
@@ -175,8 +175,8 @@ export const projects: Project = {
       Polish: "Ultimate Quiz",
     },
     subtitle: {
-      English: "Quiz App with Drag&Drop Elements",
-      Polish: "Aplikacja quizowa z elementami Drag&Drop",
+      English: "An interactive quiz app with drag & drop mechanics.",
+      Polish: "Interaktywna aplikacja quizowa z elementami drag & drop.",
     },
     technologies: [
       { key: LogoName.REACT, title: "React" },
@@ -190,36 +190,36 @@ export const projects: Project = {
     description: {
       English: [
         {
-          icon: "web",
-          title: "Questionnaires with User Experience Gamification",
-          content: "A quiz app in two language versions – Polish and English.",
-        },
-        {
-          icon: "question",
-          title: "Data Collection & Visualisation",
-          content: "With 5 categories.",
-        },
-        {
           icon: "vibrate",
-          title: "Reward System Integration",
-          content: "Drag-and-drop elements and smooth animations.",
+          title: "Drag & Drop + Animations",
+          content: "A project completed during a front-end course — based on a provided design, but I added a fully responsive mobile version for phones and tablets. It includes smooth animations and an intuitive drag-and-drop experience.",
+        },
+        {
+          icon: "pencil",
+          title: "Custom Content",
+          content: "5 categories with 10 questions each — if you're into fun facts, check out the “Culture” section.",
+        },
+        {
+          icon: "web",
+          title: "Two Languages",
+          content: "Available in both Polish and English.",
         },
       ],
       Polish: [
         {
-          icon: "web",
-          title: "Ankiety z grywalizacją doświadczenia użytkownika",
-          content: "Aplikacja quizowa dostępna w dwóch wersjach językowych – polskiej i angielskiej.",
-        },
-        {
-          icon: "question",
-          title: "Zbieranie i wizualizacja danych",
-          content: "Z pięcioma kategoriami.",
-        },
-        {
           icon: "vibrate",
-          title: "Integracja systemu nagród",
-          content: "Elementy Drag-and-Drop oraz płynne animacje.",
+          title: "Drag & Drop + animacje",
+          content: "Projekt zrealizowany podczas kursu front-end — oparty na gotowym designie, z dodanym przeze mnie widokiem mobilnym (dostosowanym do telefonów i tabletów). Aplikacja zawiera płynne animacje i mechanikę drag & drop.",
+        },
+        {
+          icon: "pencil",
+          title: "Autorski content",
+          content: "5 kategorii, po 10 pytań każda — jeśli lubisz ciekawostki, koniecznie zajrzyj do sekcji „Kultura”.",
+        },
+        {
+          icon: "web",
+          title: "Dwa języki",
+          content: "Quiz dostępny w dwóch wersjach językowych — polskiej i angielskiej.",
         },
       ],
     },
@@ -238,8 +238,8 @@ export const projects: Project = {
       Polish: "Catchy Beatz",
     },
     subtitle: {
-      English: "Music Blog",
-      Polish: "Blog muzyczny",
+      English: "My music blog with a creative twist (and cats).",
+      Polish: "Mój blog muzyczny z artystycznym pazurem (i kotami).",
     },
     technologies: [
       { key: LogoName.REACT, title: "React" },
@@ -253,40 +253,40 @@ export const projects: Project = {
     description: {
       English: [
         {
-          icon: "headset",
-          title: "Questionnaires with User Experience Gamification",
+          icon: "heart",
+          title: "From Idea to Code",
           content:
-            "Using Figma, I independently designed the entire UI/UX project, including key elements such as the homepage, blog, and dashboard.",
+            "My first project from A to Z — from concept and design to full implementation. A blog with 3 categories, inspired by my love of music, beautiful chaos, and… cats.",
         },
         {
-          icon: "network-2",
-          title: "Data Collection & Visualisation",
-          content: "I handled both front-end and back-end implementation.",
+          icon: "headset",
+          title: "Unique Vibe",
+          content: "The interface was designed to reflect the blog’s personality — loose, dynamic, and a little offbeat. I added parallax effects and animations to bring it to life.",
         },
         {
           icon: "preview",
-          title: "Reward System Integration",
+          title: "Front + Back",
           content:
-            "This included API integrations with services like Discord, OpenAI, Stripe, and ElevenLabs, as well as database management.",
+            "Built in React + Gatsby, powered by Contentful CMS. I also handled content integration, images, and layout implementation. Would I do it differently today? Probably. But that’s exactly why I’m still fond of it.",
         },
       ],
       Polish: [
         {
-          icon: "headset",
-          title: "Ankiety z grywalizacją doświadczenia użytkownika",
+          icon: "heart",
+          title: "Od pomysłu po kod",
           content:
-            "Z pomocą Figma zaprojektowałam cały projekt UI/UX, w tym kluczowe elementy takie jak strona główna, blog i panel użytkownika.",
+            "Mój pierwszy projekt od A do Z – od pomysłu, przez design, aż po wdrożenie. Blog z podziałem na 3 kategorie, pełen lekkiego chaosu inspirowanego moją miłością do muzyki, estetycznego nieładu i... kotów.",
         },
         {
-          icon: "network-2",
-          title: "Zbieranie i wizualizacja danych",
-          content: "Zajmowałam się zarówno implementacją front-endu, jak i back-endu.",
+          icon: "headset",
+          title: "Wyjątkowy klimat",
+          content: "Cały interfejs zaprojektowałam tak, by oddawał charakter bloga – luźny, dynamiczny i trochę „offbeat”. Dodałam też efekty paralaksy i animacje, żeby dodać mu życia.",
         },
         {
           icon: "preview",
-          title: "Integracja systemu nagród",
+          title: "Front + Back",
           content:
-            "Zrealizowałam integrację z takimi usługami jak Discord, OpenAI, Stripe i ElevenLabs, a także zarządzałam bazą danych.",
+            "Wdrożenie w React + Gatsby, z CMS-em Contentful. Zajęłam się też integracją treści, obrazów i wdrożeniem layoutu. Dziś zrobiłabym to nieco inaczej – ale właśnie dlatego mam do tego projektu sentyment.",
         },
       ],
     },

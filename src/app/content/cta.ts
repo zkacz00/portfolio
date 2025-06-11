@@ -7,12 +7,12 @@ type CtaText = {
   
   export const ctaText: Record<Language, CtaText> = {
     English: {
-      title: "I Am Currently Looking For a Job!",
-      subtitle: "Feel free to contact me 😃",
+      title: "Looking for new opportunities!",
+      subtitle: "If you think we’d make a good team — let’s talk 😃",
     },
     Polish: {
-        title: "Aktualnie poszukuję pracy!",
-        subtitle: "Skontaktuj się ze mną 😃",
+        title: "Rozglądam się za nowymi wyzwaniami!",
+        subtitle: "Jeśli uważasz, że będzie nam się dobrze współpracować — skontaktuj się ze mną 😃",
     },
   };
   

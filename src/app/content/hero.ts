@@ -10,17 +10,17 @@ type HeroContent = {
 
 export const heroText: Record<Language, HeroContent> = {
   English: {
-    greeting: "Hi, I'm Zofia,",
-    title1: "WEB DEVELOPER",
+    greeting: "Hey, I'm Zofia",
+    title1: "WEB DEVELOPER ",
     title2: "& UI/UX DESIGNER",
-    subtitle: "Let's get to know each other! 😊",
-    downloadCV: "See my CV",
+    subtitle: "Let's get to know each other 😊",
+    downloadCV: "Check out my CV",
   },
   Polish: {
-    greeting: "Cześć, jestem Zofia,",
-    title1: "WEB DEVELOPER",
+    greeting: "Cześć, jestem Zofia",
+    title1: "WEB DEVELOPER ",
     title2: "& UI/UX DESIGNER",
-    subtitle: "Poznajmy się! 😊",
-    downloadCV: "Zobacz moje CV",
+    subtitle: "Poznajmy się bliżej 😊",
+    downloadCV: "Sprawdź moje CV",
   },
 };

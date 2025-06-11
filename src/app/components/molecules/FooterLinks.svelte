@@ -77,11 +77,11 @@
             >{footerContent.skillsLabel}</Link
           >
           <Link
-            url="#experience"
-            onClick={handleExperienceClick}
+            url="#projects"
+            onClick={handlePortfolioClick}
             fontSize={linkFontSize}
             color={TextColorVariant.WHITE_SECONDARY}
-            >{footerContent.experienceLabel}</Link
+            >{footerContent.portfolioLabel}</Link
           >
         </Flex>
       </Flex>
@@ -104,11 +104,11 @@
           gap={2}
         >
           <Link
-            url="#projects"
-            onClick={handlePortfolioClick}
+            url="#experience"
+            onClick={handleExperienceClick}
             fontSize={linkFontSize}
             color={TextColorVariant.WHITE_SECONDARY}
-            >{footerContent.portfolioLabel}</Link
+            >{footerContent.experienceLabel}</Link
           >
           <Link
             url="#home"

@@ -45,7 +45,7 @@
 
 <Section anchor="about" color="white">
   <Flex gap={2} direction={FlexDirection.COLUMN}>
-    <Grid gap={$isMobile ? 4 : $isTablet ? 4 : 10}>
+    <Grid gap={$isMobile ? 4 : $isTablet ? 4 : 8}>
       <Col desktop={4} tablet={8} mobile={2}>
         <Flex
           direction={FlexDirection.COLUMN}
@@ -62,7 +62,7 @@
               contentStyle={$isMobile
                 ? "max-height: 46rem;"
                 : $isTablet
-                  ? "max-height: 56rem;"
+                  ? "max-height: 46rem;"
                   : ""}
             />
           </div>

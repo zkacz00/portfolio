@@ -31,11 +31,12 @@ export const skillsImage: Image = {
 export const skillsText: Record<Language, any> = {
   English: {
     title: "Skills",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    subtitle: "Here’s what I bring to the table — reliable tools and core values that guide my work.",
   },
   Polish: {
     title: "Umiejętności",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    subtitle:
+      "Co mam w swoim arsenale? Sprawdzone narzędzia i wartości, które napędzają mnie do działania.",
   },
 };
 
@@ -54,6 +55,7 @@ export const skills: Skills = {
         "Contentful",
         "Histoire",
         "Storybook",
+        "Atomic Design",
       ],
     },
     Polish: {
@@ -69,6 +71,7 @@ export const skills: Skills = {
         "Contentful",
         "Histoire",
         "Storybook",
+        "Atomic Design",
       ],
     },
   },
@@ -76,49 +79,70 @@ export const skills: Skills = {
     English: {
       title: "Back-End",
       icon: "link",
-      skills: ["JavaScript", "Docker", "Postman", "Node.js", "PostgreSQL", "MySQL", "GitHub"],
+      skills: [
+        "JavaScript",
+        "Docker",
+        "Postman",
+        "Node.js",
+        "PostgreSQL",
+        "MySQL",
+        "GitHub",
+      ],
     },
     Polish: {
       title: "Back-End",
       icon: "link",
-      skills: ["JavaScript", "Docker", "Postman", "Node.js", "PostgreSQL", "MySQL", "GitHub"],
+      skills: [
+        "JavaScript",
+        "Docker",
+        "Postman",
+        "Node.js",
+        "PostgreSQL",
+        "MySQL",
+        "GitHub",
+      ],
     },
   },
   design: {
     English: {
       title: "Design",
       icon: "brush",
-      skills: ["Figma", "Procreate", "UI/UX", "Pixel Perfect", "Responsive Design"],
+      skills: [
+        "Figma",
+        "Procreate",
+        "UI/UX",
+        "Pixel Perfect"
+      ],
     },
     Polish: {
       title: "Design",
       icon: "brush",
-      skills: ["Figma", "Procreate", "UI/UX", "Pixel Perfect", "Responsywność"],
+      skills: ["Figma", "Procreate", "UI/UX", "pixel-perfect"],
     },
   },
   interpersonal: {
     English: {
-      title: "Interpersonal",
+      title: "Soft Skills",
       icon: "user-group",
       skills: [
-        "team work",
+        "teamwork",
         "commitment",
         "integrity",
         "time management",
-        "attention to details",
-        "self reliance",
+        "attention to detail",
+        "self-reliance",
       ],
     },
     Polish: {
-      title: "Komunikacja Międzyludzka",
+      title: "Cechy osobiste",
       icon: "user-group",
       skills: [
-        "praca zespołowa",
         "zaangażowanie",
-        "integralność",
-        "zarządzanie czasem",
-        "dokładność",
+        "odpowiedzialność",
+        "inicjatywa",
         "samodzielność",
+        "otwartość na feedback",
+        "ciągły rozwój",
       ],
     },
   },
@@ -142,20 +166,20 @@ export const skills: Skills = {
   },
   lacking: {
     English: {
-      title: "I can't... (shhhh, don't tell anyone! 🤫)",
+      title: "What I can't do... (shhh, keep it secret! 🤫)",
       icon: "loading",
       skills: [
         "whistle",
         "survive without coffee",
         "keep plants alive",
-        "resist the urge to pet cats",
+        "resist petting cats",
       ],
     },
     Polish: {
-      title: "Nie umiem... (ciiicho, nie mów nikomu! 🤫)",
+      title: "A czego nie potrafię..? (ciiicho, nie mów nikomu! 🤫)",
       icon: "loading",
       skills: [
-        "gwizdać",
+        "gwizdać 🙈",
         "przetrwać bez kawy",
         "utrzymać roślinek przy życiu",
         "nie głaskać kitków",

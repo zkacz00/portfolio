@@ -91,7 +91,7 @@
   $: imageStyleMobile = `position: absolute; left: -7rem; bottom: 0; width: 130%`;
 </script>
 
-<div class="Project">
+<div class="Project" class:Project--reversed={reverse}>
   <Grid align={AlignItems.CENTER} gap={$isDesktop ? 8 : $isTablet ? 4 : 3}>
     <Col
       desktop={6}
@@ -243,6 +243,13 @@
   .Project {
     min-height: 60rem;
     width: 100%;
+    padding-left: var(--section-margin-horizontal);
+    padding-right: 0;
+  }
+
+  .Project--reversed {
+    padding-left: 0;
+    padding-right: var(--section-margin-horizontal);
   }
 
   .Project__Text {
@@ -264,6 +271,17 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+  :global(.Tablet) .Project,
+  .Project--reversed {
+    padding-right: var(--section-margin-horizontal);
+    padding-left: var(--section-margin-horizontal);
+  }
+
+  :global(.Mobile) .Project,
+  .Project--reversed {
+    padding-right: var(--section-margin-horizontal);
+    padding-left: var(--section-margin-horizontal);
   }
 
   :global(.Tablet) .Project__ImageWrapper,

@@ -139,6 +139,24 @@
                   ? TextColorVariant.WHITE
                   : TextColorVariant.BLACK}>{experienceEl.description}</Text
               >
+              {#if experienceEl.description2}
+              <Text
+                align={Align.LEFT}
+                size={Size.SMALL}
+                color={$isDarkMode
+                  ? TextColorVariant.WHITE
+                  : TextColorVariant.BLACK}>{experienceEl.description2}</Text
+              >
+              {/if}
+              {#if experienceEl.description3}
+              <Text
+                align={Align.LEFT}
+                size={Size.SMALL}
+                color={$isDarkMode
+                  ? TextColorVariant.WHITE
+                  : TextColorVariant.BLACK}>{experienceEl.description3}</Text
+              >
+              {/if}
               <Flex
                 direction={FlexDirection.ROW}
                 justify={JustifyContent.START}
@@ -175,12 +193,12 @@
     z-index: 1;
   }
 
-  .ExperienceBoxWrapper--2 {
+  .ExperienceBoxWrapper--2, .ExperienceBoxWrapper--4 {
     transform: rotate(-1deg);
     z-index: 2;
   }
 
-  .ExperienceBoxWrapper--3 {
+  .ExperienceBoxWrapper--4 {
     z-index: 0;
   }
 </style>

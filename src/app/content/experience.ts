@@ -5,6 +5,8 @@ export interface ExperienceEl {
   date: string;
   location: string;
   description: string;
+  description2?: string;
+  description3?: string;
   technologies: Array<string>;
 }
 
@@ -16,14 +18,14 @@ export const experienceText: Record<
 > = {
   English: {
     title: "Experience",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    subtitle: "The steps that shaped my approach to work and growth.",
     what: "What?",
     when: "When?",
     where: "Where?",
   },
   Polish: {
     title: "Doświadczenie",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    subtitle: "Kroki, które ukształtowały moje podejście do pracy i rozwoju.",
     what: "Co?",
     when: "Kiedy?",
     where: "Gdzie?",
@@ -33,11 +35,15 @@ export const experienceText: Record<
 export const experienceEls: Record<Language, Array<ExperienceEl>> = {
   English: [
     {
-      date: "04.2023 - 10.2024",
+      date: "04.2023 - 10.2024, currently part-time",
       title: "Full Stack Developer, Designer & Manager",
-      location: "Robiki.ai | AI Assistant Company",
+      location: "Robiki.ai | AI startup",
       description:
-        "I worked in a fully remote, multicultural environment where English was the primary language used by the team—I was the only member from Poland. Using Figma, I independently designed the entire UI/UX project, including key elements such as the homepage, blog, and dashboard. I handled both front-end and back-end implementation, which included API integrations with services like Discord, OpenAI, Stripe, and ElevenLabs, as well as database management. Additionally, I led a team of developers and managed the project’s finances. This experience allowed me to enhance my independence, time management skills, and ability to quickly adapt to new technologies. I learned to create cohesive, user-friendly designs, write efficient code, and develop custom features without relying on external libraries.",
+        "I joined a small but ambitious startup (as the only team member from Poland), working fully remotely in an international team. I handled everything — from designing the full UI/UX in Figma (homepage, blog, dashboard...) to front-end and back-end development, and integrating services like Discord, OpenAI, Stripe, and ElevenLabs. I also managed the database and took care of company documentation.",
+      description2:
+        "It was a great learning experience in terms of independence, time management, and picking up new technologies fast. I learned to build intuitive, consistent, and user-friendly designs, write solid code, and develop custom solutions without relying on third-party libraries.",
+      description3:
+        "Although the main client eventually pulled out and the project slowed down, I continue to support the team part-time as a shareholder and board member, and I’m excited about its future.",
       technologies: [
         "Svelte",
         "TypeScript",
@@ -49,11 +55,11 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
       ],
     },
     {
-      date: "2020 - 2022",
+      date: "2021 - 04.2023",
       title: "Front-End Course",
       location: "EasyCode | Front-End Course",
       description:
-        "Learned the basics of JavaScript programming, developed websites in React, and created complex styles using Sass.",
+        "This is where my journey into coding began. I learned the basics of JavaScript and TypeScript, built React projects, and styled websites using Sass and CSS.",
       technologies: [
         "React",
         "TypeScript",
@@ -61,6 +67,17 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
         "CSS",
         "JavaScript",
         "HTML5",
+      ],
+    },
+    {
+      date: "09.2019 – 09.2021",
+      title: "English Translator",
+      location: "Khan Academy | Educational Non-Profit",
+      description:
+        "I translated educational materials on world history and art — including articles, exercises, and YouTube videos. The topics were quite diverse, so I often had to do deep research and dig for context. This really helped me develop patience and attention to detail.",
+      technologies: [
+        "Attention to detail",
+        "English language",
       ],
     },
     {
@@ -68,18 +85,22 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
       title: "IT Technician",
       location: "Information Technology Technical College in Biedrzychowice",
       description:
-        "Graduated among the top students. Passed professional exams in computer hardware, networks, databases, and web development, earning the title of IT Technician.",
+        "This is where my journey with code truly started. I graduated with great results and earned the title of IT Technician. I passed national exams in system administration, databases, websites, and application development (INF.02, INF.03, INF.04 certifications).",
       technologies: ["C++", "HTML", "Networks", "Databases"],
     },
   ],
   Polish: [
     {
-      date: "04.2023 - 10.2024",
-      title: "Full Stack Developer, Projektant & Manager",
-      location: "Robiki.ai | Firma AI Assistant",
+      date: "04.2023 - 10.2024, obecnie po godzinach",
+      title: "Full Stack Developerka, Projektantka & Managerka",
+      location: "Robiki.ai | firma z branży AI",
       description:
-        "Pracowałam w w pełni zdalnym, wielokulturowym środowisku, gdzie językiem głównym była angielszczyzna – byłam jedyną członkinią zespołu z Polski. Używając Figma, samodzielnie zaprojektowałam cały projekt UI/UX, w tym kluczowe elementy, takie jak strona główna, blog i dashboard. Zajmowałam się zarówno implementacją front-endu, jak i back-endu, w tym integracjami API z usługami takimi jak Discord, OpenAI, Stripe i ElevenLabs, a także zarządzaniem bazą danych. Ponadto prowadziłam zespół deweloperów i zarządzałam finansami projektu. To doświadczenie pozwoliło mi rozwinąć moją niezależność, umiejętności zarządzania czasem i zdolność szybkiego dostosowywania się do nowych technologii. Nauczyłam się tworzyć spójne, przyjazne dla użytkownika projekty, pisać efektywny kod i rozwijać funkcje niestandardowe bez polegania na zewnętrznych bibliotekach.",
-      technologies: [
+        "Dołączyłam (jako jedyna osoba z Polski) do niewielkiego, ale ambitnego startupu — pracowaliśmy zdalnie, w międzynarodowym składzie. Robiłam naprawdę wszystko — od samodzielnego projektowania całego UI/UX w Figma (strona główna, blog, dashboard...), przez kodowanie front-endu i back-endu, aż po integracje z usługami takimi jak Discord, OpenAI, Stripe czy ElevenLabs. Zarządzałam też bazą danych i zajmowałam się dokumentacją firmy. ",
+      description2:
+        "To była świetna szkoła samodzielności, zarządzania czasem i błyskawicznego przyswajania nowych technologii. Nauczyłam się tworzyć intuicyjne, spójne i przyjazne dla użytkownika projekty, pisać solidny kod i rozwijać własne rozwiązania — bez sięgania po gotowe biblioteki.",
+        description3:
+        "Choć główny klient się wycofał i projekt zwolnił tempo, nadal wspieram zespół w wolnym czasie z nimi kodując oraz jako udziałowiec i członek zarządu — i trzymam kciuki za dalszy rozwój!",
+        technologies: [
         "Svelte",
         "TypeScript",
         "Node.js",
@@ -90,11 +111,11 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
       ],
     },
     {
-      date: "2020 - 2022",
+      date: "2021 - 04.2023",
       title: "Kurs Front-End",
       location: "EasyCode | Kurs Front-End",
       description:
-        "Nauczyłam się podstaw programowania w JavaScript, tworzyłam strony internetowe w React oraz tworzyłam zaawansowane style przy użyciu Sass.",
+        "Podczas tego kursu przyswoiłam podstawy JavaScript i TypeScript, tworzyłam projekty w React i nauczyłam się stylować strony przy pomocy Sass i CSS.",
       technologies: [
         "React",
         "TypeScript",
@@ -105,11 +126,22 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
       ],
     },
     {
+      date: "09.2019 – 09.2021",
+      title: "Tłumacz języka angielskiego",
+      location: "Khan Academy | Edukacyjna organizacja non-profit",
+      description:
+        "Tłumaczyłam materiały edukacyjne z historii świata i sztuki — artykuły, ćwiczenia i filmy na YouTube. Tematy bywały przeróżne, co czasem wymagało solidnego googlowania i szukania kontekstu. Dzięki temu rozwinęłam cierpliwość i dokładność.",
+      technologies: [
+        "Dbałość o szczegóły",
+        "Język angielski",
+      ],
+    },
+    {
       date: "2016 - 2020",
       title: "Technik Informatyk",
       location: "Technikum Informatyczne w Biedrzychowicach",
       description:
-        "Ukończyłam szkołę wśród najlepszych uczniów. Zdałam egzaminy zawodowe z zakresu sprzętu komputerowego, sieci, baz danych i tworzenia stron internetowych, zdobywając tytuł Technik Informatyki.",
+        "To tutaj zaczęła się moja przygoda z kodowaniem. Ukończyłam technikum z bardzo dobrymi wynikami i zdobyłam tytuł technika informatyka. Zdałam egzaminy z kwalifikacji INF.02, INF.03 i INF.04 — czyli z administracji systemami, baz danych, stron internetowych i aplikacji.",
       technologies: ["C++", "HTML", "Sieci", "Bazy danych"],
     },
   ],
