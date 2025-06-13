@@ -25,7 +25,7 @@ export const skillsImage: Image = {
   alt: "My skills",
   assetId: "4isGsNrl7qcseKnWccbKnk",
   uniqueId: "b1b4657c82837bb085b17ccb5ca5b960",
-  file: "skills-image.png",
+  file: "skills-image.webp",
 };
 
 export const skillsText: Record<Language, any> = {
@@ -87,6 +87,8 @@ export const skills: Skills = {
         "PostgreSQL",
         "MySQL",
         "GitHub",
+        "API Integrations",
+        "Gatsby"
       ],
     },
     Polish: {
@@ -100,6 +102,8 @@ export const skills: Skills = {
         "PostgreSQL",
         "MySQL",
         "GitHub",
+        "Integracje API",
+        "Gatsby"
       ],
     },
   },

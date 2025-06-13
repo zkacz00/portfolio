@@ -31,7 +31,8 @@
     myLinkedinUrl,
     myEmail,
     myLinkedinUrlShort,
-    myCvUrl,
+    myCvPlUrl,
+    myCvEnUrl
   } from "../../content/urls";
   import { contactText } from "../../content/contact";
   import { language } from "../../stores/language";
@@ -48,6 +49,7 @@
   };
 
   /* HOOKS */
+  $: myCvUrl = ($language === "Polish") ? myCvPlUrl : ($language === "English") ? myCvEnUrl : myCvEnUrl;
   $: contactContent = contactText[$language];
 </script>
 

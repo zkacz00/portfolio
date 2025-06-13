@@ -21,7 +21,7 @@
 
   import { aboutImage } from "../../content/about";
   import { isDarkMode } from "../../stores/lightMode";
-  import { myCvUrl } from "../../content/urls";
+  import { myCvPlUrl, myCvEnUrl } from "../../content/urls";
 
   import Text from "../atoms/Text/Text.svelte";
   import Span from "../atoms/Text/Span.svelte";
@@ -39,6 +39,7 @@
   };
 
   /* HOOKS */
+  $: myCvUrl = ($language === "Polish") ? myCvPlUrl : ($language === "English") ? myCvEnUrl : myCvEnUrl;
   $: aboutContent = aboutText[$language];
   $: heroContent = heroText[$language];
 </script>
@@ -56,7 +57,7 @@
             <Image
               behavior={ImageBehavior.CONTAIN}
               file={$isDarkMode
-                ? "zofia-real-picture-dark.png"
+                ? "zofia-real-picture-dark.webp"
                 : aboutImage.file}
               alt={aboutImage.alt}
               contentStyle={$isMobile

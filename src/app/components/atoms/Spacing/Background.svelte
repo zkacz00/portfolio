@@ -29,7 +29,7 @@
     <div class="Background__Image">
       <Image
         alt="splashes"
-        file={"splashes-square.png"}
+        file={"splashes-square.webp"}
         style={$isDesktop ? splashesImageStyle : splashesImageMobileStyle}
         contentStyle={splashesImageContentStyle}
         behavior={ImageBehavior.COVER}

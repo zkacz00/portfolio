@@ -13,7 +13,7 @@ export const aboutImage: Image = {
   alt: "That's a me, Mario!",
   assetId: "20udfAPU7UTeQdV27L00Qk",
   uniqueId: "10dcf3249306f31269325dbdea8e395a",
-  file: "zofia-real-picture.png",
+  file: "zofia-real-picture.webp",
 };
 
 type Fragment = { text: string; highlight?: boolean; bold?: boolean };
@@ -40,9 +40,9 @@ export const aboutText: Record<Language, AboutContent> = {
       { text: " — I’m a web developer and designer from Poland, passionate about front-end and perfecting every detail." }
     ],
     paragraph2: [
-      { text: "For about " },
-      { text: "2 years", highlight: true, bold: true },
-      { text: ", I’ve been building websites — from the first sketches to fully working pages. I blend " },
+      { text: "For the past " },
+      { text: "two years", highlight: true, bold: true },
+      { text: " I’ve been building websites — from the first sketches to fully working pages. I blend " },
       { text: "creativity with technical precision", highlight: true, bold: true },
       { text: " — fine-tuning pixels, adjusting margins, and making sure every detail is just right. I love working on both the code and the visual side — and I feel best where these two worlds meet. I am also a"},
       { text: " co-owner and board member at Robiki,", highlight: true, bold: true },
@@ -61,13 +61,13 @@ export const aboutText: Record<Language, AboutContent> = {
     city: "Lublin",
     country: "Polska",
     paragraph1: [
-      { text: "Witaj, świecie! 👋\nNazywam się " },
+      { text: "Hello, world! 👋\nNazywam się " },
       { text: "Zofia Bronisz", highlight: true, bold: true },
       { text: " — jestem web developerką i projektantką z Polski, zakochaną we " },
       { text: "front-endzie i dopracowanych detalach.", highlight: true, bold: true },
     ],
     paragraph2: [
-      { text: "Od około 2 lat" },
+      { text: "Od dwóch lat" },
       { text: " tworzę zawodowo strony internetowe — od pierwszych szkiców aż po działającą witrynę. Łączę " },
       { text: "kreatywność z techniczną precyzją", highlight: true, bold: true },
       { text: " — dbam o każdy piksel, ustawiam marginesy i dbam o każdy szczegół. " },

@@ -81,17 +81,21 @@
           {#if !$isMobile}
             <Image
               alt="splashes"
-              file="flower-footer-shapes.png"
+              file="flower-footer-shapes.webp"
               style={flowerImageStyle}
+              loading="eager"
+              decoding="async"
             />
           {/if}
           <Reveal once={false} delay={0.6} duration={0.6} direction="left" disabled={false}>
             <Image
               alt="splashes"
               file={$isMobile
-                ? "flower-footer-mobile.png"
-                : "flower-footer-picture.png"}
+                ? "flower-footer-mobile.webp"
+                : "flower-footer-picture.webp"}
               style={$isMobile ? flowerImageStyleMobile : flowerImageStyle}
+              loading="eager"
+              decoding="async"
             />
           </Reveal>
         </div>

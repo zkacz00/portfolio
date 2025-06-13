@@ -30,7 +30,7 @@
   import Col from "../atoms/Grid/Col.svelte";
   import Image from "../atoms/Images/Image.svelte";
   import { isTablet, isMobile } from "../../stores/device";
-  import { myCvUrl } from "../../content/urls";
+  import { myCvPlUrl, myCvEnUrl } from "../../content/urls";
   import { heroText } from "../../content/hero";
   import { language } from "../../stores/language";
   import { isDarkMode } from "../../stores/lightMode";
@@ -97,6 +97,7 @@
   };
 
   /* HOOKS */
+  $: myCvUrl = ($language === "Polish") ? myCvPlUrl : ($language === "English") ? myCvEnUrl : myCvEnUrl;
   $: heroContent = heroText[$language];
 </script>
 
@@ -185,8 +186,8 @@
           <Image
             alt="splashes"
             file={$isDarkMode
-              ? "splashes-color-dark.png"
-              : "splashes-color.png"}
+              ? "splashes-color-dark.webp"
+              : "splashes-color.webp"}
             style={$isMobile
               ? splashesImageStyleMobile
               : $isTablet
@@ -194,17 +195,21 @@
                 : splashesImageStyle}
             contentStyle={splashesImageContentStyle}
             behavior={ImageBehavior.COVER}
+            loading="eager"
+            decoding="async"
           />
 
           <Image
             alt="flower"
-            file={$isMobile ? "flower-cropped.png" : "flower.png"}
+            file={$isMobile ? "flower-cropped.webp" : "flower.webp"}
             style={$isMobile
               ? flowerImageStyleMobile
               : $isTablet
                 ? flowerImageStyleTablet
                 : flowerImageStyle}
             behavior={ImageBehavior.COVER}
+            loading="eager"
+            decoding="async"
           />
         </div>
       </Col>

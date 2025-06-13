@@ -6,7 +6,7 @@
   import { scrollTo } from "../../utils/scroll";
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
-  import { myCvUrl } from "../../content/urls";
+  import { myCvPlUrl, myCvEnUrl } from "../../content/urls";
   import Reveal from "../atoms/Spacing/Reveal.svelte";
 
   /* ATTRIBUTES */
@@ -34,6 +34,7 @@
   };
 
   /* HOOKS */
+  $: myCvUrl = ($language === "Polish") ? myCvPlUrl : ($language === "English") ? myCvEnUrl : myCvEnUrl;
   $: navContent = navText[$language];
   $: fontSize = $isDesktop ? 4 : $isMobile ? 2.5 : 3;
 </script>

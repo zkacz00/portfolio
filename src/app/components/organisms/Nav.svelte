@@ -48,7 +48,7 @@
 <nav class="Nav" id="Nav">
     <div class="Nav__ContentWrapper">
       <Link url="#home" onClick={handleHeroClick}>
-        <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+        <Image alt="zb-logo" file="zb-logo.webp" style={logoImageStyle} />
       </Link>
       {#if $isDesktop}
         <div class="Nav__Content">

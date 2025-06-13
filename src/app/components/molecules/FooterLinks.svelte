@@ -8,7 +8,7 @@
   import { TextColorVariant } from "../../types/variants";
   import { isMobile, isTablet } from "./../../stores/device";
   import { scrollTo } from "../../utils/scroll";
-  import { myCvUrl } from "../../content/urls";
+  import { myCvPlUrl, myCvEnUrl } from "../../content/urls";
   import { footerText } from "../../content/footer";
   import { language } from "../../stores/language";
 
@@ -24,6 +24,7 @@
   };
 
   /* HOOKS */
+  $: myCvUrl = ($language === "Polish") ? myCvPlUrl : ($language === "English") ? myCvEnUrl : myCvEnUrl;
   $: footerContent = footerText[$language];
   $: labelFontSize = 2.5;
   $: linkFontSize = 2.25;

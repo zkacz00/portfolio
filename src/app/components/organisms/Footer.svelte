@@ -49,7 +49,7 @@
           gap={$isTablet ? 10 : 12}
         >
           <Link url="#home" onClick={handleHeroClick}>
-            <Image alt="zb-logo" file="zb-logo.png" style={logoImageStyle} />
+            <Image alt="zb-logo" file="zb-logo.webp" style={logoImageStyle} loading="eager" decoding="async" />
           </Link>
           <FooterLinks />
         </Flex>
@@ -59,24 +59,27 @@
             {#if !$isMobile}
               <Image
                 alt="splashes"
-                file="flower-footer-shapes.png"
+                file="flower-footer-shapes.webp"
                 style={flowerImageStyle}
+                loading="eager"
+                decoding="async"
               />
             {/if}
               <Image
                 alt="splashes"
                 file={$isMobile
-                  ? "flower-footer-mobile.png"
-                  : "flower-footer-picture.png"}
+                  ? "flower-footer-mobile.webp"
+                  : "flower-footer-picture.webp"}
                 style={$isMobile
                   ? flowerImageStyleMobile
                   : $isTablet
                     ? flowerImageStyleTablet
                     : flowerImageStyle}
+                loading="eager"
+                decoding="async"
               />
             
           </div>
-        
       </Col>
     </Grid>
     <div class="Footer__BottomPanel">

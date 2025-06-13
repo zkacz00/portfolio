@@ -31,8 +31,8 @@
       loadingComplete = true;
       setTimeout(() => {
         hideOverlay = true;
-      }, 1400);
-    }, 1600);
+      }, 1300);
+    }, 1500);
   });
 </script>
 

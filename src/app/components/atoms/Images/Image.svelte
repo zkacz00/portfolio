@@ -40,6 +40,12 @@
   /** The style of image on focus*/
   export let isFocus: boolean = true;
 
+  /** The loading behavior of the image */
+  export let loading: 'lazy' | 'eager' = 'eager';
+
+  /** The decoding behavior of the image */
+  export let decoding: 'async' | 'sync' | 'auto' = 'async';
+
   /* VARIABLES */
   let imagePathPrefix: string = "images/";
 
@@ -71,8 +77,8 @@
         {title}
         style:object-fit={behavior}
         style:border-radius={borderRadius ? '1rem' : 'none'}
-        decoding="async"
-        loading="lazy"
+        {decoding}
+        {loading}
         style={contentStyle}
       />
     </a>
@@ -83,8 +89,8 @@
       {alt}
       {title}
       style:object-fit={behavior}
-      decoding="async"
-      loading="lazy"
+      {decoding}
+      {loading}
       style:border-radius={borderRadius ? '1rem' : 'none'}
       style={contentStyle}
     />

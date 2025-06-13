@@ -118,6 +118,7 @@ export const experienceEls: Record<Language, Array<ExperienceEl>> = {
         "Podczas tego kursu przyswoiłam podstawy JavaScript i TypeScript, tworzyłam projekty w React i nauczyłam się stylować strony przy pomocy Sass i CSS.",
       technologies: [
         "React",
+        "Gatsby",
         "TypeScript",
         "Sass",
         "CSS",
