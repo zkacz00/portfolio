@@ -6,7 +6,9 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs20.x'
+		}),
 		paths: {
 			// base: process.env.NODE_ENV === 'production' ? '/zkacz00-portfolio' : '',
 			base: process.env.NODE_ENV === 'production' ? '' : '',
