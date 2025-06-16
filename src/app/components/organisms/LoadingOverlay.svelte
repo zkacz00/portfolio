@@ -15,7 +15,7 @@
     class:LoadingOverlay__Content--visible={visible}
     class:LoadingOverlay__Content--hidden={!visible}
   >
-    <LogoAnimation />
+    <LogoAnimation visible={visible} />
   </div>
 </div>
 

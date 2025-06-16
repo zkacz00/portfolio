@@ -1,11 +1,15 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     let animate = false;
   
-    onMount(() => {
-      animate = true;
-    });
-  </script>
+    export let visible = true;
+
+    $: if (visible) {
+        animate = false;
+        setTimeout(() => {
+            animate = true;
+        }, 50);
+    }
+</script>
   
   <div class="LogoGrid {animate ? 'LogoGrid--animate' : ''}">
     <div class="Square Square--orange" style="--x: 0; --y: 0;" />

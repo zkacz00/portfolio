@@ -20,6 +20,8 @@
   /* VARIABLES */
   let flowerImageStyle: string = `z-index: 0; top: -2rem; right: -6rem; position: absolute; width: 100%; overflow: hidden;`;
   let flowerImageStyleMobile: string = `z-index: 0; top: 1rem; right: -4rem; position: absolute; height: 100%; width: 110%; overflow: hidden;`;
+  let debouncedMenuOpen: boolean = false;
+  let menuTimeout: NodeJS.Timeout;
 
   /* METHODS */
   const handleKey = (event: KeyboardEvent) => {
@@ -43,6 +45,17 @@
   $: if (typeof window !== "undefined") {
     document.body.style.overflowY = isMenuOpen ? "hidden" : "auto";
   }
+
+  $: {
+    clearTimeout(menuTimeout);
+    if (isMenuOpen) {
+      debouncedMenuOpen = true;
+    } else {
+      menuTimeout = setTimeout(() => {
+        debouncedMenuOpen = false;
+      }, 300); // Match this with your menu transition duration
+    }
+  }
 </script>
 
 <div
@@ -65,7 +78,7 @@
         {#if $isMobile}
           <Reveal
             once={false}
-            reset={true}
+            reset={!debouncedMenuOpen}
             delay={0.2 + 8 / 6}
             duration={8 / 6}
             direction="left"
@@ -84,7 +97,7 @@
     <Col desktop={8} tablet={5} mobile={1}>
       <Reveal
         once={false}
-        reset={true}
+        reset={!debouncedMenuOpen}
         delay={0.4}
         duration={0.4}
         direction="left"
@@ -102,7 +115,7 @@
           {/if}
           <Reveal
             once={false}
-            reset={true}
+            reset={!debouncedMenuOpen}
             delay={0.6}
             duration={0.6}
             direction="left"
