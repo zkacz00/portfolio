@@ -32,14 +32,12 @@
       setTimeout(() => {
         hideOverlay = true;
       }, 1300);
-    }, 500); // Short delay after images are loaded
+    }, 1000);
   };
 
   onMount(() => {
     scrollToTop();
 
-    // If images are already cached, they might load very quickly
-    // In that case, we'll show a minimum loading time
     const minimumLoadingTime = 1500;
     const startTime = Date.now();
 

@@ -41,7 +41,7 @@
   /* VARIABLES */
   const dispatch = createEventDispatcher();
   let imagesLoaded = 0;
-  const totalImages = 2; // We have 2 images in HeroSection
+  const totalImages = 2;
 
   let splashesImageStyle = `
     z-index: 0; 
