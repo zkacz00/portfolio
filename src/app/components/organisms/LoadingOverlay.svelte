@@ -36,6 +36,7 @@
     clip-path: circle(0% at 100% 0%);
     overflow-y: hidden;
     overflow-x: hidden;
+    height: 100vh;
   }
 
   .LoadingOverlay--visible {
