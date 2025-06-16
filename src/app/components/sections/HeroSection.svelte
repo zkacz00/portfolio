@@ -1,6 +1,7 @@
 <script lang="ts">
   /* IMPORTS */
   import Section from "../atoms/Spacing/Section.svelte";
+  import { createEventDispatcher } from 'svelte';
 
   import {
     Align,
@@ -38,6 +39,10 @@
   import { Target } from "../../types/targets";
 
   /* VARIABLES */
+  const dispatch = createEventDispatcher();
+  let imagesLoaded = 0;
+  const totalImages = 2; // We have 2 images in HeroSection
+
   let splashesImageStyle = `
     z-index: 0; 
     top: 0; 
@@ -94,6 +99,13 @@
   /* METHODS */
   const handleDownloadCV = () => {
     window.open(myCvUrl, "_blank");
+  };
+
+  const handleImageLoad = () => {
+    imagesLoaded++;
+    if (imagesLoaded === totalImages) {
+      dispatch('imagesLoaded');
+    }
   };
 
   /* HOOKS */
@@ -197,6 +209,7 @@
             behavior={ImageBehavior.COVER}
             loading="eager"
             decoding="async"
+            on:load={handleImageLoad}
           />
 
           <Image
@@ -210,6 +223,7 @@
             behavior={ImageBehavior.COVER}
             loading="eager"
             decoding="async"
+            on:load={handleImageLoad}
           />
         </div>
       </Col>

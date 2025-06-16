@@ -21,18 +21,38 @@
   let isMenuOpen = false;
   let loadingComplete = false;
   let hideOverlay = false;
+  let heroImagesLoaded = false;
 
   const toggleMenu = () => (isMenuOpen = !isMenuOpen);
 
-  onMount(() => {
-    scrollToTop();
-
+  const handleHeroImagesLoaded = () => {
+    heroImagesLoaded = true;
     setTimeout(() => {
       loadingComplete = true;
       setTimeout(() => {
         hideOverlay = true;
       }, 1300);
-    }, 1500);
+    }, 500); // Short delay after images are loaded
+  };
+
+  onMount(() => {
+    scrollToTop();
+
+    // If images are already cached, they might load very quickly
+    // In that case, we'll show a minimum loading time
+    const minimumLoadingTime = 1500;
+    const startTime = Date.now();
+
+    const checkLoadingTime = () => {
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime >= minimumLoadingTime) {
+        handleHeroImagesLoaded();
+      } else {
+        setTimeout(checkLoadingTime, 100);
+      }
+    };
+
+    checkLoadingTime();
   });
 </script>
 
@@ -41,7 +61,7 @@
 <div class="Home" class:Home--noScroll={!loadingComplete}>
   <Nav {isMenuOpen} {toggleMenu} />
   <Menu {isMenuOpen} {toggleMenu} />
-  <HeroSection />
+  <HeroSection on:imagesLoaded={handleHeroImagesLoaded} />
   <ScrollingTextSection />
   <AboutSection />
   <HighlightsSection />
