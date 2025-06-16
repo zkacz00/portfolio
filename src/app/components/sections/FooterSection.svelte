@@ -4,6 +4,6 @@
   import Footer from "../organisms/Footer.svelte";
 </script>
 
-<Section anchor="footer" clearBottomPadding={true} color="black">
+<Section anchor="footer" clearBottomPadding={true} color="black" clearSidePadding={true}>
     <Footer />
 </Section>

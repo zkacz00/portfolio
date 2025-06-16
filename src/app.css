@@ -95,6 +95,7 @@
     rgba(56, 56, 56, 1) 0%,
     rgba(28, 28, 28, 1) 60%
   );
+  --color-gradient-black-mobile: radial-gradient(500px 267px ellipse at 43% -42px, rgba(56, 56, 56, 1) 0%, rgba(28, 28, 28, 1) 64%);
   --color-gradient-black-secondary: radial-gradient(
     1064px 438px ellipse at 45% 32px,
     rgb(35, 35, 35) 0%,
@@ -354,6 +355,7 @@ textarea {
   );
   --color-orange: #f86f34;
   --color-orange-dark: #e4362a;
+  --color-gradient-black: var(--color-gradient-black-mobile);
   /* --color-gradient-white: radial-gradient(
     1064px 438px ellipse at 45% 32px,
     rgba(214, 214, 214, 0.95) 0%,

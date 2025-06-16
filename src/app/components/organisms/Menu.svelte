@@ -76,7 +76,7 @@
       </div>
     </Col>
     <Col desktop={8} tablet={5} mobile={1}>
-      <Reveal once={false} delay={0.4} duration={0.4} direction="left" disabled={false}>
+      <Reveal once={false} reset={true} delay={0.4} duration={0.4} direction="left" disabled={false}>
         <div class="Menu__Image" class:Menu__Image--open={isMenuOpen}>
           {#if !$isMobile}
             <Image
@@ -87,7 +87,7 @@
               decoding="async"
             />
           {/if}
-          <Reveal once={false} delay={0.6} duration={0.6} direction="left" disabled={false}>
+          <Reveal once={false} reset={true} delay={0.6} duration={0.6} direction="left" disabled={false}>
             <Image
               alt="splashes"
               file={$isMobile

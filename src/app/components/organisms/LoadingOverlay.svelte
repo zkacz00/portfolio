@@ -27,10 +27,15 @@
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    background: var(--color-gradient-black);
-    transition:
-      clip-path 1.5s cubic-bezier(0.25, 1.25, 0.5, 1);
+    background: radial-gradient(
+      1064px 438px ellipse at 45% 32px,
+      rgba(56, 56, 56, 1) 0%,
+      rgba(28, 28, 28, 1) 60%
+    );
+    transition: clip-path 1.5s cubic-bezier(0.25, 1.25, 0.5, 1);
     clip-path: circle(0% at 100% 0%);
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   .LoadingOverlay--visible {

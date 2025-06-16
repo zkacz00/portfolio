@@ -16,6 +16,10 @@
   let element: HTMLElement;
   let isRevealed: boolean = false;
 
+  $: if (reset) {
+    isRevealed = false;
+  }
+
   onMount(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

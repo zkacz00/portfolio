@@ -184,9 +184,9 @@ export const skills: Skills = {
       icon: "loading",
       skills: [
         "gwizdać 🙈",
-        "przetrwać bez kawy",
+        "przeżyć dnia bez kawy",
         "utrzymać roślinek przy życiu",
-        "nie głaskać kitków",
+        "nie głaskać kotów",
       ],
     },
   },

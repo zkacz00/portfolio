@@ -29,9 +29,9 @@
 
   /* VARIABLES */
   let logoImageStyle: string = "height: 4rem; width: auto;";
-  let flowerImageStyle: string = `z-index: 0; top: 4rem; right: -16rem; position: absolute; width: 100%; overflow: hidden;`;
-  let flowerImageStyleTablet: string = `z-index: 0; top: 6rem; right: -10rem; position: absolute; width: 100%; overflow: hidden;`;
-  let flowerImageStyleMobile: string = `z-index: 0; bottom: -22rem; right: -5rem; position: absolute; width: 130%; overflow: hidden;`;
+  let flowerImageStyle: string = `z-index: 0; width: 90%; `;
+  let flowerImageStyleTablet: string = `z-index: 0; width: 90%;`;
+  let flowerImageStyleMobile: string = `z-index: 0; bottom: -15rem; right: -4rem; position: absolute; width: 130%; overflow: hidden;`;
 
   /* METHODS */
   const handleHeroClick = () => scrollTo("home");
@@ -40,7 +40,8 @@
   $: footerContent = footerText[$language];
 </script>
 
-  <div class="Footer">
+<div class="Footer">
+  <div class="Footer__Content">
     <Grid>
       <Col desktop={4} tablet={3} mobile={1}>
         <Flex
@@ -49,92 +50,88 @@
           gap={$isTablet ? 10 : 12}
         >
           <Link url="#home" onClick={handleHeroClick}>
-            <Image alt="zb-logo" file="zb-logo.webp" style={logoImageStyle} loading="eager" decoding="async" />
+            <Image
+              alt="zb-logo"
+              file="zb-logo.webp"
+              style={logoImageStyle}
+              loading="eager"
+              decoding="async"
+            />
           </Link>
           <FooterLinks />
         </Flex>
       </Col>
       <Col desktop={8} tablet={5} mobile={1}>
-          <div class="Footer__Image">
-            {#if !$isMobile}
-              <Image
-                alt="splashes"
-                file="flower-footer-shapes.webp"
-                style={flowerImageStyle}
-                loading="eager"
-                decoding="async"
-              />
-            {/if}
-              <Image
-                alt="splashes"
-                file={$isMobile
-                  ? "flower-footer-mobile.webp"
-                  : "flower-footer-picture.webp"}
-                style={$isMobile
-                  ? flowerImageStyleMobile
-                  : $isTablet
-                    ? flowerImageStyleTablet
-                    : flowerImageStyle}
-                loading="eager"
-                decoding="async"
-              />
-            
-          </div>
+        <div class="Footer__Image">
+          <Image
+            alt="splashes"
+            file={$isMobile
+              ? "flower-footer-mobile.webp"
+              : "flower-footer.webp"}
+            style={$isMobile
+              ? flowerImageStyleMobile
+              : $isTablet
+                ? flowerImageStyleTablet
+                : flowerImageStyle}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
       </Col>
     </Grid>
-    <div class="Footer__BottomPanel">
-      <Flex
-        direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-        justify={JustifyContent.BETWEEN}
-        align={$isMobile ? AlignItems.START : AlignItems.CENTER}
+  </div>
+  <div class="Footer__BottomPanel">
+    <Flex
+      direction={$isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+      justify={JustifyContent.BETWEEN}
+      align={$isMobile ? AlignItems.START : AlignItems.CENTER}
+    >
+      <Text
+        size={Size.XSMALL}
+        align={Align.LEFT}
+        color={TextColorVariant.WHITE_SECONDARY}
       >
-        <Text
-          size={Size.XSMALL}
-          align={Align.LEFT}
-          color={TextColorVariant.WHITE_SECONDARY}
-        >
-          {footerContent.signature}
-        </Text>
+        {footerContent.signature}
+      </Text>
+      <Flex
+        order={$isMobile ? -1 : 2}
+        direction={FlexDirection.ROW}
+        align={AlignItems.CENTER}
+        justify={JustifyContent.CENTER}
+        width={MaxSize.ADJUST}
+      >
         <Flex
-          order={$isMobile ? -1 : 2}
-          direction={FlexDirection.ROW}
+          width={MaxSize.DEFAULT}
+          height={MaxSize.DEFAULT}
           align={AlignItems.CENTER}
-          justify={JustifyContent.CENTER}
-          width={MaxSize.ADJUST}
+          gap={$isMobile ? 4 : 3}
         >
-          <Flex
-            width={MaxSize.DEFAULT}
-            height={MaxSize.DEFAULT}
-            align={AlignItems.CENTER}
-            gap={$isMobile ? 4 : 3}
-          >
-            <Logo
-              logo={LogoName.GITHUB}
-              color={LogoColorVariant.WHITE}
-              size={Size.SMALL}
-              target={Target.BLANK}
-            />
-            <Logo
-              logo={LogoName.LINKEDIN}
-              color={LogoColorVariant.WHITE}
-              size={Size.SMALL}
-              target={Target.BLANK}
-            />
-          </Flex>
-          <Flex
-            width={MaxSize.DEFAULT}
-            height={MaxSize.DEFAULT}
-            align={AlignItems.CENTER}
-            gap={$isMobile ? 2 : 3}
-          >
-            <LanguageSwitch />
-            <ModeButton />
-          </Flex>
+          <Logo
+            logo={LogoName.GITHUB}
+            color={LogoColorVariant.WHITE}
+            size={Size.SMALL}
+            target={Target.BLANK}
+          />
+          <Logo
+            logo={LogoName.LINKEDIN}
+            color={LogoColorVariant.WHITE}
+            size={Size.SMALL}
+            target={Target.BLANK}
+          />
+        </Flex>
+        <Flex
+          width={MaxSize.DEFAULT}
+          height={MaxSize.DEFAULT}
+          align={AlignItems.CENTER}
+          gap={$isMobile ? 2 : 3}
+        >
+          <LanguageSwitch />
+          <ModeButton />
         </Flex>
       </Flex>
-    </div>
+    </Flex>
   </div>
-
+</div>
 
 <style>
   .Footer {
@@ -144,22 +141,33 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 10rem;
+  }
+
+  .Footer__Content {
+    padding-left: var(--section-margin-horizontal);
+    width: 100%;
   }
 
   .Footer__Image {
     height: 100%;
     width: 100%;
-    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
   }
 
   .Footer__BottomPanel {
-    width: 100%;
+    width: -webkit-fill-available;
     padding: 5rem 0;
+    margin: 0 var(--section-margin-horizontal);
     border-top: rgba(255, 255, 255, 0.2) 0.5px solid;
   }
 
   :global(.Mobile) .Footer {
     flex-direction: column;
+  }
+
+  :global(.Mobile) .Footer__Image {
+    position: relative;
   }
 </style>

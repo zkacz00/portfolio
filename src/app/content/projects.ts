@@ -209,7 +209,7 @@ export const projects: Project = {
         {
           icon: "vibrate",
           title: "Drag & Drop + animacje",
-          content: "Projekt zrealizowany podczas kursu front-end — oparty na gotowym designie, z dodanym przeze mnie widokiem mobilnym (dostosowanym do telefonów i tabletów). Aplikacja zawiera płynne animacje i mechanikę drag & drop.",
+          content: "Projekt stworzony w trakcie kursu front-end — oparty na gotowym designie, z dodanym przeze mnie widokiem mobilnym (dostosowanym do telefonów i tabletów). Aplikacja zawiera płynne animacje i mechanikę drag & drop.",
         },
         {
           icon: "pencil",

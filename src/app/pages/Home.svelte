@@ -72,7 +72,7 @@
   }
 
   :global(.DarkMode) .Home {
-    background-color: rgb(14, 14, 14);
+    background-color: rgb(45, 45, 45);
   }
 
   :global(.Tablet) .Home {
