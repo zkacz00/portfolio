@@ -6,11 +6,7 @@
   import Image from "../atoms/Images/Image.svelte";
   import { navText } from "../../content/nav";
   import { language } from "../../stores/language";
-  import {
-    FlexDirection,
-    AlignItems,
-    MaxSize,
-  } from "../../types/styles";
+  import { FlexDirection, AlignItems, MaxSize } from "../../types/styles";
   import { ButtonVariant } from "../../types/variants";
   import Col from "../atoms/Grid/Col.svelte";
   import Grid from "../atoms/Grid/Grid.svelte";
@@ -22,9 +18,9 @@
   export let isMenuOpen: boolean = false;
 
   /* VARIABLES */
-  let flowerImageStyle: string = `z-index: 0; top: -2rem; right: -22rem; position: absolute; width: 100%; overflow: hidden;`;
+  let flowerImageStyle: string = `z-index: 0; top: -2rem; right: -6rem; position: absolute; width: 100%; overflow: hidden;`;
   let flowerImageStyleMobile: string = `z-index: 0; top: 1rem; right: -4rem; position: absolute; height: 100%; width: 110%; overflow: hidden;`;
-  
+
   /* METHODS */
   const handleKey = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -67,16 +63,33 @@
           <NavList {toggleMenu} />
         </Flex>
         {#if $isMobile}
-        <Reveal once={false} reset={true} delay={0.2 + 8 / 6} duration={8 / 6} direction="left">
-          <Button width={MaxSize.FILL} variant={ButtonVariant.PRIMARY} onClick={handleContactClick}>
-            {navContent.workButton}
-          </Button>
+          <Reveal
+            once={false}
+            reset={true}
+            delay={0.2 + 8 / 6}
+            duration={8 / 6}
+            direction="left"
+          >
+            <Button
+              width={MaxSize.FILL}
+              variant={ButtonVariant.PRIMARY}
+              onClick={handleContactClick}
+            >
+              {navContent.workButton}
+            </Button>
           </Reveal>
         {/if}
       </div>
     </Col>
     <Col desktop={8} tablet={5} mobile={1}>
-      <Reveal once={false} reset={true} delay={0.4} duration={0.4} direction="left" disabled={false}>
+      <Reveal
+        once={false}
+        reset={true}
+        delay={0.4}
+        duration={0.4}
+        direction="left"
+        disabled={false}
+      >
         <div class="Menu__Image" class:Menu__Image--open={isMenuOpen}>
           {#if !$isMobile}
             <Image
@@ -87,7 +100,14 @@
               decoding="async"
             />
           {/if}
-          <Reveal once={false} reset={true} delay={0.6} duration={0.6} direction="left" disabled={false}>
+          <Reveal
+            once={false}
+            reset={true}
+            delay={0.6}
+            duration={0.6}
+            direction="left"
+            disabled={false}
+          >
             <Image
               alt="splashes"
               file={$isMobile
@@ -120,6 +140,8 @@
       visibility 0.5s ease;
     z-index: 899;
     cursor: pointer;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .Overlay--visible {
@@ -131,13 +153,13 @@
     position: fixed;
     top: 0;
     right: 0;
-    padding: 14rem var(--section-margin-horizontal) 4rem;
+    padding: 24rem 0 4rem var(--section-margin-horizontal);
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(0.5rem);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     opacity: 0;
@@ -149,6 +171,8 @@
       transform 0.5s ease;
     z-index: 900;
     pointer-events: none;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .Menu--visible {
@@ -169,7 +193,7 @@
   }
 
   .Menu__Content--visible {
-    display: flex;;
+    display: flex;
   }
 
   @keyframes fadeInMenu {
@@ -189,8 +213,11 @@
     position: relative;
   }
 
+  :global(.Tablet) .Menu {
+    padding: 16rem var(--section-margin-horizontal) 4rem;
+  }
+
   :global(.Mobile) .Menu {
-    justify-content: flex-start;
     padding: 20rem var(--section-margin-horizontal) 4rem;
   }
 </style>
