@@ -15,7 +15,7 @@
     class:LoadingOverlay__Content--visible={visible}
     class:LoadingOverlay__Content--hidden={!visible}
   >
-    <LogoAnimation visible={visible} />
+    <LogoAnimation />
   </div>
 </div>
 
@@ -36,6 +36,7 @@
     clip-path: circle(0% at 100% 0%);
     overflow-y: hidden;
     overflow-x: hidden;
+    overflow: hidden;
     height: 100vh;
   }
 
